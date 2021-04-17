@@ -29,11 +29,11 @@
             <input type="text" style="margin: 2em" name="usuario">
             <input type="text" style="margin: 2em" name="contraseña">
             <select id="seleccionador" name="rol" onchange="mostrar_extra()">
-                <option value="creador">Creador de evento</option>
-                <option value="admin">Administrador del sistema</option>
-                <option value="tele">Teleoperador</option>
-                <option value="analista">Analista de eventos</option>
-                <option value="usuario">Usuario de evento</option>
+                <option value="0">Creador de evento</option>
+                <option value="1">Administrador del sistema</option>
+                <option value="2">Teleoperador</option>
+                <option value="3">Analista de eventos</option>
+                <option value="4">Usuario de evento</option>
             </select>
            
             <div id="extra" style="visibility: hidden">
