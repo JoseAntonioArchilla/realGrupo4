@@ -36,18 +36,20 @@ public class ServletRegistroUsuario extends HttpServlet {
             throws ServletException, IOException {
         String nombre = request.getParameter("usuario");
         String contrasenia = request.getParameter("contraseña");
-        String apellido = request.getParameter("Apellidos");
-        String domicilio = request.getParameter("Domicilio");
-        String ciudad = request.getParameter("Ciudad");
-        int edad = Integer.parseInt(request.getParameter("Edad"));
-        String sexo = request.getParameter("Sexo");
-        int rol = Integer.parseInt(request.getParameter("rol"));
+        int rol = Integer.parseInt(request.getParameter("rol"));        
+        
         
         Usuario u = new Usuario();
         u.setPassword(contrasenia);
         u.setNickname(nombre);
         u.setRol(rol);
+        
         if(rol == 4){
+            String apellido = request.getParameter("Apellidos");
+            String domicilio = request.getParameter("Domicilio");
+            String ciudad = request.getParameter("Ciudad");
+            int edad = Integer.parseInt(request.getParameter("Edad"));
+            String sexo = request.getParameter("Sexo");
             UsuarioEvento ue = new UsuarioEvento();
             ue.setApellido(apellido);
             ue.setCiudad(ciudad);

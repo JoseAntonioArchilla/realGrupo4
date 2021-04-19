@@ -14,7 +14,7 @@
     <body>
         
         <form style="display:flex; align-items: center; justify-content: center; flex-direction: column;"
-              method="post" action="/ServletInicioSesion">
+              method="post" action="ServletInicioSesion">
             <h1>Inicio de sesion</h1>
             <input type="text" style="margin: 2em" name="usuario">
             <input type="text" style="margin: 2em" name="contraseña">

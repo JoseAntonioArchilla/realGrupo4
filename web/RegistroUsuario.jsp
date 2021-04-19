@@ -15,16 +15,15 @@
     <script>
         function mostrar_extra()
         {
-            let cosa = document.getElementById("extra")
-            let value = document.getElementById("seleccionador").value
-                     
-            cosa.style.visibility = value == "usuario" ? "visible" : "hidden"
+            let cosa = document.getElementById("extra");
+            let value = document.getElementById("seleccionador").value;
+            cosa.style.visibility = value === "4" ? "visible" : "hidden"
         }
     </script>
     
     <body>
         <form style="display:flex; align-items: center; justify-content: center; flex-direction: column;"
-              method="post" action="/ServletRegistroUsuario">
+              method="post" action="ServletRegistroUsuario">
             <h1>Registro</h1>
             <input type="text" style="margin: 2em" name="usuario">
             <input type="text" style="margin: 2em" name="contraseña">
