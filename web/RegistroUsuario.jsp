@@ -23,7 +23,6 @@
             let cosa = document.getElementById("extra");
             let value = document.getElementById("seleccionador").value;
             cosa.style.display = value === "4" ? "block" : "none"
-            cosa.className =  value === "4" ? "col-6" : ""
         }
     </script>
     
@@ -38,47 +37,63 @@
                 <div class="col-1"></div>
             </div>
             
-            <hr class='' style='width: 100%;'>
+            <hr style='width: 100%;'>
                         
             
             <form class='row justify-content-center' method="post" action="ServletRegistroUsuario">
                  
-                <div class='col-6'>
-                    <div class='row justify-content-center'>
-                        <input class='col-7 my-1' type="text" name="usuario">
-                        <input class='col-7 my-1' type="text" name="contraseña">
-                        <select class='col-7 my-1' id="seleccionador" name="rol" onchange="mostrar_extra()">
-                            <option value="0">Creador de evento</option>
-                            <option value="1">Administrador del sistema</option>
-                            <option value="2">Teleoperador</option>
-                            <option value="3">Analista de eventos</option>
-                            <option value="4">Usuario de evento</option>
-                        </select>
-                    </div>
-                   
-                </div>                   
                 
+                <div class='row'>
+                    <p class="col-6">Usuario</p>
+                    <input class='col-6 my-1' type="text" name="usuario">
+                </div>
+                <div class='row'>
+                    <p class="col-6">Contraseña</p>
+                    <input class='col-6 my-1' type="password" name="contraseña">
+                </div>
+                <div class='row'>
+                    <p class="col-6">Rol</p>
+                    <select class='col-6 my-1' id="seleccionador" name="rol" onchange="mostrar_extra()">
+                        <option value="0">Creador de evento</option>
+                        <option value="1">Administrador del sistema</option>
+                        <option value="2">Teleoperador</option>
+                        <option value="3">Analista de eventos</option>
+                        <option value="4">Usuario de evento</option>
+                    </select>
+                </div>
 
-                <div id="extra" class='' style="display:none;">
+                <div id="extra" style="display:none;">
+                    
+                    <hr style='width: 100%;'>                    
+                    
                     <div class='row'>
-                         <div class='col-6'>
-                            <input class="my-1" type="text" placeholder="Apellidos" name="Apellidos">
-                            <input class="my-1" type="text" placeholder="Domicilio" name="Domicilio">
-                            <input class="my-1" type="text" placeholder="Ciudad" name="Ciudad">
-                        </div>
-                        <div class='col-6'>
-                            <input type="text" placeholder="Edad" name="Edad">
-                            <select name="Sexo">
-                                <option value="0">Hombre</option>
-                                <option value="1">Mujer</option>
-                                <option value="2">Otro</option>
-                            </select>
-                        </div>
+                        <p class="col-6">Apellidos</p>
+                        <input class="my-1 col-6" type="text" name="Apellidos">
                     </div>
+                    <div class='row'>
+                        <p class="col-6">Domicilio</p>
+                        <input class="my-1 col-6" type="text" name="Domicilio">
+                    </div>
+                    <div class='row'>
+                        <p class="col-6">Ciudad</p>
+                        <input class="my-1 col-6" type="text" name="Ciudad">
+                    </div>
+                    <div class='row'>
+                        <p class="col-6">Edad</p>
+                        <input class="my-1 col-6" type="text" name="number" min="0" max="122">
+                    </div>
+                    <div class='row'>
+                        <p class="col-6">Sexo</p>
+                        <select class="my-1 col-6" name="Sexo">
+                            <option value="0">Hombre</option>
+                            <option value="1">Mujer</option>
+                            <option value="2">Otro</option>
+                        </select>
+                    </div>                   
                    
                 </div>        
                 
-                <input type="submit">
+                <input class="col-2" type="submit">
             </form>                  
         </div>
     </body>
