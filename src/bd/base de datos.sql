@@ -77,14 +77,14 @@ create table MENSAJE(
 
 create table FILTRO(
     idFiltro integer not null generated always as identity (start with 1, increment by 1),
-    edad_lim_inf integer not null,
-    edad_lim_sup integer not null,
-    sexo varchar(50) not null,
-    ciudad varchar(50) not null,
-    anyo integer not null,
-    coste_entrada integer not null,
-    categoria varchar(50) not null,
-    usuario integer not null,
+    edad_lim_inf integer,
+    edad_lim_sup integer,
+    sexo varchar(50),
+    ciudad varchar(50),
+    anyo integer,
+    coste_entrada integer,
+    categoria varchar(50),
+    usuario integer,
     constraint pk_filtro primary key(idFiltro),
     constraint fk_filtro foreign key(usuario) references USUARIO(idUsuario)
 );
