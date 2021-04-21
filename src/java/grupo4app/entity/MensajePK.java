@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author josea
+ * @author carlo
  */
 @Embeddable
 public class MensajePK implements Serializable {
@@ -23,7 +23,6 @@ public class MensajePK implements Serializable {
     @Column(name = "CHAT")
     private int chat;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "IDMENSAJE")
     private int idmensaje;
 
