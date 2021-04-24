@@ -19,31 +19,60 @@
         
     %>
     <body>
-        <div class="container-fluid navbar-dark bg-primary fixed-top ">
-          <nav class="navbar navbar-expand-lg container">
-              <a class="navbar-brand" href="index.html">Logo corporativo</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ml-auto"> <!-- la ultima parte es para "empujar los elementos al lado contrario que pone, l left, r right"-->
-                <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Inicio </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Nosotros</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Servicios</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Contacto</a>
-                </li>
-              </ul>
+       
+        <!-- Navbar -->      
+        <div class="row py-2 text-center" style="background: #de7ebf">
+             <style>
+                 a{
+                     font-size: 1.3em;
+                     color: black
+                 }
+                a:hover{
+                    font-weight: bold;
+                    color: black;
+                    text-decoration: none;
+                }
+                .dropdown{
+                    position: relative;display: inline-block;
+                }
+                .dropdown-content{
+                    display: none; position: absolute; z-index: 1
+                }
+                .dropdown:hover .dropdown-content{
+                    display: block;
+                }
+                .dropdown-element
+                {
+                    background: #eccbe8;
+                    text-align: center;
+                    padding:  .3em;
+                }
+            </style>
+            
+            <a class="col-2  text-decoration-none" href="index.html">
+                Logo
+            </a>
+            <form class="col-4">
+                <input style="width: 100%; border-radius: 25px" type="text">
+            </form>
+            <div class="col-4 d-flex justify-content-around ">
+                <a href="index.html">Inicio </a>
+                <a href="index.html">Servicios </a>
+                <a href="#">Contacto</a>
             </div>
-          </nav>
-        </div><!--navbar-->
+            <div  class="col-2 dropdown">
+                <img src="img/Logo.png" style="width:2em; height:2em;">
+                <div class="dropdown-content">
+                    <a class="row dropdown-element" href="index.html">Mi perfil</a>
+                    <a class="row dropdown-element" href="index.html">Mensajes</a>
+                    <a class="row dropdown-element" href="index.html">Ajustes</a>
+                    <a class="row dropdown-element" href="index.html">Cerrar sesion</a>
+                </div>
+            </div>       
+        </div>
+        
+        
+        
         
         <div class=container class = "py-3">
             <table>
