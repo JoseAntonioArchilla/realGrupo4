@@ -63,6 +63,11 @@
                         <td> <a href="ServletGuardarEvento?id=<%= e.getIdevento()%>"></td>
                         <td> <a href="ServletBorrarEvento?id=<%= e.getIdevento()%>"></td>
                     </tr>
+                    
+                     <%
+                        }
+                       
+                    %>
             </table>
         </div>
         
