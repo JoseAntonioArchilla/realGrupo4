@@ -53,6 +53,13 @@
             <input type="text" name="buscador"/>
         </div>
         <hr style="width: 100%">
+        <% if(usuarioIniciado != null && (usuarioIniciado.getRol() == 0 || usuarioIniciado.getRol() == 4)) {
+        %>   
+            <form method="POST" action="ServletCrearChat">
+                <input type="submit" value="Inicia una conversación con un teleoperador">
+            </form>
+        <% }
+        %>
     <% if(conversaciones != null) {  
     %>
          <table>
@@ -61,7 +68,6 @@
                 <th>Usuario atendido</th>
                 <% if(usuarioIniciado.getRol() == 2) {
                 %> 
-                    <th></th>
                     <th></th>
                 <% }
                 %>
@@ -73,7 +79,6 @@
                     <td><%=ch.getUsuario2().getNickname()%></td>
                     <% if(usuarioIniciado.getRol() == 2) {
                     %>    
-                        <td><a href="#">Editar</a></td>
                         <td><a href="ServletBorrarChat?idChat=<%=ch.getIdchat()%>">Borrar</a></td>
                     <% }
                     %>

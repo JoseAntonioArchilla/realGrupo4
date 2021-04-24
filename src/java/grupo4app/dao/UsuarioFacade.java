@@ -9,6 +9,7 @@ import grupo4app.entity.Usuario;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +30,11 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         super(Usuario.class);
     }
     
+    public Usuario findRandomTeleoperador(){
+        Usuario usr;
+        Query q = em.createQuery("SELECT u FROM USUARIO u WHERE ROL = 2 ORDER BY RANDOM() FETCH FIRST 1 ROWS ONLY");
+        usr = (Usuario)q.getSingleResult();
+        
+        return usr;
+    }
 }
