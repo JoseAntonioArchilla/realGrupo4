@@ -4,6 +4,8 @@
     Author     : josea
 --%>
 
+<%@page import="grupo4app.entity.Evento"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +14,10 @@
         <title>JSP Page</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
+     <%
+        List<Evento> listaEventos = (List)request.getAttribute("eventos");
+        
+    %>
     <body>
         <div class="container-fluid navbar-dark bg-primary fixed-top ">
           <nav class="navbar navbar-expand-lg container">
@@ -41,12 +47,21 @@
         
         <div class=container class = "py-3">
             <table>
-                <thead>
                     <tr>
                       <th scope="col">Nombre Evento</th>
+                      <th scope="col">Descripcion</th>
                       <th scope="col"></th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
+                      <th scope="col"></th>
+                    </tr>
+                    <%
+                        for(Evento e : listaEventos){
+                       
+                    %>
+                    <tr>
+                        <td><%=e.getTitulo() %> </td>
+                        <td><%=e.getDescripcion() %> </td>
+                        <td> <a href="ServletGuardarEvento?id=<%= e.getIdevento()%>"></td>
+                        <td> <a href="ServletBorrarEvento?id=<%= e.getIdevento()%>"></td>
                     </tr>
             </table>
         </div>

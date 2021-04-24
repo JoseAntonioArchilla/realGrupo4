@@ -42,11 +42,16 @@
             <div class="row justify-content-center">                
                 <input type="submit"  class="col-2 my-5">
             </div>
-        </form>
+           
+        </form >
+            <form method="post" action="ServletListarEventos" > 
+            
+                <input type = "submit" value = " enviar">
+            </form>
         
         
         <a href="RegistroUsuario.jsp" class="row justify-content-center">¿Todavía no tienes una cuenta?</a>
-        <a href="eventosCRUD.jsp">Enlace provisional a eventosCRUD</a>
+        
         <a href="registsroEvento.jsp">Enlace provisional a registro Evento</a>
     </body>
 </html>

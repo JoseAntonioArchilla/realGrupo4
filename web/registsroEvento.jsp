@@ -23,7 +23,7 @@
 
         <hr style='width: 100%;'>
         <div class="container">
-            <form class='row justify-content-center' method="post" action="ServletRegistroUsuario">
+            <form class='row justify-content-center' method="post" action="ServletGuardarEvento">
                 <div class='row'>
                     <p class="col-2">Titulo:</p>
                     <input class='col-6 my-1' type="text" name="tituloEvento">
