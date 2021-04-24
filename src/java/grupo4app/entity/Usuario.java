@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -24,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author josea
+ * @author carlo
  */
 @Entity
 @Table(name = "USUARIO")
@@ -39,8 +41,8 @@ public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "IDUSUARIO")
     private Integer idusuario;
     @Basic(optional = false)
@@ -57,7 +59,7 @@ public class Usuario implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "PASSWORD")
     private String password;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario")
     private List<Filtro> filtroList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario2")
     private List<Chat> chatList;

@@ -9,19 +9,20 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author josea
+ * @author carlo
  */
 @Entity
 @Table(name = "FILTRO")
@@ -40,43 +41,29 @@ public class Filtro implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "IDFILTRO")
     private Integer idfiltro;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "EDAD_LIM_INF")
-    private int edadLimInf;
-    @Basic(optional = false)
-    @NotNull
+    private Integer edadLimInf;
     @Column(name = "EDAD_LIM_SUP")
-    private int edadLimSup;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
+    private Integer edadLimSup;
+    @Size(max = 50)
     @Column(name = "SEXO")
     private String sexo;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
+    @Size(max = 50)
     @Column(name = "CIUDAD")
     private String ciudad;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "ANYO")
-    private int anyo;
-    @Basic(optional = false)
-    @NotNull
+    private Integer anyo;
     @Column(name = "COSTE_ENTRADA")
-    private int costeEntrada;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
+    private Integer costeEntrada;
+    @Size(max = 50)
     @Column(name = "CATEGORIA")
     private String categoria;
     @JoinColumn(name = "USUARIO", referencedColumnName = "IDUSUARIO")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Usuario usuario;
 
     public Filtro() {
@@ -84,17 +71,6 @@ public class Filtro implements Serializable {
 
     public Filtro(Integer idfiltro) {
         this.idfiltro = idfiltro;
-    }
-
-    public Filtro(Integer idfiltro, int edadLimInf, int edadLimSup, String sexo, String ciudad, int anyo, int costeEntrada, String categoria) {
-        this.idfiltro = idfiltro;
-        this.edadLimInf = edadLimInf;
-        this.edadLimSup = edadLimSup;
-        this.sexo = sexo;
-        this.ciudad = ciudad;
-        this.anyo = anyo;
-        this.costeEntrada = costeEntrada;
-        this.categoria = categoria;
     }
 
     public Integer getIdfiltro() {
@@ -105,19 +81,19 @@ public class Filtro implements Serializable {
         this.idfiltro = idfiltro;
     }
 
-    public int getEdadLimInf() {
+    public Integer getEdadLimInf() {
         return edadLimInf;
     }
 
-    public void setEdadLimInf(int edadLimInf) {
+    public void setEdadLimInf(Integer edadLimInf) {
         this.edadLimInf = edadLimInf;
     }
 
-    public int getEdadLimSup() {
+    public Integer getEdadLimSup() {
         return edadLimSup;
     }
 
-    public void setEdadLimSup(int edadLimSup) {
+    public void setEdadLimSup(Integer edadLimSup) {
         this.edadLimSup = edadLimSup;
     }
 
@@ -137,19 +113,19 @@ public class Filtro implements Serializable {
         this.ciudad = ciudad;
     }
 
-    public int getAnyo() {
+    public Integer getAnyo() {
         return anyo;
     }
 
-    public void setAnyo(int anyo) {
+    public void setAnyo(Integer anyo) {
         this.anyo = anyo;
     }
 
-    public int getCosteEntrada() {
+    public Integer getCosteEntrada() {
         return costeEntrada;
     }
 
-    public void setCosteEntrada(int costeEntrada) {
+    public void setCosteEntrada(Integer costeEntrada) {
         this.costeEntrada = costeEntrada;
     }
 
