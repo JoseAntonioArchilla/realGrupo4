@@ -4,6 +4,8 @@
     Author     : carlo
 --%>
 
+<%@page import="grupo4app.entity.Filtro"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,13 +13,31 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>AnalistaEventos</title>
     </head>
+    <%
+        List<Filtro> listaFiltros = (List)request.getAttribute("listaFiltros");
+        %>
     <body>
         <h1>Bienvenido analista de eventos</h1>
         <p>Lista de analisis: </p>
-        <form>
-            <input type="button" value="NuevoAnalisis" onclick="location.href='CrearAnalisis.jsp'">
-        </form>
-            
-        
+        <table>
+        <tr>
+            <th>Filtros</th>
+        <tr/>
+        <%
+            for(Filtro filtro : listaFiltros){
+        %>
+        <tr>
+            <td><%= filtro.getIdfiltro()%></td>
+            <td><a href="ServletBorrarFiltro?id=<%=filtro.getIdfiltro()%>">Borrar</a></td>
+            <td><a href="ServletCrearEditarFiltro?id=<%=filtro.getIdfiltro()%>">Editar</a></td>
+        </tr>     
+        <%
+            }    
+        %>   
+        </table>
+        <!--<form>-->  
+          <!-- <input type="button" value="NuevoAnalisis" onclick="location.href='ServletCrearEditarFiltro'"> -->
+          <a href="ServletCrearEditarFiltro">Nuevo Filtro</a>
+        <!--</form>-->  
     </body>
 </html>
