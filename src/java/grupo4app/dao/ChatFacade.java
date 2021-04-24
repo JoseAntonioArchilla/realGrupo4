@@ -6,9 +6,11 @@
 package grupo4app.dao;
 
 import grupo4app.entity.Chat;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +31,12 @@ public class ChatFacade extends AbstractFacade<Chat> {
         super(Chat.class);
     }
     
+    public List<Chat> findByUsuario(int id){
+        List<Chat> chatsUsr;
+        Query q = em.createQuery("SELECT c FROM CHAT WHERE c.USUARIO2 = :idU");
+        q.setParameter("idU", id);
+        chatsUsr = q.getResultList();
+        
+        return chatsUsr;
+    }
 }
