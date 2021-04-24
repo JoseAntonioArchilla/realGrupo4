@@ -14,26 +14,32 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Usuarios</title>
         <link rel="stylesheet" href="estiloAdministrador.css">
-    </head>
-    <%
+
+        
+        
+        
+         <%
         List<Usuario> listaUsuarios = (List)request.getAttribute("listaUsuarios");
         if(listaUsuarios == null){
             response.sendRedirect("ServletUsuarioListar");
         }
     %>
-    
-    <%
-        if(request.getAttribute("error") != null){
-    %>
-        <script>
-            alert(<%=request.getAttribute("error")%>);
-            console.log("hola");
-        </script>
-    <%
-        }
-    %>
+    <script>
+        console.log("adios");
+        <%
+            if(request.getAttribute("error") != null){
+        %>
+        alert(<%=request.getAttribute("error")%>);
+        console.log("hola");
+        <%
+            }
+        %>
+    </script>
+    </head>
     
     <body class='container py-5'>
+       
+        
         <img src="img/Logo.png" alt="logo" id ="logo">
         
         Buscar: <input type="search" id="buscador">
