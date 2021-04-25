@@ -41,9 +41,7 @@ public class ServletCrearEditarFiltro extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        Integer prueba = 0;
-        
+                     
         //Comprueba si es para editar o es nuevo.
         String str = request.getParameter("id");
         //Es editar en vez de guardar.
