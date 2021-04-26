@@ -13,18 +13,48 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     
     </head>
+    
+    <%
+        String id = request.getParameter("idEvento");
+        String descripcion = request.getParameter("descripcionEvento");
+        String precioEvento = request.getParameter("precioEvento");
+        String titulo = request.getParameter("tituloEvento");
+        String fechaInicio = request.getParameter("fechaInicio");
+        String fechaFin = request.getParameter("fechaFin");
+        
+     %>
+    
     <body>
         <!-- Navbar -->      
         <div class="row py-2 text-center" style="background: #de7ebf">
              <style>
+                 body{
+                     background-image: url("img/pattern.jpg");
+                 }
                  a{
                      font-size: 1.3em;
                      color: black
                  }
+                 
+                 span{
+                    border-radius: 5px;  
+                    border-style: solid; 
+                    border-width: 1px; 
+                    border-color: #ab4493;
+                    background: white;
+                    padding: .2em;
+                 }
+                 
                 a:hover{
                     font-weight: bold;
                     color: black;
                     text-decoration: none;
+                }
+                button{
+                    border-radius: 15px;
+                    background: #f48542;
+                    font-weight: bold;
+                    cursor: pointer;
                 }
                 .dropdown{
                     position: relative;display: inline-block;
@@ -40,6 +70,9 @@
                     background: #eccbe8;
                     text-align: center;
                     padding:  .3em;
+                }
+                .fondito {
+                    background: #f2f2f2;
                 }
             </style>
             
@@ -67,18 +100,26 @@
         
         <div class = "row">
             <div class="col-1"></div>
-            <img src = "img/lotad.png"  style="aspect-ratio: 16 / 9;"  class = "col-7">
-            <div class = "col-4">
-                <p>Fecha: </p>
-                <p>Titulo: </p>
-                <p>Precio: </p>
-                <button>Comprar</button>
+            <img src = "img/lotad.png"  style="aspect-ratio: 16 / 9;"  class = "col-7 fondito">
+            <div class = "col-3 fondito py-2">
+                <p>
+                    <label for ="titulo">Titulo:</label> <span id="titulo"><%= titulo%></span>
+                </p>
+                <p> 
+                    <label for="inicio" >Inicio: </label> <span id="inicio"><%= fechaInicio%></span>
+                    <label for="fin" class="pl-4">Fin: </label> <span id="fin"><%= fechaFin%></span>
+                </p>
+                <p>
+                    <label for ="precio">Precio:</label> <span id="precio"><%= precioEvento%></span>
+                </p>
+                <button href="#">Comprar</button> 
             </div>
+            <div class="col-1"></div>
         </div>
-        <div class = "row">
+        <div class = "row" >
             <div class="col-1"></div>
-            <p class ="col-7">Descripcion: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, facere amet expedita optio magnam et ullam omnis, a cupiditate sint sit saepe deleniti, inventore ipsum quae? Animi, architecto odit! Obcaecati veniam asperiores dicta, quaerat cum laborum, esse vitae iure ipsa corporis eum doloremque. Possimus ipsam, eos nobis exercitationem nostrum ullam!</p>
-            <div class="col-1"></div>
+            <p class ="col-7 fondito"> descripcion </p>
+            <div class="col-3 fondito"></div>
         </div>
         
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
