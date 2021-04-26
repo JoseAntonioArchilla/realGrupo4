@@ -48,6 +48,9 @@ public class ServletFiltroGuardar extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
       
         //Carga de variables.
+        String id = request.getParameter("id");
+        Filtro filtro;
+        
         String ciudad =  request.getParameter("ciudad");
         String sexo =  request.getParameter("sexo");
         String str = request.getParameter("anyo");
@@ -81,7 +84,12 @@ public class ServletFiltroGuardar extends HttpServlet {
         }
         
         //En el caso de un filtro nuevo
-        Filtro filtro = new Filtro();
+        if(id == null || id.isEmpty()){
+           filtro = new Filtro();
+        }else{ //En el caso de modificarlo.
+            filtro = this.filtroFacade.find(Integer.parseInt(id));
+        }
+        
         
         //Seteo los atributos.
         filtro.setCiudad(ciudad);
@@ -89,7 +97,6 @@ public class ServletFiltroGuardar extends HttpServlet {
         filtro.setAnyo(anyo);
         filtro.setCosteEntrada(costeEntrada);
         filtro.setCategoria(categorias);
-        //if(usuario != 0){
         Usuario usuarioFiltrado = this.usuarioFacade.find(usuario);
         filtro.setUsuario(usuarioFiltrado);
         //}
@@ -100,9 +107,13 @@ public class ServletFiltroGuardar extends HttpServlet {
         filtro.setEdadLimInf(edadInferior);
         filtro.setEdadLimSup(edadSuperior);
         
-        //Creo el nuevo filtro.
-       this.filtroFacade.create(filtro);
-        
+        //En el caso de un filtro nuevo
+        if(id == null || id.isEmpty()){
+           this.filtroFacade.create(filtro);
+        }else{ //En el caso de modificarlo.
+            this.filtroFacade.edit(filtro);
+        }
+              
         response.sendRedirect("ServletFiltroListar");
     }
 
