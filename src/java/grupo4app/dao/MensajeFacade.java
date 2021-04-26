@@ -5,10 +5,13 @@
  */
 package grupo4app.dao;
 
+import grupo4app.entity.Chat;
 import grupo4app.entity.Mensaje;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +30,14 @@ public class MensajeFacade extends AbstractFacade<Mensaje> {
 
     public MensajeFacade() {
         super(Mensaje.class);
+    }
+
+    public List<Mensaje> findbyChat(Chat c) {
+        Query q = em.createNamedQuery("Mensaje.findByChat");
+        q.setParameter("chat", c.getIdchat());
+        List<Mensaje> msgs = q.getResultList();
+        
+        return msgs;
     }
     
 }

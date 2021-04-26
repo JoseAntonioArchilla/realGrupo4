@@ -5,9 +5,14 @@
  */
 package grupo4app.servlet;
 
-import grupo4app.dao.UsuarioFacade;
+import grupo4app.dao.ChatFacade;
+import grupo4app.dao.MensajeFacade;
+import grupo4app.entity.Chat;
+import grupo4app.entity.Mensaje;
 import grupo4app.entity.Usuario;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,17 +20,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author chinchar@hotmail.es
+ * @author franc
  */
-@WebServlet(name = "ServletInicioSesion", urlPatterns = {"/ServletInicioSesion"})
-public class ServletInicioSesion extends HttpServlet {
+@WebServlet(name = "ServletMostrarChat", urlPatterns = {"/ServletMostrarChat"})
+public class ServletMostrarChat extends HttpServlet {
 
     @EJB
-    private UsuarioFacade usuarioFacade;
+    private ChatFacade chatFacade;
+
+    @EJB
+    private MensajeFacade mensajeFacade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,41 +45,21 @@ public class ServletInicioSesion extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        
-        String nUsuario = request.getParameter("usuario");
-        String password = request.getParameter("contrasena");
-        
-        if(nUsuario == null || password == null){
-            request.setAttribute("error", "Error: Campos vacíos");
-                    
-            RequestDispatcher rd = request.getRequestDispatcher("InicioSesion.jsp");
-            rd.forward(request, response);
-        } else {
-            nUsuario = nUsuario.trim();
-            password = password.trim();
+        Chat chat = (Chat)request.getAttribute("chat");
+        if(chat == null){
+            int idchat = Integer.parseInt(request.getParameter("idChat"));
             
-            if(nUsuario.length() == 0 || password.length() == 0){
-                request.setAttribute("error", "Error: Campos vacíos");
-                    
-                RequestDispatcher rd = request.getRequestDispatcher("InicioSesion.jsp");
-                rd.forward(request, response);
-            } else {
-                Usuario usr = this.usuarioFacade.findByNicknameAndPassword(nUsuario,password);
-                
-                if(usr == null){
-                    request.setAttribute("error", "Error: El nombre de usuario o la contraseña son incorrectos");
-                    
-                    RequestDispatcher rd = request.getRequestDispatcher("InicioSesion.jsp");
-                    rd.forward(request, response);
-                } else {
-                    session.setAttribute("usuario", usr);
-                    
-                    RequestDispatcher rd = request.getRequestDispatcher("index.html");
-                    rd.forward(request, response);
-                }
-            }
+            chat = this.chatFacade.find(idchat);
         }
+        
+        
+        List<Mensaje> msgs = this.mensajeFacade.findbyChat(chat);
+            
+        request.setAttribute("mensajes", msgs);
+        request.setAttribute("chat", chat);
+        
+        RequestDispatcher rd = request.getRequestDispatcher("Chat.jsp");
+        rd.forward(request, response);
         
     }
 

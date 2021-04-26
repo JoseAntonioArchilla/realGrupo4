@@ -36,7 +36,7 @@
                 </div>
                 <div class='row justify-content-center'>
                     <p class="col-3">Contraseña</p>
-                    <input class='col-3 my-1' type="password" name="contraseña">
+                    <input class='col-3 my-1' type="password" name="contrasena">
                 </div>
         
             <div class="row justify-content-center">                
@@ -44,6 +44,14 @@
             </div>
            
         </form >
+    <% 
+       String error = (String)request.getAttribute("error");
+       if(error != null){
+    %>
+        <p style="color: red; text-align: center;"><%=error%></p>
+    <%
+        }
+    %>
             <form method="post" action="ServletListarEventos" > 
             
                 <input type = "submit" value = " enviar">

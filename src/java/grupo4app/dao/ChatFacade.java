@@ -33,7 +33,7 @@ public class ChatFacade extends AbstractFacade<Chat> {
     
     public List<Chat> findByUsuario(int id){
         List<Chat> chatsUsr;
-        Query q = em.createQuery("SELECT c FROM CHAT WHERE c.USUARIO2 = :idU");
+        Query q = em.createQuery("SELECT c FROM Chat c WHERE c.usuario2 = :idU");
         q.setParameter("idU", id);
         chatsUsr = q.getResultList();
         

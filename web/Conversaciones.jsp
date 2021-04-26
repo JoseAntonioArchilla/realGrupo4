@@ -66,6 +66,7 @@
             <tr>
                 <th>Teleoperador</th>
                 <th>Usuario atendido</th>
+                <th></th>
                 <% if(usuarioIniciado.getRol() == 2) {
                 %> 
                     <th></th>
@@ -77,6 +78,7 @@
                 <tr>
                     <td><%=ch.getUsuario1().getNickname()%></td>
                     <td><%=ch.getUsuario2().getNickname()%></td>
+                    <td><a href="ServletMostrarChat?idChat=<%=ch.getIdchat()%>">Ver</a></td>
                     <% if(usuarioIniciado.getRol() == 2) {
                     %>    
                         <td><a href="ServletBorrarChat?idChat=<%=ch.getIdchat()%>">Borrar</a></td>

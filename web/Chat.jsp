@@ -4,6 +4,10 @@
     Author     : franc
 --%>
 
+<%@page import="grupo4app.entity.Mensaje"%>
+<%@page import="java.util.List"%>
+<%@page import="grupo4app.entity.Chat"%>
+<%@page import="grupo4app.entity.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,6 +29,12 @@
             }
         </style>
     </head>
+    <%
+        Chat ch = (Chat)request.getAttribute("chat");
+        List<Mensaje> mensajes = (List<Mensaje>)request.getAttribute("mensajes");
+        Usuario teleOp = ch.getUsuario1();
+        Usuario usr = ch.getUsuario2();
+    %>
     <body>
         <nav class="barra">
             <ul>
@@ -37,17 +47,23 @@
         
         <h1>Chat</h1>
         <hr style="width: 100%;"/>
-        
+        <%
+            for(Mensaje msg : mensajes){
+        %>
+            <p><b><%=msg.getEmisor().getNickname()%>:</b> <%=msg.getTexto()%></p>
+        <%
+            }
+        %>
         <div class="container">
             <div style="margin-left: 45%; border: 2px solid grey; width: 150px;">
                 <b>Teleoperador</b><br/>
-                Juanaaaaaaaaaaaaaa<br/>
+                <%=teleOp.getNickname()%><br/>
                 <b>Usuario</b></br>
-                Pepe
+                <%=usr.getNickname()%>
             </div>
         </div>
       
-        <form method="GET" action="ServletEnviarMensaje?id1=&id2=">
+        <form method="GET" action="#">
             <input type="text" name="mensaje" size="100"/>
             <input type="submit" name="enviar"/>
         </form>
