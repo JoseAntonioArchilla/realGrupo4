@@ -21,6 +21,19 @@ body{
 }
 
 
+select{
+	background-color: #fbfbfb; 
+	width: 422px; 
+	height: 40px; 
+	border-radius: 5px;  
+	border-style: solid; 
+	border-width: 1px; 
+	border-color: #ab4493; 
+	margin-top: 10px;  
+	padding-left: 10px;
+	margin-bottom: 20px; 
+}
+
 input{
   background-color: #fbfbfb; 
   width: 408px; 

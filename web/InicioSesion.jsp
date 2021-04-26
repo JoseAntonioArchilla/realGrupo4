@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
         <title>Inicio de sesion</title>
         
         <link href="estilos/estiloFormulario.css" rel="stylesheet">
@@ -23,12 +24,12 @@
 
                 <form method="post" action="ServletInicioSesion">       
                     <p>
-                        <label for="usuario" class="colocar_nombre">Usuario</label>
+                        <label for="usuario">Usuario</label>
                         <input type="text" name="usuario" id="usuario" required placeholder="Escribe tu usuario">
                     </p>
                       
                     <p>
-                        <label for="contraseña" class="colocar_nombre">Contraseña</label>
+                        <label for="contraseña">Contraseña</label>
                         <input type="password" name="contraseña" id="contraseña" required placeholder="Escribe tu contraseña">
                     </p>
 
