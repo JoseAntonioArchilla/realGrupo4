@@ -43,38 +43,23 @@ public class ServletInicioSesion extends HttpServlet {
         String nUsuario = request.getParameter("usuario");
         String password = request.getParameter("contrasena");
         
-        if(nUsuario == null || password == null){
-            request.setAttribute("error", "Error: Campos vacíos");
-                    
+        nUsuario = nUsuario.trim();
+
+        Usuario usr = this.usuarioFacade.findByNicknameAndPassword(nUsuario,password);
+
+        if(usr == null){
+            request.setAttribute("error", "Error: El nombre de usuario o la contraseña son incorrectos");
+
             RequestDispatcher rd = request.getRequestDispatcher("InicioSesion.jsp");
             rd.forward(request, response);
         } else {
-            nUsuario = nUsuario.trim();
-            //password = password.trim();  a una contraseña no se le deberia hacer trim
-            
-            if(nUsuario.length() == 0 || password.length() == 0){
-                request.setAttribute("error", "Error: Campos vacíos");
-                    
-                RequestDispatcher rd = request.getRequestDispatcher("InicioSesion.jsp");
-                rd.forward(request, response);
-            } else {
-                Usuario usr = this.usuarioFacade.findByNicknameAndPassword(nUsuario,password);
-                
-                if(usr == null){
-                    request.setAttribute("error", "Error: El nombre de usuario o la contraseña son incorrectos");
-                    
-                    RequestDispatcher rd = request.getRequestDispatcher("InicioSesion.jsp");
-                    rd.forward(request, response);
-                } else {
-                    session.setAttribute("usuario", usr);
-                    
-                    RequestDispatcher rd = request.getRequestDispatcher("index.html");
-                    rd.forward(request, response);
-                }
-            }
+            session.setAttribute("usuario", usr);
+
+            RequestDispatcher rd = request.getRequestDispatcher("index.html");
+            rd.forward(request, response);
         }
-        
     }
+        
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

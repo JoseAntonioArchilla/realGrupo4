@@ -6,6 +6,7 @@
 package grupo4app.dao;
 
 import grupo4app.entity.Chat;
+import grupo4app.entity.Usuario;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -31,10 +32,10 @@ public class ChatFacade extends AbstractFacade<Chat> {
         super(Chat.class);
     }
     
-    public List<Chat> findByUsuario(int id){
+    public List<Chat> findByUsuario(Usuario u){
         List<Chat> chatsUsr;
-        Query q = em.createQuery("SELECT c FROM Chat c WHERE c.usuario2 = :idU");
-        q.setParameter("idU", id);
+        Query q = em.createQuery("SELECT c FROM Chat c WHERE c.usuario2.idusuario = :us");
+        q.setParameter("us", u.getIdusuario());
         chatsUsr = q.getResultList();
         
         return chatsUsr;

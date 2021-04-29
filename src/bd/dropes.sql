@@ -6,3 +6,4 @@ drop table FILTRO;
 drop table USUARIO;
 drop table ASIENTOS;
 drop table EVENTO;
+drop table USUARIO;

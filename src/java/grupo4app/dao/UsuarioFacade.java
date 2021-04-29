@@ -32,9 +32,10 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         super(Usuario.class);
     }
     
-    public Usuario findRandomTeleoperador(){
+    public Usuario findRandomTeleoperador(Usuario user){
         List<Usuario> teleop;
-        Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.rol = 2");
+        Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.rol = 2 AND u.idusuario NOT IN (SELECT c.usuario1.idusuario FROM Chat c WHERE c.usuario2.idusuario = :us)");
+        q.setParameter("us", user.getIdusuario());
         teleop = q.getResultList();
         
         if(teleop.isEmpty()){
