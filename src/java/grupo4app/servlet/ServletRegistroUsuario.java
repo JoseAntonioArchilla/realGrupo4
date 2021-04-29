@@ -5,10 +5,13 @@
  */
 package grupo4app.servlet;
 
+import grupo4app.dao.UsuarioEventoFacade;
+import grupo4app.dao.UsuarioFacade;
 import grupo4app.entity.Usuario;
 import grupo4app.entity.UsuarioEvento;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,6 +26,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ServletRegistroUsuario", urlPatterns = {"/ServletRegistroUsuario"})
 public class ServletRegistroUsuario extends HttpServlet {
 
+    @EJB
+    private UsuarioFacade us;
+     
+    @EJB
+    private UsuarioEventoFacade use; 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,17 +42,19 @@ public class ServletRegistroUsuario extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nombre = request.getParameter("usuario");
-        String contrasenia = request.getParameter("contraseña");
+        String nick = request.getParameter("usuario");
+        String contrasenia = request.getParameter("password");
         int rol = Integer.parseInt(request.getParameter("rol"));        
         
         
         Usuario u = new Usuario();
         u.setPassword(contrasenia);
-        u.setNickname(nombre);
+        u.setNickname(nick);
         u.setRol(rol);
+        this.us.create(u);
         
         if(rol == 4){
+            
             String apellido = request.getParameter("Apellidos");
             String domicilio = request.getParameter("Domicilio");
             String ciudad = request.getParameter("Ciudad");
@@ -56,7 +66,9 @@ public class ServletRegistroUsuario extends HttpServlet {
             ue.setEdad(edad);
             ue.setDomicilio(domicilio);
             ue.setSexo(sexo);
+            ue.setUsuario(u.getIdusuario());
             ue.setUsuario1(u);
+            this.use.create(ue);
         }
         
         RequestDispatcher rd = request.getRequestDispatcher("index.html");

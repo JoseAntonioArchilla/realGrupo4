@@ -50,7 +50,7 @@ public class ServletInicioSesion extends HttpServlet {
             rd.forward(request, response);
         } else {
             nUsuario = nUsuario.trim();
-            password = password.trim();
+            //password = password.trim();  a una contraseña no se le deberia hacer trim
             
             if(nUsuario.length() == 0 || password.length() == 0){
                 request.setAttribute("error", "Error: Campos vacíos");

@@ -42,7 +42,7 @@
 
                     <p>
                         <label for="contraseña" >Contraseña</label>
-                        <input type="password" name="contraseña" id="contraseña" required placeholder="Escribe tu contraseña">
+                        <input type="password" name="password" id="contraseña" required placeholder="Escribe tu contraseña">
                     </p>
 
                     <select id="seleccionador" name="rol" onchange="mostrar_extra()">
@@ -56,32 +56,32 @@
                     <div id="extra" style="display:none;">
                         <p>
                             <label for="nombre" >Nombre</label>
-                            <input type="text" name="nombre" id="nombre" placeholder="Escribe tu nombre">
+                            <input type="text" name="Nombre" id="nombre" placeholder="Escribe tu nombre">
                         </p>
 
                         <p>
                             <label for="apellidos" >Apellidos</label>
-                            <input type="text" name="apellidos" id="apellidos" placeholder="Escribe tus apellidos">
+                            <input type="text" name="Apellidos" id="apellidos" placeholder="Escribe tus apellidos">
                         </p>
 
                         <p>
                             <label for="edad" >Edad</label>
-                            <input type="text" name="edad" id="edad" placeholder="Escribe tu edad">
+                            <input type="number" name="Edad" id="edad" placeholder="Escribe tu edad">
                         </p>
 
                         <p>
                             <label for="email" >Email</label>
-                            <input type="text" name="email" id="email" placeholder="Escribe tu email">
+                            <input type="email" name="Email" id="email" placeholder="Escribe tu email">
                         </p>
 
                         <p>
                             <label for="domicilio" >Domicilio</label>
-                            <input type="text" name="domicilio" id="domicilio" placeholder="Escribe tu domicilio">
+                            <input type="text" name="Domicilio" id="domicilio" placeholder="Escribe tu domicilio">
                         </p>
 
                         <p>
                             <label for="ciudad" >Ciudad</label>
-                            <input type="text" name="ciudad" id="ciudad" placeholder="Escribe tu ciudad">
+                            <input type="text" name="Ciudad" id="ciudad" placeholder="Escribe tu ciudad">
                         </p>
 
                     </div>
