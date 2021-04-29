@@ -67,7 +67,6 @@ public class ServletRegistroUsuario extends HttpServlet {
             ue.setDomicilio(domicilio);
             ue.setSexo(sexo);
             ue.setUsuario(u.getIdusuario());
-            ue.setUsuario1(u);
             this.use.create(ue);
         }
         

@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author carlo
+ * @author josea
  */
 @Entity
 @Table(name = "USUARIO_EVENTO")
@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "UsuarioEvento.findByUsuario", query = "SELECT u FROM UsuarioEvento u WHERE u.usuario = :usuario")
     , @NamedQuery(name = "UsuarioEvento.findByApellido", query = "SELECT u FROM UsuarioEvento u WHERE u.apellido = :apellido")
     , @NamedQuery(name = "UsuarioEvento.findByDomicilio", query = "SELECT u FROM UsuarioEvento u WHERE u.domicilio = :domicilio")
+    , @NamedQuery(name = "UsuarioEvento.findByNombre", query = "SELECT u FROM UsuarioEvento u WHERE u.nombre = :nombre")
     , @NamedQuery(name = "UsuarioEvento.findByCiudad", query = "SELECT u FROM UsuarioEvento u WHERE u.ciudad = :ciudad")
     , @NamedQuery(name = "UsuarioEvento.findByEdad", query = "SELECT u FROM UsuarioEvento u WHERE u.edad = :edad")
     , @NamedQuery(name = "UsuarioEvento.findBySexo", query = "SELECT u FROM UsuarioEvento u WHERE u.sexo = :sexo")})
@@ -56,6 +57,11 @@ public class UsuarioEvento implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "DOMICILIO")
     private String domicilio;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "NOMBRE")
+    private String nombre;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -83,10 +89,11 @@ public class UsuarioEvento implements Serializable {
         this.usuario = usuario;
     }
 
-    public UsuarioEvento(Integer usuario, String apellido, String domicilio, String ciudad, int edad, String sexo) {
+    public UsuarioEvento(Integer usuario, String apellido, String domicilio, String nombre, String ciudad, int edad, String sexo) {
         this.usuario = usuario;
         this.apellido = apellido;
         this.domicilio = domicilio;
+        this.nombre = nombre;
         this.ciudad = ciudad;
         this.edad = edad;
         this.sexo = sexo;
@@ -114,6 +121,14 @@ public class UsuarioEvento implements Serializable {
 
     public void setDomicilio(String domicilio) {
         this.domicilio = domicilio;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getCiudad() {

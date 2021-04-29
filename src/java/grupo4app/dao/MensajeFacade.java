@@ -15,7 +15,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author carlo
+ * @author josea
  */
 @Stateless
 public class MensajeFacade extends AbstractFacade<Mensaje> {
@@ -31,7 +31,7 @@ public class MensajeFacade extends AbstractFacade<Mensaje> {
     public MensajeFacade() {
         super(Mensaje.class);
     }
-
+    
     public List<Mensaje> findbyChat(Chat c) {
         Query q = em.createNamedQuery("Mensaje.findByChat");
         q.setParameter("chat", c.getIdchat());

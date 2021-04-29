@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author carlo
+ * @author josea
  */
 @Entity
 @Table(name = "USUARIO")
@@ -59,14 +59,18 @@ public class Usuario implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "PASSWORD")
     private String password;
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Filtro> filtroList;
+    @OneToMany(mappedBy = "usuario1")
+    private List<Filtro> filtroList1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario2")
     private List<Chat> chatList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario1")
     private List<Chat> chatList1;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario1")
     private UsuarioEvento usuarioEvento;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "creadorevento")
+    private List<Evento> eventoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "emisor")
     private List<Mensaje> mensajeList;
 
@@ -126,6 +130,15 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
+    public List<Filtro> getFiltroList1() {
+        return filtroList1;
+    }
+
+    public void setFiltroList1(List<Filtro> filtroList1) {
+        this.filtroList1 = filtroList1;
+    }
+
+    @XmlTransient
     public List<Chat> getChatList() {
         return chatList;
     }
@@ -149,6 +162,15 @@ public class Usuario implements Serializable {
 
     public void setUsuarioEvento(UsuarioEvento usuarioEvento) {
         this.usuarioEvento = usuarioEvento;
+    }
+
+    @XmlTransient
+    public List<Evento> getEventoList() {
+        return eventoList;
+    }
+
+    public void setEventoList(List<Evento> eventoList) {
+        this.eventoList = eventoList;
     }
 
     @XmlTransient

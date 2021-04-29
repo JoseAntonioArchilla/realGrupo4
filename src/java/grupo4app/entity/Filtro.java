@@ -6,12 +6,9 @@
 package grupo4app.entity;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -22,14 +19,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author carlo
+ * @author josea
  */
 @Entity
 @Table(name = "FILTRO")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Filtro.findAll", query = "SELECT f FROM Filtro f")
-    , @NamedQuery(name = "Filtro.findByIdfiltro", query = "SELECT f FROM Filtro f WHERE f.idfiltro = :idfiltro")
+    , @NamedQuery(name = "Filtro.findByIdfiltro", query = "SELECT f FROM Filtro f WHERE f.filtroPK.idfiltro = :idfiltro")
+    , @NamedQuery(name = "Filtro.findByAnalistaeventos", query = "SELECT f FROM Filtro f WHERE f.filtroPK.analistaeventos = :analistaeventos")
     , @NamedQuery(name = "Filtro.findByEdadLimInf", query = "SELECT f FROM Filtro f WHERE f.edadLimInf = :edadLimInf")
     , @NamedQuery(name = "Filtro.findByEdadLimSup", query = "SELECT f FROM Filtro f WHERE f.edadLimSup = :edadLimSup")
     , @NamedQuery(name = "Filtro.findBySexo", query = "SELECT f FROM Filtro f WHERE f.sexo = :sexo")
@@ -40,11 +38,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Filtro implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "IDFILTRO")
-    private Integer idfiltro;
+    @EmbeddedId
+    protected FiltroPK filtroPK;
     @Column(name = "EDAD_LIM_INF")
     private Integer edadLimInf;
     @Column(name = "EDAD_LIM_SUP")
@@ -62,23 +57,30 @@ public class Filtro implements Serializable {
     @Size(max = 50)
     @Column(name = "CATEGORIA")
     private String categoria;
+    @JoinColumn(name = "ANALISTAEVENTOS", referencedColumnName = "IDUSUARIO", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Usuario usuario;
     @JoinColumn(name = "USUARIO", referencedColumnName = "IDUSUARIO")
     @ManyToOne
-    private Usuario usuario;
+    private Usuario usuario1;
 
     public Filtro() {
     }
 
-    public Filtro(Integer idfiltro) {
-        this.idfiltro = idfiltro;
+    public Filtro(FiltroPK filtroPK) {
+        this.filtroPK = filtroPK;
     }
 
-    public Integer getIdfiltro() {
-        return idfiltro;
+    public Filtro(int idfiltro, int analistaeventos) {
+        this.filtroPK = new FiltroPK(idfiltro, analistaeventos);
     }
 
-    public void setIdfiltro(Integer idfiltro) {
-        this.idfiltro = idfiltro;
+    public FiltroPK getFiltroPK() {
+        return filtroPK;
+    }
+
+    public void setFiltroPK(FiltroPK filtroPK) {
+        this.filtroPK = filtroPK;
     }
 
     public Integer getEdadLimInf() {
@@ -145,10 +147,18 @@ public class Filtro implements Serializable {
         this.usuario = usuario;
     }
 
+    public Usuario getUsuario1() {
+        return usuario1;
+    }
+
+    public void setUsuario1(Usuario usuario1) {
+        this.usuario1 = usuario1;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idfiltro != null ? idfiltro.hashCode() : 0);
+        hash += (filtroPK != null ? filtroPK.hashCode() : 0);
         return hash;
     }
 
@@ -159,7 +169,7 @@ public class Filtro implements Serializable {
             return false;
         }
         Filtro other = (Filtro) object;
-        if ((this.idfiltro == null && other.idfiltro != null) || (this.idfiltro != null && !this.idfiltro.equals(other.idfiltro))) {
+        if ((this.filtroPK == null && other.filtroPK != null) || (this.filtroPK != null && !this.filtroPK.equals(other.filtroPK))) {
             return false;
         }
         return true;
@@ -167,7 +177,7 @@ public class Filtro implements Serializable {
 
     @Override
     public String toString() {
-        return "grupo4app.entity.Filtro[ idfiltro=" + idfiltro + " ]";
+        return "grupo4app.entity.Filtro[ filtroPK=" + filtroPK + " ]";
     }
     
 }

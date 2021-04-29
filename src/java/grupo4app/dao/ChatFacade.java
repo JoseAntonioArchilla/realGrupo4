@@ -14,7 +14,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author carlo
+ * @author josea
  */
 @Stateless
 public class ChatFacade extends AbstractFacade<Chat> {
@@ -39,4 +39,5 @@ public class ChatFacade extends AbstractFacade<Chat> {
         
         return chatsUsr;
     }
+    
 }

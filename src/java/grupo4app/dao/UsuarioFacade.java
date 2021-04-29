@@ -15,7 +15,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author carlo
+ * @author josea
  */
 @Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario> {
@@ -63,4 +63,5 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         
         return usr;
     }
+    
 }

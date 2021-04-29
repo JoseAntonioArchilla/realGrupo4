@@ -15,6 +15,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -28,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author carlo
+ * @author josea
  */
 @Entity
 @Table(name = "EVENTO")
@@ -102,6 +104,9 @@ public class Evento implements Serializable {
     private List<EventoUsuario> eventoUsuarioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento1")
     private List<Asientos> asientosList;
+    @JoinColumn(name = "CREADOREVENTO", referencedColumnName = "IDUSUARIO")
+    @ManyToOne(optional = false)
+    private Usuario creadorevento;
 
     public Evento() {
     }
@@ -241,6 +246,14 @@ public class Evento implements Serializable {
 
     public void setAsientosList(List<Asientos> asientosList) {
         this.asientosList = asientosList;
+    }
+
+    public Usuario getCreadorevento() {
+        return creadorevento;
+    }
+
+    public void setCreadorevento(Usuario creadorevento) {
+        this.creadorevento = creadorevento;
     }
 
     @Override
