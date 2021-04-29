@@ -9,6 +9,7 @@ create table USUARIO_EVENTO(
     usuario integer not null,
     apellido  varchar(50) not null,
     domicilio varchar(50) not null, 
+    nombre varchar(50) not null,
     ciudad varchar(50) not null,
     edad  integer not null,
     sexo varchar(50) not null,
@@ -17,7 +18,8 @@ create table USUARIO_EVENTO(
 );
 
 create table EVENTO(
-    idEvento integer not null generated always as identity (start with 1, increment by 1) primary key,
+    idEvento integer not null generated always as identity (start with 1, increment by 1),
+    creadorEvento integer not null,
     titulo varchar(50)  not null,
     descripcion varchar(200) not null,
     fecha date not null,
@@ -30,7 +32,9 @@ create table EVENTO(
     deporte integer,
     teatro integer,
     gaming integer,
-    constraint ck_boolean check (musica in (1,0) and aire_libre in (1,0) and deporte in (1,0) and teatro in (1,0) and gaming in (1,0))
+    constraint ck_boolean check (musica in (1,0) and aire_libre in (1,0) and deporte in (1,0) and teatro in (1,0) and gaming in (1,0)),
+    constraint fk_evento foreign key(creadorEvento) references USUARIO(idUsuario),
+    constraint pk_evento primary key(idEvento)
 );
 
 create table ASIENTOS(
@@ -77,6 +81,7 @@ create table MENSAJE(
 
 create table FILTRO(
     idFiltro integer not null generated always as identity (start with 1, increment by 1),
+    analistaEventos integer not null,
     edad_lim_inf integer,
     edad_lim_sup integer,
     sexo varchar(50),
@@ -85,7 +90,7 @@ create table FILTRO(
     coste_entrada integer,
     categoria varchar(50),
     usuario integer,
-    constraint pk_filtro primary key(idFiltro),
-    constraint fk_filtro foreign key(usuario) references USUARIO(idUsuario)
+    constraint fk_filtro1 foreign key(usuario) references USUARIO(idUsuario),
+    constraint fk_filtro2 foreign key(analistaEventos) references USUARIO (idUsuario),
+    constraint pk_filtro primary key(idFiltro, analistaEventos)
 );
-
