@@ -3,7 +3,7 @@ drop table USUARIO_EVENTO;
 drop table MENSAJE;
 drop table CHAT;
 drop table FILTRO;
-drop table USUARIO;
 drop table ASIENTOS;
 drop table EVENTO;
 drop table USUARIO;
+
