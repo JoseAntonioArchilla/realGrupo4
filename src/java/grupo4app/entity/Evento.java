@@ -59,36 +59,36 @@ public class Evento implements Serializable {
     @Column(name = "IDEVENTO")
     private Integer idevento;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "TITULO")
+   // @NotNull
+    //@Size(min = 1, max = 50)
+    @Column(name = "TITULO", length = 50, nullable = false)
     private String titulo;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
-    @Column(name = "DESCRIPCION")
+    //@NotNull
+    //@Size(min = 1, max = 200,)
+    @Column(name = "DESCRIPCION", length = 50, nullable = false)
     private String descripcion;
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "FECHA")
+    //@NotNull
+    @Column(name = "FECHA", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fecha;
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "FECHA_RESERVA")
+    //@NotNull
+    @Column(name = "FECHA_RESERVA", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaReserva;
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "COSTE_ENTRADA")
+    //@NotNull
+    @Column(name = "COSTE_ENTRADA", nullable = false)
     private int costeEntrada;
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "AFORO")
+    //@NotNull
+    @Column(name = "AFORO", nullable = false)
     private int aforo;
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "MAX_NUM_ENTRADAS")
+   // @NotNull
+    @Column(name = "MAX_NUM_ENTRADAS", nullable = false)
     private int maxNumEntradas;
     @Column(name = "MUSICA")
     private Integer musica;

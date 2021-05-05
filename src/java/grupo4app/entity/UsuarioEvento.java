@@ -44,37 +44,37 @@ public class UsuarioEvento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "USUARIO")
+    //@NotNull
+    @Column(name = "USUARIO", nullable = false)
     private Integer usuario;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "APELLIDO")
+   // @NotNull
+   // @Size(min = 1, max = 50)
+    @Column(name = "APELLIDO", length = 50, nullable = false)
     private String apellido;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "DOMICILIO")
+    //@NotNull
+   // @Size(min = 1, max = 50)
+    @Column(name = "DOMICILIO", length = 50, nullable = false)
     private String domicilio;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "NOMBRE")
+    //@NotNull
+   // @Size(min = 1, max = 50)
+    @Column(name = "NOMBRE", length = 50, nullable = false)
     private String nombre;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "CIUDAD")
+    //@NotNull
+    //@Size(min = 1, max = 50)
+    @Column(name = "CIUDAD", length = 50, nullable = false)
     private String ciudad;
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "EDAD")
+    //@NotNull
+    @Column(name = "EDAD", nullable = false)
     private int edad;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "SEXO")
+    //@NotNull
+   // @Size(min = 1, max = 50)
+    @Column(name = "SEXO", length = 50, nullable = false)
     private String sexo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioEvento")
     private List<EventoUsuario> eventoUsuarioList;

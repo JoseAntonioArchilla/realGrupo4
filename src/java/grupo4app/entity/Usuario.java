@@ -46,18 +46,18 @@ public class Usuario implements Serializable {
     @Column(name = "IDUSUARIO")
     private Integer idusuario;
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "ROL")
+    //@NotNull
+    @Column(name = "ROL", nullable = false)
     private int rol;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "NICKNAME")
+    //@NotNull
+    //@Size(min = 1, max = 50)
+    @Column(name = "NICKNAME", length = 50, nullable = false)
     private String nickname;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "PASSWORD")
+    //@NotNull
+    //@Size(min = 1, max = 50)
+    @Column(name = "PASSWORD", length = 50, nullable = false)
     private String password;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Filtro> filtroList;

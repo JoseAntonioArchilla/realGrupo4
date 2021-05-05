@@ -7,10 +7,13 @@ package grupo4app.servlet;
 
 import grupo4app.dao.UsuarioEventoFacade;
 import grupo4app.dao.UsuarioFacade;
+import grupo4app.entity.EventoUsuario;
 import grupo4app.entity.Usuario;
 import grupo4app.entity.UsuarioEvento;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -57,6 +60,7 @@ public class ServletRegistroUsuario extends HttpServlet {
             
             String apellido = request.getParameter("Apellidos");
             String domicilio = request.getParameter("Domicilio");
+            String nombre = request.getParameter("Nombre");
             String ciudad = request.getParameter("Ciudad");
             int edad = Integer.parseInt(request.getParameter("Edad"));
             String sexo = request.getParameter("Sexo");
@@ -65,8 +69,12 @@ public class ServletRegistroUsuario extends HttpServlet {
             ue.setCiudad(ciudad);
             ue.setEdad(edad);
             ue.setDomicilio(domicilio);
-            ue.setSexo(sexo);
+            ue.setSexo("hombre");
             ue.setUsuario(u.getIdusuario());
+            List<EventoUsuario> arrayList = new ArrayList<EventoUsuario>() ;
+            ue.setEventoUsuarioList(arrayList);
+            ue.setNombre(nombre);
+           // ue.setUsuario1(u);
             this.use.create(ue);
         }
         
