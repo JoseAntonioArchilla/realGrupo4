@@ -19,12 +19,12 @@ import javax.validation.constraints.NotNull;
 public class EventoUsuarioPK implements Serializable {
 
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "USUARIO")
+   // @NotNull
+    @Column(name = "USUARIO", nullable = false)
     private int usuario;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "IDEVENTO")
+    @Column(name = "IDEVENTO", nullable = false)
     private int idevento;
 
     public EventoUsuarioPK() {

@@ -12,7 +12,6 @@
         <title> Registro Evento </title>
         
         <link href="estilos/estiloFormulario.css" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
         
         <script>
         function mostrar_extra()
@@ -32,9 +31,9 @@
             <div class="formulario">      
               <h1>Registro de Evento</h1>
               
-                <form method="post" action="ServletInicioSesion">  
+                <form method="post" action="ServletGuardarEvento">  
                    <p>
-                        <label for="titulo">Usuario</label>
+                        <label for="titulo">Titulo Evento</label>
                         <input type="text" name="titulo" id="titulo" required placeholder="Escribe el titulo del Evento">
                     </p>
 
@@ -46,18 +45,18 @@
 
                     <p>
                         <label for="fechaInicio">Comienzo de la compra de entradas</label>
-                        <input type="text" name="fechaInicio" id="fechaInicio" required placeholder="Escribe el comienzo de la compra de las entradas">
+                        <input type="date" name="fechaInicio" id="fechaInicio" required placeholder="Escribe el comienzo de la compra de las entradas">
                     </p>
     
 
                      <p>
                         <label for="fechaFin">Fin de la compra de entradas</label>
-                        <input type="text" name="fechaFin" id="fechaFin" required placeholder="Escribe el fin de la compra de las entradas">
+                        <input type="date" name="fechaFin" id="fechaFin" required placeholder="Escribe el fin de la compra de las entradas">
                     </p>
                     
                     <p>
                         <label for="aforo">Aforo máximo</label>
-                        <input type="text" name="aforo" id="aforo" required placeholder="Escribe el aforo del evento">
+                        <input type="number" name="aforo" id="aforo" required placeholder="Escribe el aforo del evento">
                     </p>
   
                     <p>
@@ -74,17 +73,17 @@
                     
                     <p>
                       <label for="seleccionador" class="colocar_asunto">Asientos fijos </label>
-                        <input type="checkbox" onchange="mostrar_extra()" id="seleccionador" required="obligatorio" placeholder="Escribe un asunto">
+                        <input type="checkbox" name="asientosFijos" onchange="mostrar_extra()" id="seleccionador"  placeholder="Escribe un asunto">
                     </p>
                     <div id="extra" style="display:none;">
                         <p>
                             <label for="numFilas">Numero de filas de asientos</label>
-                            <input type="text" name="numFilas" id="numFilas" required placeholder="Escribe el numero de filas">
+                            <input type="text" name="numFilas" id="numFilas"  placeholder="Escribe el numero de filas">
                         </p>
                         
                         <p>
                             <label for="numColumnas">Numero de filas de asientos</label>
-                            <input type="text" name="numColumnas" id="numColumnas" required placeholder="Escribe el numero de columnas">
+                            <input type="text" name="numColumnas" id="numColumnas"  placeholder="Escribe el numero de columnas">
                         </p>
                     </div>
                     <button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>
