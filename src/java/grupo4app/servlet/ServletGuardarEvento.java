@@ -13,7 +13,6 @@ import grupo4app.entity.Evento;
 import grupo4app.entity.EventoUsuario;
 import grupo4app.entity.Usuario;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,11 +56,13 @@ public class ServletGuardarEvento extends HttpServlet {
         String titulo, descripcion;
         String[] etiquetas = request.getParameterValues("etiqueta");
         Integer precio, dia, mes, anio, diaLi, mesLi, anioLi, aforo, numFila, numCol;
-        
+
         HttpSession session = request.getSession();
         Usuario usu = (Usuario) session.getAttribute("usuario");
-        
-        Evento e = new Evento();
+
+        Evento e = (Evento) session.getAttribute("evento");
+        boolean editando = e != null;
+        e = editando ? e : new Evento();
 
         titulo = request.getParameter("titulo");
         descripcion = request.getParameter("descripcion");
@@ -79,7 +80,6 @@ public class ServletGuardarEvento extends HttpServlet {
             Date ff = simpleDateFormat.parse(fechaFin);
 
             boolean asientoFijo = request.getParameter("asientosFijos") != null;
-
 
             e.setTitulo(titulo);
             e.setDescripcion(descripcion);
@@ -114,25 +114,29 @@ public class ServletGuardarEvento extends HttpServlet {
           asientos.setAsientosPK(asientosPK);*/
                 ///LO DE LOS ASIENTOS ES CONFUSO Y NO SE QUE HACER EXACTAMENTE
             }
-            this.evento.create(e);
+            if (editando) {
+                this.evento.edit(e);
+            } else {
+                this.evento.create(e);
+            }
 
-                if (asientoFijo) {
-                    numFila = Integer.parseInt(request.getParameter("numFilas"));
-                    numCol = Integer.parseInt(request.getParameter("numColumnas"));
-                    for (int i = 0; i < numFila; i++) {
-                        for (int j = 0; j < numCol; j++) {
-                            AsientosPK aux = new AsientosPK(i, j, e.getIdevento());
-                            Asientos as = new Asientos(aux);
-                            as.setOcupado(0);
-                            as.setEventoUsuarioList(new ArrayList<EventoUsuario>());
-                            this.asientos.create(as);
-                            listaAsientos.add(as);
-                        }
+            if (asientoFijo) {
+                numFila = Integer.parseInt(request.getParameter("numFilas"));
+                numCol = Integer.parseInt(request.getParameter("numColumnas"));
+                for (int i = 0; i < numFila; i++) {
+                    for (int j = 0; j < numCol; j++) {
+                        AsientosPK aux = new AsientosPK(i, j, e.getIdevento());
+                        Asientos as = new Asientos(aux);
+                        as.setOcupado(0);
+                        as.setEventoUsuarioList(new ArrayList<EventoUsuario>());
+                        this.asientos.create(as);
+                        listaAsientos.add(as);
                     }
-                    e.setAsientosList(listaAsientos);
-                    this.evento.edit(e);
                 }
-            
+                e.setAsientosList(listaAsientos);
+                this.evento.edit(e);
+            }
+
             RequestDispatcher rd = request.getRequestDispatcher("index.html");
             rd.forward(request, response);
 
