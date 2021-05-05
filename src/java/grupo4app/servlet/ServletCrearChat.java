@@ -47,22 +47,23 @@ public class ServletCrearChat extends HttpServlet {
         HttpSession ses = request.getSession();
         Usuario usuarioIniciado = (Usuario)ses.getAttribute("usuario");
         
-        Usuario teleOpRandom = this.usuarioFacade.findRandomTeleoperador();
+        Usuario teleOpRandom = this.usuarioFacade.findRandomTeleoperador(usuarioIniciado);
         if(teleOpRandom != null){
             Chat nuevoChat = new Chat();
             nuevoChat.setUsuario1(teleOpRandom);
             nuevoChat.setUsuario2(usuarioIniciado);
             
             this.chatFacade.create(nuevoChat);
-            request.setAttribute("chat", nuevoChat);
+            
+            response.sendRedirect("ServletMostrarChat?idChat=" + nuevoChat.getIdchat());
+
         } else {
            request.setAttribute("error","Error: No hay teleoperadores disponibles");
            
            RequestDispatcher rd = request.getRequestDispatcher("Conversaciones.jsp");
            rd.forward(request, response); 
+           
         }
-        
-       response.sendRedirect("ServletMostrarChat");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

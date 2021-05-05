@@ -49,9 +49,9 @@ public class ServletListarConversaciones extends HttpServlet {
         List<Chat> listaConver = null;
         if(usuarioSesion != null){
             if(usuarioSesion.getRol() == 2){
-                listaConver = chatFacade.findAll();
+                listaConver = this.chatFacade.findAll();
             } else {
-                listaConver = chatFacade.findByUsuario(usuarioSesion.getIdusuario());
+                listaConver = this.chatFacade.findByUsuario(usuarioSesion);
             }
         }
         

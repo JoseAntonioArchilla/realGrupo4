@@ -45,12 +45,10 @@ public class ServletMostrarChat extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Chat chat = (Chat)request.getAttribute("chat");
-        if(chat == null){
-            int idchat = Integer.parseInt(request.getParameter("idChat"));
+       
+        int idchat = Integer.parseInt(request.getParameter("idChat"));
             
-            chat = this.chatFacade.find(idchat);
-        }
+        Chat chat = this.chatFacade.find(idchat);
         
         
         List<Mensaje> msgs = this.mensajeFacade.findbyChat(chat);

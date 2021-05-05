@@ -36,6 +36,7 @@
     </head>
     <%
         List<Chat> conversaciones = (List<Chat>)request.getAttribute("chats");
+        String error = (String)request.getAttribute("error");
         HttpSession ses = request.getSession();
         Usuario usuarioIniciado = (Usuario)ses.getAttribute("usuario");
     %>
@@ -56,11 +57,17 @@
         <% if(usuarioIniciado != null && (usuarioIniciado.getRol() == 0 || usuarioIniciado.getRol() == 4)) {
         %>   
             <form method="POST" action="ServletCrearChat">
-                <input type="submit" value="Inicia una conversación con un teleoperador">
+                <input type="submit" value="Inicia una conversación con un nuevo teleoperador">
             </form>
         <% }
+
+        if (error != null) {
         %>
-    <% if(conversaciones != null) {  
+            <p style="color: red;"><%=error%></p>
+        <%
+        }
+        
+    if(conversaciones != null && conversaciones.size() > 0) {  
     %>
          <table>
             <tr>
