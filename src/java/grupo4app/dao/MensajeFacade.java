@@ -40,4 +40,15 @@ public class MensajeFacade extends AbstractFacade<Mensaje> {
         return msgs;
     }
     
+    /*public int findNewId(){
+        Query q = em.createQuery("select max(m.mensajePK.idmensaje) from Mensaje m");
+        List<Integer> resul = q.getResultList();
+        
+        if(resul.isEmpty()){
+            return 0;
+        } else {
+            return resul.get(0) + 1;
+        }
+    }*/
+    
 }

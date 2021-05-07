@@ -9,6 +9,9 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -24,6 +27,7 @@ public class MensajePK implements Serializable {
     private int chat;
     @Basic(optional = false)
     @Column(name = "IDMENSAJE")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idmensaje;
 
     public MensajePK() {
