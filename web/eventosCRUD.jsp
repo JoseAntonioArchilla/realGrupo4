@@ -102,7 +102,7 @@
                     %>
                     <div class="col-4">
                         <div class="row">
-                            <a href="MostrarEvento.jsp?idEvento= <%= e.getIdevento() %>" class="col-6"><img width="100%" height="100%" src="img/Logo.png"></a>
+                            <a href="ServletMostrarEvento?idEvento=<%= e.getIdevento() %>" class="col-6"><img width="100%" height="100%" src="img/Logo.png"></a>
                             <div class="col-6">
                                 <h2><%=e.getTitulo() %></h2>
                                 <p><%=e.getDescripcion() %> </p>
