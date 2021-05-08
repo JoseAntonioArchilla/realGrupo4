@@ -39,7 +39,16 @@ public class ServletListarEventos extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       List<Evento> listaEventos = this.evento.findAll();
+        
+        String min = request.getParameter("minimoPrecio");
+        String max = request.getParameter("maximoPrecio");
+        String dis = request.getParameter("disponible");
+        
+        int maximo = max ==null || max.isEmpty() ? Integer.MAX_VALUE : Integer.parseInt(max);
+        int minimo = min ==null || min.isEmpty() ? 0 : Integer.parseInt(min);
+        boolean disponible =  dis != null && dis.equals("on");
+        
+       List<Evento> listaEventos = this.evento.filtrarEventos(minimo, maximo, disponible);
        request.setAttribute("eventos", listaEventos);
        RequestDispatcher rd = request.getRequestDispatcher("eventosCRUD.jsp");
        rd.forward(request, response);

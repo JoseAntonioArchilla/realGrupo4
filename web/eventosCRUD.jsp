@@ -76,21 +76,26 @@
         <div class = "py-3 row">
             <!-- Filtros -->
             <div class="col-2" style="background: #77e5ff;">
-                <form>
+                <form action="ServletListarEventos">
                     <!-- TODO: poner nombres y el action ademas de las categorias-->
                     <div class="row m-1">
                         <p class="col-6">Min:</p>
-                        <input class="col-6" type="text">
+                        <input name="minimoPrecio" class="col-6" type="text">
                     </div>
                     <div class="row m-1">
                         <p class="col-6">Max:</p>
-                        <input class="col-6" type="text">
+                        <input name="maximoPrecio" class="col-6" type="text">
                     </div>
                     <div class="row m-1">
                         <p class="col-6">Disponible:</p>
-                        <input class="col-6" type="checkbox">
+                        <input name="disponible" class="col-6" type="checkbox">
                     </div>
-                    
+                     <div class="row m-1">
+                         <div class="col-3">
+                         </div>
+                         <input  class="col-6 " type="submit" value="Enviar">
+                    </div>
+                   
                 </form>
             </div>
             
@@ -111,6 +116,7 @@
                                 <div class="col-6">
                                     <h2><%=e.getTitulo() %></h2>
                                     <p><%=e.getDescripcion() %> </p>
+                                    <p>Precio: <%=e.getCosteEntrada() %> </p>
                                 </div>
                                 <%
                                    }else{
@@ -119,6 +125,7 @@
                             <div class="col-6">
                                 <h2><%=e.getTitulo() %></h2>
                                 <p><%=e.getDescripcion() %> </p>
+                                <p><%=e.getCosteEntrada() %> </p>
                                 
                                 <a href="ServletCrearEditarEvento?id=<%= e.getIdevento()%>">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
