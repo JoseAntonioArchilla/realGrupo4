@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import grupo4app.dao.UsuarioFacade;
 import grupo4app.entity.Usuario;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -45,7 +46,7 @@ public class ServletUsuarioListar extends HttpServlet {
             throws ServletException, IOException {
         
         List<Usuario> lista;
-        
+        HttpSession sesionUsuario = request.getSession();
         /*String filtroNombre = request.getParameter("filtroNombre");
         
         String [] filtroUsuario = request.getParameterValues("filtroUsuario");
@@ -60,7 +61,7 @@ public class ServletUsuarioListar extends HttpServlet {
         }
         */
         lista = this.usuarioFacade.findAll();
-        request.setAttribute("listaUsuarios", lista);
+        sesionUsuario.setAttribute("listaUsuarios", lista);
         
         RequestDispatcher rd = request.getRequestDispatcher("Administrador.jsp");
         rd.forward(request, response);

@@ -18,7 +18,6 @@ import grupo4app.entity.Usuario;
 
 import grupo4app.dao.UsuarioEventoFacade;
 import grupo4app.entity.UsuarioEvento;
-import javafx.scene.control.Alert;
 import javax.ejb.EJBException;
 import javax.servlet.RequestDispatcher;
 
@@ -52,39 +51,44 @@ public class ServletAñadirUsuario extends HttpServlet {
         String contraseña = request.getParameter("password");
         int rol = Integer.parseInt(request.getParameter("rol"));
         
+        if(nickname.equals("")){
+            request.setAttribute("error", "Debe rellenar todos los campos");
+            RequestDispatcher rd = request.getRequestDispatcher("Administrador.jsp");
+            rd.forward(request, response);
+        }
+        if(contraseña.equals("")){
+            request.setAttribute("error", "Debe rellenar todos los campos");
+            RequestDispatcher rd = request.getRequestDispatcher("Administrador.jsp");
+            rd.forward(request, response);
+        }
+        
         Usuario user = new Usuario();
         
         user.setNickname(nickname);
         user.setPassword(contraseña);
         user.setRol(rol);
-        
-        try{
-            this.usuarioFacade.create(user);
-            
-            if(rol == 4){
-            String apellidos = request.getParameter("apellidos");
-            String domicilio = request.getParameter("domicilio");
-            String ciudad = request.getParameter("ciudad");
-            int edad = Integer.parseInt(request.getParameter("edad"));
-            String sexo = request.getParameter("sexo");
-            UsuarioEvento usuarioEvento = new UsuarioEvento();
+        this.usuarioFacade.create(user);
 
-            usuarioEvento.setApellido(apellidos);
-            usuarioEvento.setDomicilio(domicilio);
-            usuarioEvento.setCiudad(ciudad);
-            usuarioEvento.setEdad(edad);
-            usuarioEvento.setSexo(sexo);
-        
-            this.usuarioEventoFacade.create(usuarioEvento); 
-        }
-        }catch(EJBException e){
-            request.setAttribute("error", "Debe rellenar todos los campos");
-        }
+        if(rol == 4){
+        String apellidos = request.getParameter("apellidos");
+        String domicilio = request.getParameter("domicilio");
+        String ciudad = request.getParameter("ciudad");
+        int edad = Integer.parseInt(request.getParameter("edad"));
+        String sexo = request.getParameter("sexo");
+        UsuarioEvento usuarioEvento = new UsuarioEvento();
+
+        usuarioEvento.setApellido(apellidos);
+        usuarioEvento.setDomicilio(domicilio);
+        usuarioEvento.setCiudad(ciudad);
+        usuarioEvento.setEdad(edad);
+        usuarioEvento.setSexo(sexo);
+
+        this.usuarioEventoFacade.create(usuarioEvento);
 
         RequestDispatcher rd = request.getRequestDispatcher("Administrador.jsp");
         rd.forward(request, response);
+        }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
