@@ -4,6 +4,8 @@
     Author     : chinchar@hotmail.es
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="grupo4app.entity.Evento"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,13 +17,9 @@
     </head>
     
     <%
-        String id = request.getParameter("idEvento");
-        String descripcion = request.getParameter("descripcionEvento");
-        String precioEvento = request.getParameter("precioEvento");
-        String titulo = request.getParameter("tituloEvento");
-        String fechaInicio = request.getParameter("fechaInicio");
-        String fechaFin = request.getParameter("fechaFin");
-        
+       Evento e = (Evento) request.getAttribute("evento");
+       String patron = "yyyy-MM-dd";
+       SimpleDateFormat format = new SimpleDateFormat(patron);
      %>
     
     <body>
@@ -103,22 +101,22 @@
             <img src = "img/lotad.png"  style="aspect-ratio: 16 / 9;"  class = "col-7 fondito">
             <div class = "col-3 fondito py-2">
                 <p>
-                    <label for ="titulo">Titulo:</label> <span id="titulo"><%= titulo%></span>
+                    <label for ="titulo">Titulo:</label> <span id="titulo"><%= e.getTitulo() %></span>
                 </p>
                 <p> 
-                    <label for="inicio" >Inicio: </label> <span id="inicio"><%= fechaInicio%></span>
-                    <label for="fin" class="pl-4">Fin: </label> <span id="fin"><%= fechaFin%></span>
+                    <label for="inicio" >Inicio: </label> <span id="inicio"><%= format.format(e.getFecha())%></span>
+                    <label for="fin" class="pl-4">Fin: </label> <span id="fin"><%= format.format(e.getFechaReserva())%></span>
                 </p>
                 <p>
-                    <label for ="precio">Precio:</label> <span id="precio"><%= precioEvento%></span>
+                    <label for ="precio">Precio:</label> <span id="precio"><%= e.getCosteEntrada() %></span>
                 </p>
                 <button href="#">Comprar</button> 
             </div>
             <div class="col-1"></div>
         </div>
-        <div class = "row" >
+        <div class = "row " >
             <div class="col-1"></div>
-            <p class ="col-7 fondito"> descripcion </p>
+            <p class ="col-7 fondito py-3"> <%= e.getDescripcion() %></p>
             <div class="col-3 fondito"></div>
         </div>
         

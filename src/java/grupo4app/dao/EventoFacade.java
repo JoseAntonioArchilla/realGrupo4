@@ -6,9 +6,12 @@
 package grupo4app.dao;
 
 import grupo4app.entity.Evento;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +32,21 @@ public class EventoFacade extends AbstractFacade<Evento> {
         super(Evento.class);
     }
     
+    public List<Evento> filtrarEventos(int min, int max, boolean dis){
+        Date fecha;
+        List<Evento> le;
+        Query q;
+        if(dis){
+            fecha = new Date();
+            q = em.createQuery("select e from Evento e where e.costeEntrada>= :min and e.costeEntrada<= :max and e.fechaReserva >= :fecha ");            
+            q.setParameter("fecha", fecha);
+        }
+        else{
+            q = em.createQuery("select e from Evento e where e.costeEntrada>= :min and e.costeEntrada<= :max  ");
+        }
+        q.setParameter("min", min);
+        q.setParameter("max", max);
+        return q.getResultList();
+        
+    }
 }

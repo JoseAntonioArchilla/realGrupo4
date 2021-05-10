@@ -5,11 +5,16 @@
  */
 package grupo4app.servlet;
 
-import grupo4app.dao.EventoFacade;
-import grupo4app.entity.Evento;
+import grupo4app.dao.ChatFacade;
+import grupo4app.dao.MensajeFacade;
+import grupo4app.dao.UsuarioFacade;
+import grupo4app.entity.Chat;
+import grupo4app.entity.Mensaje;
+import grupo4app.entity.MensajePK;
+import grupo4app.entity.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.Date;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,16 +22,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author josea
+ * @author franc
  */
-@WebServlet(name = "ServletListarEventos", urlPatterns = {"/ServletListarEventos"})
-public class ServletListarEventos extends HttpServlet {
+@WebServlet(name = "ServletEnviarMensaje", urlPatterns = {"/ServletEnviarMensaje"})
+public class ServletEnviarMensaje extends HttpServlet {
+    @EJB
+    private ChatFacade chatFacade;
 
     @EJB
-    EventoFacade evento;
+    private MensajeFacade mensajeFacade;
+    
+    @EJB
+    private UsuarioFacade usuarioFacade;
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,19 +50,29 @@ public class ServletListarEventos extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String nuevoMensaje = request.getParameter("mensaje");
         
-        String min = request.getParameter("minimoPrecio");
-        String max = request.getParameter("maximoPrecio");
-        String dis = request.getParameter("disponible");
+        Integer idCh = Integer.parseInt(request.getParameter("idChat"));
         
-        int maximo = max ==null || max.isEmpty() ? Integer.MAX_VALUE : Integer.parseInt(max);
-        int minimo = min ==null || min.isEmpty() ? 0 : Integer.parseInt(min);
-        boolean disponible =  dis != null && dis.equals("on");
+        Chat chat = this.chatFacade.find(idCh);
+        HttpSession ses = request.getSession();
+        Usuario emisor = (Usuario)ses.getAttribute("usuario");
         
-       List<Evento> listaEventos = this.evento.filtrarEventos(minimo, maximo, disponible);
-       request.setAttribute("eventos", listaEventos);
-       RequestDispatcher rd = request.getRequestDispatcher("eventosCRUD.jsp");
-       rd.forward(request, response);
+        MensajePK mpk = new MensajePK();
+        mpk.setChat(idCh);
+        //int idMensaje = this.mensajeFacade.findNewId();
+        //mpk.setIdmensaje(idMensaje);
+        
+        Mensaje nuevo = new Mensaje(mpk);
+        nuevo.setChat1(chat);
+        nuevo.setEmisor(emisor);
+        nuevo.setTexto(nuevoMensaje);
+        nuevo.setFechaHora(new Date());
+        
+        this.mensajeFacade.create(nuevo);
+        
+        RequestDispatcher rd = request.getRequestDispatcher("ServletMostrarChat?idChat=" + idCh);
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

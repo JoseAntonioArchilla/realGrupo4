@@ -4,6 +4,7 @@
     Author     : franc
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="grupo4app.entity.Mensaje"%>
 <%@page import="java.util.List"%>
 <%@page import="grupo4app.entity.Chat"%>
@@ -34,6 +35,9 @@
         List<Mensaje> mensajes = (List<Mensaje>)request.getAttribute("mensajes");
         Usuario teleOp = ch.getUsuario1();
         Usuario usr = ch.getUsuario2();
+        
+        HttpSession ses = request.getSession();
+        Usuario usuarioIniciado = (Usuario)ses.getAttribute("usuario");
     %>
     <body>
         <nav class="barra">
@@ -50,7 +54,7 @@
         <%
             for(Mensaje msg : mensajes){
         %>
-            <p><b><%=msg.getEmisor().getNickname()%>:</b> <%=msg.getTexto()%></p>
+            <p><b><%=msg.getEmisor().getNickname()%> (<%= new SimpleDateFormat("dd/MM/yyyy 'a las' HH:mm:ss").format(msg.getFechaHora()) %>) :</b> <%=msg.getTexto()%></p>
         <%
             }
         %>
@@ -63,8 +67,9 @@
             </div>
         </div>
       
-        <form method="GET" action="#">
+        <form method="GET" action="ServletEnviarMensaje">
             <input type="text" name="mensaje" size="100"/>
+            <input type="hidden" name="idChat" value="<%=ch.getIdchat()%>">
             <input type="submit" name="enviar"/>
         </form>
     </body>

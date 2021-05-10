@@ -9,9 +9,7 @@ import grupo4app.dao.EventoFacade;
 import grupo4app.entity.Evento;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,12 +20,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author josea
  */
-@WebServlet(name = "ServletListarEventos", urlPatterns = {"/ServletListarEventos"})
-public class ServletListarEventos extends HttpServlet {
+@WebServlet(name = "ServletBorrarEvento", urlPatterns = {"/ServletBorrarEvento"})
+public class ServletBorrarEvento extends HttpServlet {
 
-    @EJB
-    EventoFacade evento;
-    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,21 +32,17 @@ public class ServletListarEventos extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @EJB
+    private EventoFacade ef;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
         
-        String min = request.getParameter("minimoPrecio");
-        String max = request.getParameter("maximoPrecio");
-        String dis = request.getParameter("disponible");
+       Evento e = ef.find(id);
+       ef.remove(e);
+       response.sendRedirect("ServletListarEventos");
         
-        int maximo = max ==null || max.isEmpty() ? Integer.MAX_VALUE : Integer.parseInt(max);
-        int minimo = min ==null || min.isEmpty() ? 0 : Integer.parseInt(min);
-        boolean disponible =  dis != null && dis.equals("on");
         
-       List<Evento> listaEventos = this.evento.filtrarEventos(minimo, maximo, disponible);
-       request.setAttribute("eventos", listaEventos);
-       RequestDispatcher rd = request.getRequestDispatcher("eventosCRUD.jsp");
-       rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

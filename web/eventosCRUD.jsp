@@ -76,21 +76,26 @@
         <div class = "py-3 row">
             <!-- Filtros -->
             <div class="col-2" style="background: #77e5ff;">
-                <form>
+                <form action="ServletListarEventos">
                     <!-- TODO: poner nombres y el action ademas de las categorias-->
                     <div class="row m-1">
                         <p class="col-6">Min:</p>
-                        <input class="col-6" type="text">
+                        <input name="minimoPrecio" class="col-6" type="text">
                     </div>
                     <div class="row m-1">
                         <p class="col-6">Max:</p>
-                        <input class="col-6" type="text">
+                        <input name="maximoPrecio" class="col-6" type="text">
                     </div>
                     <div class="row m-1">
                         <p class="col-6">Disponible:</p>
-                        <input class="col-6" type="checkbox">
+                        <input name="disponible" class="col-6" type="checkbox">
                     </div>
-                    
+                     <div class="row m-1">
+                         <div class="col-3">
+                         </div>
+                         <input  class="col-6 " type="submit" value="Enviar">
+                    </div>
+                   
                 </form>
             </div>
             
@@ -102,14 +107,26 @@
                     %>
                     <div class="col-4">
                         <div class="row">
-                            <a href="index.html" class="col-6"><img width="100%" height="100%" src="img/Logo.png"></a>
+                            <%
+                                    //TODO FALTA HACER IF PARA COMPROBAR SI EL USUARIO QUE HA INICIADO SESION ES EL CREADOR DEL EVENTO Y SI ES ASI QUE LO PUEDA EDITAR
+                                    if(u == null || u.getIdusuario() != e.getCreadorevento().getIdusuario()){
+                                        
+                                 %>
+                                 <a href="ServletMostrarEvento?idEvento=<%= e.getIdevento() %>" class="col-6"><img width="100%" height="100%" src="img/Logo.png"></a>
+                                <div class="col-6">
+                                    <h2><%=e.getTitulo() %></h2>
+                                    <p><%=e.getDescripcion() %> </p>
+                                    <p>Precio: <%=e.getCosteEntrada() %> </p>
+                                </div>
+                                <%
+                                   }else{
+                                 %>
+                            <a href="ServletMostrarEvento?idEvento=<%= e.getIdevento() %>" class="col-6"><img width="100%" height="100%" src="img/Logo.png"></a>
                             <div class="col-6">
                                 <h2><%=e.getTitulo() %></h2>
                                 <p><%=e.getDescripcion() %> </p>
-
-                                <%
-                                    //TODO FALTA HACER IF PARA COMPROBAR SI EL USUARIO QUE HA INICIADO SESION ES EL CREADOR DEL EVENTO Y SI ES ASI QUE LO PUEDA EDITAR
-                                 %>
+                                <p><%=e.getCosteEntrada() %> </p>
+                                
                                 <a href="ServletCrearEditarEvento?id=<%= e.getIdevento()%>">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                         <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
@@ -123,6 +140,9 @@
                                 </a>
 
                             </div>
+                                <%
+                                    }
+                                %>
                         </div>
                     </div>
                     <%
