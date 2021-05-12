@@ -8,6 +8,7 @@ package grupo4app.servlet;
 import grupo4app.dao.UsuarioEventoFacade;
 import grupo4app.dao.UsuarioFacade;
 import grupo4app.entity.Usuario;
+import grupo4app.entity.UsuarioEvento;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -54,6 +55,26 @@ public class ServletEditarUsuario extends HttpServlet {
         usuario.setRol(Integer.parseInt(rol));
         
         usuarioFacade.edit(usuario);
+        
+        if(rol.equals("4")){
+            UsuarioEvento usuarioEvento = usuarioEventoFacade.find(id);
+            
+            String nombre = request.getParameter("nombre");
+            String apellidos = request.getParameter("apellidos");
+            String edad = request.getParameter("edad");
+            String sexo = request.getParameter("sexo");
+            String domicilio = request.getParameter("domicilio");
+            String ciudad = request.getParameter("ciudad");
+            
+            usuarioEvento.setNombre(nombre);
+            usuarioEvento.setApellido(apellidos);
+            usuarioEvento.setEdad(Integer.parseInt(edad));
+            usuarioEvento.setSexo(sexo);
+            usuarioEvento.setDomicilio(domicilio);
+            usuarioEvento.setCiudad(ciudad);
+            
+            usuarioEventoFacade.edit(usuarioEvento);
+        }
         
         RequestDispatcher rd = request.getRequestDispatcher("ServletUsuarioListar");
         rd.forward(request, response);

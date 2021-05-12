@@ -60,80 +60,40 @@
                         <option value="4" <%= usuario.getRol() == 4 ? "selected" : ""%>>Usuario de evento</option>
                     </select>
 
-
                     <div id="extra" style="display:none;">
-                        <%
-                            if (usuarioEvento == null) {
-                        %>
                         <p>
                             <label for="nombre" >Nombre</label>
-                            <input type="text" name="Nombre" id="nombre" placeholder="Escribe tu nombre">
+                            <input type="text" name="nombre" id="nombre" value="<%=usuarioEvento == null ? "" : usuarioEvento.getNombre()%>" placeholder="Escribe tu nombre">
                         </p>
 
                         <p>
                             <label for="apellidos" >Apellidos</label>
-                            <input type="text" name="Apellidos" id="apellidos" placeholder="Escribe tus apellidos">
+                            <input type="text" name="apellidos" id="apellidos" value="<%=usuarioEvento == null ? "" : usuarioEvento.getApellido()%>" placeholder="Escribe tus apellidos">
                         </p>
 
                         <p>
                             <label for="edad" >Edad</label>
-                            <input type="number" name="Edad" id="edad" placeholder="Escribe tu edad">
-                        </p>
-
-                        <p>
-                            <label for="sexo" >Sexo</label>
-                            <select id="seleccionador" name="sexo" onchange="mostrar_extra()"><--Hay que ver como hacer esto
-                                <option value="" selected disabled hidden>Elija una opción</option>
-                                <option value="Hombre">Hombre</option>
-                                <option value="Mujer">Mujer</option>
-                                <option value="Otro">Otro</option>
-                            </select>
-                        </p>
-
-                        <p>
-                            <label for="domicilio" >Domicilio</label>
-                            <input type="text" name="Domicilio" id="domicilio" placeholder="Escribe tu domicilio">
-                        </p>
-
-                        <p>
-                            <label for="ciudad" >Ciudad</label>
-                            <input type="text" name="Ciudad" id="ciudad" placeholder="Escribe tu ciudad">
-                        </p>
-                        <%} else {%>
-                        <p>
-                            <label for="nombre" >Nombre</label>
-                            <input type="text" name="Nombre" id="nombre" value=<%=usuarioEvento.getNombre()%>>
-                        </p>
-
-                        <p>
-                            <label for="apellidos" >Apellidos</label>
-                            <input type="text" name="Apellidos" id="apellidos" value=<%=usuarioEvento.getApellido()%>>
-                        </p>
-
-                        <p>
-                            <label for="edad" >Edad</label>
-                            <input type="number" name="Edad" id="edad" value=<%=usuarioEvento.getEdad()%>>
+                            <input type="number" name="edad" id="edad" value="<%=usuarioEvento == null ? "" : usuarioEvento.getEdad()%>" placeholder="Escribe tu edad">
                         </p>
 
                         <p>
                             <label for="sexo" >Sexo</label>
                             <select id="seleccionador" name="sexo" onchange="mostrar_extra()" ><--Hay que ver como hacer esto
-                                <option value="Hombre" <%= usuarioEvento.getSexo().equals("Hombre") ? "selected" : ""%>>Hombre</option>
-                                <option value="Mujer" <%= usuarioEvento.getSexo().equals("Mujer") ? "selected" : ""%>>Mujer</option>
-                                <option value="Otro" <%= usuarioEvento.getSexo().equals("Otro") ? "selected" : ""%>>Otro</option>
+                                <option value="Hombre" <%= usuarioEvento == null ? "" : (usuarioEvento.getSexo().equals("Hombre") ? "selected" : "")%>>Hombre</option>
+                                <option value="Mujer" <%= usuarioEvento == null ? "" : (usuarioEvento.getSexo().equals("Mujer") ? "selected" : "")%>>Mujer</option>
+                                <option value="Otro" <%= usuarioEvento == null ? "" : (usuarioEvento.getSexo().equals("Otro") ? "selected" : "")%>>Otro</option>
                             </select>
                         </p>
 
                         <p>
                             <label for="domicilio" >Domicilio</label>
-                            <input type="text" name="Domicilio" id="domicilio" value=<%=usuarioEvento.getDomicilio()%>>
+                            <input type="text" name="domicilio" id="domicilio" value="<%=usuarioEvento == null ? "" : usuarioEvento.getDomicilio()%>" placeholder="Escribe tu domicilio">
                         </p>
 
                         <p>
                             <label for="ciudad" >Ciudad</label>
-                            <input type="text" name="Ciudad" id="ciudad" value=<%=usuarioEvento.getCiudad()%>>
+                            <input type="text" name="ciudad" id="ciudad" value="<%=usuarioEvento == null ? "" : usuarioEvento.getCiudad()%>" placeholder="Escribe tu ciudad">
                         </p>
-                        <%}%>
                     </div>
 
                     <button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>
