@@ -42,7 +42,7 @@ public class ServletFiltroListar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {             
         response.setContentType("text/html;charset=UTF-8");
-         HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         Usuario usuario = (Usuario)session.getAttribute("usuario");
         
         List<Filtro> listaFiltros = this.filtroFacade.filtrosCreador(usuario.getIdusuario());

@@ -75,10 +75,10 @@
         <form method="post" action="ServletFiltroGuardar">
             <input type="hidden" name="id" value=<%=id%>>
             <label for="opCiudad">Ciudad: </label>
-            <input type="text" id="opCiudad" name="ciudad" maxlength="50" value=<%=ciudad%>>
+            <input type="text" id="opCiudad" name="ciudad" maxlength="50" value="<%=ciudad%>">
             <br/>
             <label for="idNombre">Nombre: </label>
-            <input type="text" name="nombre" id="idNombre" maxlength="200" value=<%=nombre%>>           
+            <input type="text" name="nombre" id="idNombre" maxlength="200" value="<%=nombre%>">           
             <br/>
             <p>Sexo: </p>
             
