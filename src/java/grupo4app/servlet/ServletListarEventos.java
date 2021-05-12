@@ -43,12 +43,15 @@ public class ServletListarEventos extends HttpServlet {
         String min = request.getParameter("minimoPrecio");
         String max = request.getParameter("maximoPrecio");
         String dis = request.getParameter("disponible");
+        String nombre = request.getParameter("nombre");
         
         int maximo = max ==null || max.isEmpty() ? Integer.MAX_VALUE : Integer.parseInt(max);
         int minimo = min ==null || min.isEmpty() ? 0 : Integer.parseInt(min);
+        nombre = nombre == null ? "" : nombre;
         boolean disponible =  dis != null && dis.equals("on");
         
-       List<Evento> listaEventos = this.evento.filtrarEventos(minimo, maximo, disponible);
+        
+       List<Evento> listaEventos = this.evento.filtrarEventos(minimo, maximo, disponible, nombre);
        request.setAttribute("eventos", listaEventos);
        RequestDispatcher rd = request.getRequestDispatcher("eventosCRUD.jsp");
        rd.forward(request, response);
