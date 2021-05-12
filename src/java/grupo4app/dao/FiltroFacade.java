@@ -6,13 +6,15 @@
 package grupo4app.dao;
 
 import grupo4app.entity.Filtro;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
- * @author josea
+ * @author carlo
  */
 @Stateless
 public class FiltroFacade extends AbstractFacade<Filtro> {
@@ -28,5 +30,15 @@ public class FiltroFacade extends AbstractFacade<Filtro> {
     public FiltroFacade() {
         super(Filtro.class);
     }
+    
+     public List<Filtro> filtrosCreador(int idCreador){
+        Query q;
+        q = this.em.createNamedQuery("Filtro.findByAnalistaeventos");
+        q.setParameter("analistaeventos", idCreador);
+        
+        List<Filtro> filtros = q.getResultList();
+        
+        return filtros;
+    } 
     
 }

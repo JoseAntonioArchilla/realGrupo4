@@ -15,7 +15,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author josea
+ * @author carlo
  */
 @Stateless
 public class MensajeFacade extends AbstractFacade<Mensaje> {
@@ -38,6 +38,6 @@ public class MensajeFacade extends AbstractFacade<Mensaje> {
         List<Mensaje> msgs = q.getResultList();
         
         return msgs;
-    }
+}
     
 }

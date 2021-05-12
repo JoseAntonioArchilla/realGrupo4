@@ -7,7 +7,9 @@ package grupo4app.servlet;
 
 import grupo4app.dao.FiltroFacade;
 import grupo4app.dao.UsuarioFacade;
+import grupo4app.entity.Asientos;
 import grupo4app.entity.Filtro;
+import grupo4app.entity.FiltroPK;
 import grupo4app.entity.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,6 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -46,14 +49,19 @@ public class ServletFiltroGuardar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
       
         //Carga de variables.
         String id = request.getParameter("id");
+        HttpSession session = request.getSession();
+        Usuario creadorFiltro = (Usuario)session.getAttribute("usuario");
         Filtro filtro;
+        //int numero = this.filtroFacade.findAll().size();
         
         String ciudad =  request.getParameter("ciudad");
         String sexo =  request.getParameter("sexo");
         String str = request.getParameter("anyo");
+        String nombre = request.getParameter("nombre");
         Integer anyo = 0;
             if(!str.isEmpty()){
                  anyo = Integer.parseInt(str);
@@ -70,7 +78,14 @@ public class ServletFiltroGuardar extends HttpServlet {
         if(!str.isEmpty()){
             usuario = Integer.parseInt(str);
         }
+        
+        if(nombre.isEmpty()){
+            //numero++;
+            nombre = "Nuevo Filtro"; 
+        }
         //Usuario dummy = new Usuario(1,0,"dummy", "dummy");
+        
+        Integer idCreador = creadorFiltro.getIdusuario();
                 
         str = request.getParameter("edadInferior");
         Integer edadInferior = 0;
@@ -85,27 +100,37 @@ public class ServletFiltroGuardar extends HttpServlet {
         
         //En el caso de un filtro nuevo
         if(id == null || id.isEmpty()){
-           filtro = new Filtro();
+           FiltroPK prueba = new FiltroPK();
+           prueba.setAnalistaeventos(idCreador);
+           filtro = new Filtro(prueba);
         }else{ //En el caso de modificarlo.
-            filtro = this.filtroFacade.find(Integer.parseInt(id));
+            int idFiltro = Integer.parseInt(id);
+            FiltroPK editar = new FiltroPK(idFiltro, idCreador);
+            filtro = this.filtroFacade.find(editar);
         }
         
+        //FiltroPK prueba = new FiltroPK();
+        //prueba.setAnalistaeventos(idCreador);
+        //prueba.setIdfiltro(56);
         
         //Seteo los atributos.
         filtro.setCiudad(ciudad);
         filtro.setSexo(sexo);
         filtro.setAnyo(anyo);
+        filtro.setNombre(nombre);
         filtro.setCosteEntrada(costeEntrada);
         filtro.setCategoria(categorias);
         Usuario usuarioFiltrado = this.usuarioFacade.find(usuario);
-        filtro.setUsuario(usuarioFiltrado);
+        session.setAttribute("usuario", creadorFiltro);
+        filtro.setUsuario1(usuarioFiltrado);
+        filtro.setUsuario(creadorFiltro);
         //}
         /*else{
             filtro.setUsuario(dummy);
-        }*/
-        
+        }*/       
         filtro.setEdadLimInf(edadInferior);
         filtro.setEdadLimSup(edadSuperior);
+        //filtro.setFiltroPK(prueba);
         
         //En el caso de un filtro nuevo
         if(id == null || id.isEmpty()){

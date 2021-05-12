@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author josea
+ * @author carlo
  */
 @Entity
 @Table(name = "MENSAJE")
@@ -41,14 +41,14 @@ public class Mensaje implements Serializable {
     @EmbeddedId
     protected MensajePK mensajePK;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
-    @Column(name = "TEXTO")
+    //@NotNull
+    //@Size(min = 1, max = 200)
+    @Column(name = "TEXTO", length = 200, nullable = false)
     private String texto;
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "FECHA_HORA")
-    @Temporal(TemporalType.DATE)
+    //@NotNull
+    @Column(name = "FECHA_HORA", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaHora;
     @JoinColumn(name = "CHAT", referencedColumnName = "IDCHAT", insertable = false, updatable = false)
     @ManyToOne(optional = false)

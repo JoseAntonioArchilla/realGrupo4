@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author josea
+ * @author carlo
  */
 @Entity
 @Table(name = "USUARIO_EVENTO")
@@ -48,18 +48,18 @@ public class UsuarioEvento implements Serializable {
     @Column(name = "USUARIO", nullable = false)
     private Integer usuario;
     @Basic(optional = false)
-   // @NotNull
-   // @Size(min = 1, max = 50)
+    //@NotNull
+    //@Size(min = 1, max = 50)
     @Column(name = "APELLIDO", length = 50, nullable = false)
     private String apellido;
     @Basic(optional = false)
     //@NotNull
-   // @Size(min = 1, max = 50)
+    //@Size(min = 1, max = 50)
     @Column(name = "DOMICILIO", length = 50, nullable = false)
     private String domicilio;
     @Basic(optional = false)
     //@NotNull
-   // @Size(min = 1, max = 50)
+    //@Size(min = 1, max = 50)
     @Column(name = "NOMBRE", length = 50, nullable = false)
     private String nombre;
     @Basic(optional = false)
@@ -73,7 +73,7 @@ public class UsuarioEvento implements Serializable {
     private int edad;
     @Basic(optional = false)
     //@NotNull
-   // @Size(min = 1, max = 50)
+    //@Size(min = 1, max = 50)
     @Column(name = "SEXO", length = 50, nullable = false)
     private String sexo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioEvento")

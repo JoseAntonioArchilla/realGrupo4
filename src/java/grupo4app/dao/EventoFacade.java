@@ -15,7 +15,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author josea
+ * @author carlo
  */
 @Stateless
 public class EventoFacade extends AbstractFacade<Evento> {
@@ -40,7 +40,7 @@ public class EventoFacade extends AbstractFacade<Evento> {
             fecha = new Date();
             q = em.createQuery(s + " and e.fechaReserva >= :fecha ");            
             q.setParameter("fecha", fecha);
-        }
+}
         else{
             q = em.createQuery(s);
         }

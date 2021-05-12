@@ -15,7 +15,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author josea
+ * @author carlo
  */
 @Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario> {
@@ -45,7 +45,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
             int ind = rnd.nextInt(teleop.size());
         
             return teleop.get(ind);
-        }
+}
        
     }
     

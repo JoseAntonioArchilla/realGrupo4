@@ -27,9 +27,11 @@
             for(Filtro filtro : listaFiltros){
         %>
         <tr>
-            <td><%= filtro.getIdfiltro()%></td>
-            <td><a href="ServletBorrarFiltro?id=<%=filtro.getIdfiltro()%>">Borrar</a></td>
-            <td><a href="ServletCrearEditarFiltro?id=<%=filtro.getIdfiltro()%>">Editar</a></td>
+            <td><%= filtro.getFiltroPK().getIdfiltro()%></td>
+            <td><%= filtro.getNombre()%></td>
+            <td><a href="ServletBorrarFiltro?id=<%=filtro.getFiltroPK().getIdfiltro()%>">Borrar</a></td>
+            <td><a href="ServletCrearEditarFiltro?id=<%=filtro.getFiltroPK().getIdfiltro()%>">Editar</a></td>
+            <td><a href="ServletMostrarEventoUsuarios?id=<%=filtro.getFiltroPK().getIdfiltro()%>">Mostrar</a></td>"
         </tr>     
         <%
             }    

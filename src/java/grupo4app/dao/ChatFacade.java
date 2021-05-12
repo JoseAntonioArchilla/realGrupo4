@@ -15,7 +15,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author josea
+ * @author carlo
  */
 @Stateless
 public class ChatFacade extends AbstractFacade<Chat> {
@@ -39,7 +39,7 @@ public class ChatFacade extends AbstractFacade<Chat> {
         chatsUsr = q.getResultList();
         
         return chatsUsr;
-    }
+}
     
     public List<Chat> filtrarTeleoperador(String cadena){
         List<Chat> chatsUsr;

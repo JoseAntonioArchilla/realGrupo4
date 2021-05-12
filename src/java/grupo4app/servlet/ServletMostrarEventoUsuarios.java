@@ -6,8 +6,11 @@
 package grupo4app.servlet;
 
 import grupo4app.dao.FiltroFacade;
+import grupo4app.dao.UsuarioEventoFacade;
 import grupo4app.entity.Filtro;
+import grupo4app.entity.FiltroPK;
 import grupo4app.entity.Usuario;
+import grupo4app.entity.UsuarioEvento;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -24,11 +27,16 @@ import javax.servlet.http.HttpSession;
  *
  * @author carlo
  */
-@WebServlet(name = "ServletFiltroListar", urlPatterns = {"/ServletFiltroListar"})
-public class ServletFiltroListar extends HttpServlet {
-    
+@WebServlet(name = "ServletMostrarEventoUsuarios", urlPatterns = {"/ServletMostrarEventoUsuarios"})
+public class ServletMostrarEventoUsuarios extends HttpServlet {
+
+    @EJB
+    private UsuarioEventoFacade usuarioEventoFacade;
+
     @EJB
     private FiltroFacade filtroFacade;
+    
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,19 +48,25 @@ public class ServletFiltroListar extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {             
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         HttpSession session = request.getSession();
-        Usuario usuario = (Usuario)session.getAttribute("usuario");
         
-        List<Filtro> listaFiltros = this.filtroFacade.filtrosCreador(usuario.getIdusuario());
-        //List<Filtro> listaFiltros = usuario.getFiltroList();
-        //List<Filtro> listaFiltros = this.filtroFacade.findAll(); //Creo una lista con todos los filtros.
-        request.setAttribute("listaFiltros", listaFiltros); //Lo cargo en la variable.
+        //Variables
+        String id = request.getParameter("id");
+        int idFiltro = Integer.parseInt(id);
+        HttpSession session = request.getSession();
+        Usuario creadorFiltro = (Usuario)session.getAttribute("usuario");
+        int idCreador = creadorFiltro.getIdusuario();
+        FiltroPK filtroPk = new FiltroPK(idFiltro, idCreador);
         
-        //Le devuelvo el control al analista Eventos.
-        RequestDispatcher rd = request.getRequestDispatcher("AnalistaEventos.jsp");
-        rd.forward(request, response); 
+        Filtro filtroUsado = this.filtroFacade.find(filtroPk);
+        //List<UsuarioEvento> usuarios = this.usuarioEventoFacade.EncontrarUsuarios(filtroUsado);
+        //request.setAttribute("usuarios", usuarios);
+        
+        String direccion = "FiltrosUsuariosEventos.jsp";
+        RequestDispatcher rd = request.getRequestDispatcher(direccion);
+        rd.forward(request, response);
+                
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

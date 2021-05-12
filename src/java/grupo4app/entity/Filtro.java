@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author josea
+ * @author carlo
  */
 @Entity
 @Table(name = "FILTRO")
@@ -28,6 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Filtro.findAll", query = "SELECT f FROM Filtro f")
     , @NamedQuery(name = "Filtro.findByIdfiltro", query = "SELECT f FROM Filtro f WHERE f.filtroPK.idfiltro = :idfiltro")
     , @NamedQuery(name = "Filtro.findByAnalistaeventos", query = "SELECT f FROM Filtro f WHERE f.filtroPK.analistaeventos = :analistaeventos")
+    , @NamedQuery(name = "Filtro.findByNombre", query = "SELECT f FROM Filtro f WHERE f.nombre = :nombre")
     , @NamedQuery(name = "Filtro.findByEdadLimInf", query = "SELECT f FROM Filtro f WHERE f.edadLimInf = :edadLimInf")
     , @NamedQuery(name = "Filtro.findByEdadLimSup", query = "SELECT f FROM Filtro f WHERE f.edadLimSup = :edadLimSup")
     , @NamedQuery(name = "Filtro.findBySexo", query = "SELECT f FROM Filtro f WHERE f.sexo = :sexo")
@@ -40,22 +41,25 @@ public class Filtro implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected FiltroPK filtroPK;
+    //@Size(max = 200)
+    @Column(name = "NOMBRE", length = 200)
+    private String nombre;
     @Column(name = "EDAD_LIM_INF")
     private Integer edadLimInf;
     @Column(name = "EDAD_LIM_SUP")
     private Integer edadLimSup;
-    @Size(max = 50)
-    @Column(name = "SEXO")
+    //@Size(max = 50)
+    @Column(name = "SEXO", length = 50)
     private String sexo;
-    @Size(max = 50)
-    @Column(name = "CIUDAD")
+    //@Size(max = 50)
+    @Column(name = "CIUDAD", length = 50)
     private String ciudad;
     @Column(name = "ANYO")
     private Integer anyo;
     @Column(name = "COSTE_ENTRADA")
     private Integer costeEntrada;
-    @Size(max = 50)
-    @Column(name = "CATEGORIA")
+    //@Size(max = 50)
+    @Column(name = "CATEGORIA", length = 50)
     private String categoria;
     @JoinColumn(name = "ANALISTAEVENTOS", referencedColumnName = "IDUSUARIO", insertable = false, updatable = false)
     @ManyToOne(optional = false)
@@ -81,6 +85,14 @@ public class Filtro implements Serializable {
 
     public void setFiltroPK(FiltroPK filtroPK) {
         this.filtroPK = filtroPK;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public Integer getEdadLimInf() {

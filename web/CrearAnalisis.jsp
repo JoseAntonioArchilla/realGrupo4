@@ -23,12 +23,13 @@
         String edadInferior = "";
         String edadSuperior = "";
         String id = "";
+        String nombre = "";
         
         //Comprobamos si es nueva o hay que editarla.
         if (filtro != null) {
             
             try{
-                id = filtro.getIdfiltro().toString();
+                 id =  String.valueOf(filtro.getFiltroPK().getIdfiltro());
             }catch(Exception e){
                 
             }
@@ -48,14 +49,17 @@
                       
             usuario = "0";
             try{
-                usuario = filtro.getUsuario().getIdusuario().toString();              
+                usuario = filtro.getUsuario1().getIdusuario().toString();              
             }catch(Exception e){
                         
             }
-            //Integer usuarioPro = filtro.getUsuario().getIdusuario();
-           // if(usuarioPro != 0){
-             //   usuario = usuarioPro.toString();
-            //}
+          
+            try{
+                nombre = filtro.getNombre();
+            }catch(Exception e){
+                
+            }
+            
             Integer edadInferiorPro = filtro.getEdadLimInf();
             if(edadInferiorPro != 0){
                 edadInferior = edadInferiorPro.toString();
@@ -72,6 +76,9 @@
             <input type="hidden" name="id" value=<%=id%>>
             <label for="opCiudad">Ciudad: </label>
             <input type="text" id="opCiudad" name="ciudad" maxlength="50" value=<%=ciudad%>>
+            <br/>
+            <label for="idNombre">Nombre: </label>
+            <input type="text" name="nombre" id="idNombre" maxlength="200" value=<%=nombre%>>           
             <br/>
             <p>Sexo: </p>
             

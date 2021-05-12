@@ -9,21 +9,24 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author josea
+ * @author carlo
  */
 @Embeddable
 public class FiltroPK implements Serializable {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "IDFILTRO")
     private int idfiltro;
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "ANALISTAEVENTOS")
+    //@NotNull
+    @Column(name = "ANALISTAEVENTOS", nullable = false)
     private int analistaeventos;
 
     public FiltroPK() {

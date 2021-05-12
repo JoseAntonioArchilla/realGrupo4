@@ -7,6 +7,8 @@ package grupo4app.servlet;
 
 import grupo4app.dao.FiltroFacade;
 import grupo4app.entity.Filtro;
+import grupo4app.entity.FiltroPK;
+import grupo4app.entity.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -16,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -41,12 +44,18 @@ public class ServletCrearEditarFiltro extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-                     
+         
+        //No nos olvidemos del session
+        HttpSession session = request.getSession();
+        Usuario creadorFiltro = (Usuario)session.getAttribute("usuario");
+        int idCreador = creadorFiltro.getIdusuario();
         //Comprueba si es para editar o es nuevo.
         String str = request.getParameter("id");
         //Es editar en vez de guardar.
         if(str != null){
-            Filtro filtroEditar = this.filtroFacade.find(new Integer(str));
+            int idFiltro = new Integer(str);
+            FiltroPK busqueda = new FiltroPK(idFiltro, idCreador);
+            Filtro filtroEditar = this.filtroFacade.find(busqueda);
             request.setAttribute("filtroEditar", filtroEditar);
         }
             

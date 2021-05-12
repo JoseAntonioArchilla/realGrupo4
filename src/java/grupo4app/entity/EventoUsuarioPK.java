@@ -13,17 +13,17 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author josea
+ * @author carlo
  */
 @Embeddable
 public class EventoUsuarioPK implements Serializable {
 
     @Basic(optional = false)
-   // @NotNull
+    //@NotNull
     @Column(name = "USUARIO", nullable = false)
     private int usuario;
     @Basic(optional = false)
-    @NotNull
+    //@NotNull
     @Column(name = "IDEVENTO", nullable = false)
     private int idevento;
 

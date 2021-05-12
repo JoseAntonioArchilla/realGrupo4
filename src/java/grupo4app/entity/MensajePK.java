@@ -16,14 +16,14 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author josea
+ * @author carlo
  */
 @Embeddable
 public class MensajePK implements Serializable {
 
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "CHAT")
+    //@NotNull
+    @Column(name = "CHAT", nullable = false)
     private int chat;
     @Basic(optional = false)
     @Column(name = "IDMENSAJE")

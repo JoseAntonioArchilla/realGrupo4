@@ -54,9 +54,17 @@ public class ServletInicioSesion extends HttpServlet {
             rd.forward(request, response);
         } else {
             session.setAttribute("usuario", usr);
+            
+            if(usr.getRol() == 3){
+                response.sendRedirect("ServletFiltroListar"); 
+            }
+            
+            else{
+                RequestDispatcher rd = request.getRequestDispatcher("index.html");
+                rd.forward(request, response);
+            }
 
-            RequestDispatcher rd = request.getRequestDispatcher("index.html");
-            rd.forward(request, response);
+           
         }
     }
         

@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author josea
+ * @author carlo
  */
 @Entity
 @Table(name = "EVENTO")
@@ -45,11 +45,19 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Evento.findByCosteEntrada", query = "SELECT e FROM Evento e WHERE e.costeEntrada = :costeEntrada")
     , @NamedQuery(name = "Evento.findByAforo", query = "SELECT e FROM Evento e WHERE e.aforo = :aforo")
     , @NamedQuery(name = "Evento.findByMaxNumEntradas", query = "SELECT e FROM Evento e WHERE e.maxNumEntradas = :maxNumEntradas")
+    , @NamedQuery(name = "Evento.findByFilas", query = "SELECT e FROM Evento e WHERE e.filas = :filas")
+    , @NamedQuery(name = "Evento.findByColumnas", query = "SELECT e FROM Evento e WHERE e.columnas = :columnas")
     , @NamedQuery(name = "Evento.findByMusica", query = "SELECT e FROM Evento e WHERE e.musica = :musica")
     , @NamedQuery(name = "Evento.findByAireLibre", query = "SELECT e FROM Evento e WHERE e.aireLibre = :aireLibre")
     , @NamedQuery(name = "Evento.findByDeporte", query = "SELECT e FROM Evento e WHERE e.deporte = :deporte")
     , @NamedQuery(name = "Evento.findByTeatro", query = "SELECT e FROM Evento e WHERE e.teatro = :teatro")
-    , @NamedQuery(name = "Evento.findByGaming", query = "SELECT e FROM Evento e WHERE e.gaming = :gaming")})
+    , @NamedQuery(name = "Evento.findByGaming", query = "SELECT e FROM Evento e WHERE e.gaming = :gaming")
+    , @NamedQuery(name = "Evento.findByLectura", query = "SELECT e FROM Evento e WHERE e.lectura = :lectura")
+    , @NamedQuery(name = "Evento.findByFormacion", query = "SELECT e FROM Evento e WHERE e.formacion = :formacion")
+    , @NamedQuery(name = "Evento.findByConferencia", query = "SELECT e FROM Evento e WHERE e.conferencia = :conferencia")
+    , @NamedQuery(name = "Evento.findByBenefico", query = "SELECT e FROM Evento e WHERE e.benefico = :benefico")
+    , @NamedQuery(name = "Evento.findByArte", query = "SELECT e FROM Evento e WHERE e.arte = :arte")
+    , @NamedQuery(name = "Evento.findByTurismo", query = "SELECT e FROM Evento e WHERE e.turismo = :turismo")})
 public class Evento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,14 +67,14 @@ public class Evento implements Serializable {
     @Column(name = "IDEVENTO")
     private Integer idevento;
     @Basic(optional = false)
-   // @NotNull
+    //@NotNull
     //@Size(min = 1, max = 50)
     @Column(name = "TITULO", length = 50, nullable = false)
     private String titulo;
     @Basic(optional = false)
     //@NotNull
-    //@Size(min = 1, max = 200,)
-    @Column(name = "DESCRIPCION", length = 50, nullable = false)
+    //@Size(min = 1, max = 200)
+    @Column(name = "DESCRIPCION", length = 200, nullable = false)
     private String descripcion;
     @Basic(optional = false)
     //@NotNull
@@ -87,9 +95,13 @@ public class Evento implements Serializable {
     @Column(name = "AFORO", nullable = false)
     private int aforo;
     @Basic(optional = false)
-   // @NotNull
+    //@NotNull
     @Column(name = "MAX_NUM_ENTRADAS", nullable = false)
     private int maxNumEntradas;
+    @Column(name = "FILAS")
+    private Integer filas;
+    @Column(name = "COLUMNAS")
+    private Integer columnas;
     @Column(name = "MUSICA")
     private Integer musica;
     @Column(name = "AIRE_LIBRE")
@@ -100,6 +112,18 @@ public class Evento implements Serializable {
     private Integer teatro;
     @Column(name = "GAMING")
     private Integer gaming;
+    @Column(name = "LECTURA")
+    private Integer lectura;
+    @Column(name = "FORMACION")
+    private Integer formacion;
+    @Column(name = "CONFERENCIA")
+    private Integer conferencia;
+    @Column(name = "BENEFICO")
+    private Integer benefico;
+    @Column(name = "ARTE")
+    private Integer arte;
+    @Column(name = "TURISMO")
+    private Integer turismo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
     private List<EventoUsuario> eventoUsuarioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento1")
@@ -190,6 +214,22 @@ public class Evento implements Serializable {
         this.maxNumEntradas = maxNumEntradas;
     }
 
+    public Integer getFilas() {
+        return filas;
+    }
+
+    public void setFilas(Integer filas) {
+        this.filas = filas;
+    }
+
+    public Integer getColumnas() {
+        return columnas;
+    }
+
+    public void setColumnas(Integer columnas) {
+        this.columnas = columnas;
+    }
+
     public Integer getMusica() {
         return musica;
     }
@@ -228,6 +268,54 @@ public class Evento implements Serializable {
 
     public void setGaming(Integer gaming) {
         this.gaming = gaming;
+    }
+
+    public Integer getLectura() {
+        return lectura;
+    }
+
+    public void setLectura(Integer lectura) {
+        this.lectura = lectura;
+    }
+
+    public Integer getFormacion() {
+        return formacion;
+    }
+
+    public void setFormacion(Integer formacion) {
+        this.formacion = formacion;
+    }
+
+    public Integer getConferencia() {
+        return conferencia;
+    }
+
+    public void setConferencia(Integer conferencia) {
+        this.conferencia = conferencia;
+    }
+
+    public Integer getBenefico() {
+        return benefico;
+    }
+
+    public void setBenefico(Integer benefico) {
+        this.benefico = benefico;
+    }
+
+    public Integer getArte() {
+        return arte;
+    }
+
+    public void setArte(Integer arte) {
+        this.arte = arte;
+    }
+
+    public Integer getTurismo() {
+        return turismo;
+    }
+
+    public void setTurismo(Integer turismo) {
+        this.turismo = turismo;
     }
 
     @XmlTransient

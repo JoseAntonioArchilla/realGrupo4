@@ -71,7 +71,7 @@ public class ServletGuardarEvento extends HttpServlet {
         String fechaFin = request.getParameter("fechaFin");
         aforo = Integer.parseInt(request.getParameter("aforo"));
         String imagen = request.getParameter("imagen");
-
+        
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 

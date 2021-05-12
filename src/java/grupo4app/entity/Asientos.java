@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author josea
+ * @author carlo
  */
 @Entity
 @Table(name = "ASIENTOS")
@@ -41,8 +41,8 @@ public class Asientos implements Serializable {
     @EmbeddedId
     protected AsientosPK asientosPK;
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "OCUPADO")
+    //@NotNull
+    @Column(name = "OCUPADO", nullable = false)
     private int ocupado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "asientos")
     private List<EventoUsuario> eventoUsuarioList;

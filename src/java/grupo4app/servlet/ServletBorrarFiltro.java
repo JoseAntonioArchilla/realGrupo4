@@ -7,6 +7,8 @@ package grupo4app.servlet;
 
 import grupo4app.dao.FiltroFacade;
 import grupo4app.entity.Filtro;
+import grupo4app.entity.FiltroPK;
+import grupo4app.entity.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -15,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,13 +42,20 @@ public class ServletBorrarFiltro extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        HttpSession session = request.getSession();
+        Usuario usu = (Usuario) session.getAttribute("usuario");
+        int idCreador = usu.getIdusuario();
+        
         //Rescato el id
         String str = request.getParameter("id");
         Integer id = Integer.parseInt(str);
         
+        FiltroPK pk = new FiltroPK(id, idCreador);
+        
         //Lo busco en la base de datos y lo elimino.
-        Filtro filtroBorrar = this.filtroFacade.find(id);
+        Filtro filtroBorrar = this.filtroFacade.find(pk);
         this.filtroFacade.remove(filtroBorrar);
+        session.setAttribute("usuario", usu);
         
         //Despues mando al servlet listar para que los vuelva a listar.
         response.sendRedirect("ServletFiltroListar"); 
