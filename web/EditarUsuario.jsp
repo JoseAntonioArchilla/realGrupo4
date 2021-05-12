@@ -11,12 +11,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
+
         <title>Registro</title>
-        
+
         <link href="estilos/estiloFormulario.css" rel="stylesheet">
     </head>
-    
+
     <script>
         function mostrar_extra()
         {
@@ -31,13 +31,13 @@
             document.getElementById("ciudad").required = visible;
         }
     </script>
-    
+
     <body>
         <%
             Usuario usuario = (Usuario) request.getAttribute("usuario");
             UsuarioEvento usuarioEvento = (UsuarioEvento) request.getAttribute("usuarioEvento");
         %>
-        
+
         <div class="contact_form">
             <div class="formulario">      
                 <h1>Edición</h1>
@@ -52,18 +52,19 @@
                         <input type="password" name="password" id="contraseña" value=<%=usuario.getPassword()%>>
                     </p>
 
-                    <select id="seleccionador" name="rol" onchange="mostrar_extra()" selected=<%=usuario.getRol()%>><--Hay que ver como hacer esto
-                        <option value="0">Creador de evento</option>
-                        <option value="1">Administrador del sistema</option>
-                        <option value="2">Teleoperador</option>
-                        <option value="3">Analista de eventos</option>
-                        <option value="4">Usuario de evento</option>
+                    <select id="seleccionador" name="rol" onchange="mostrar_extra()"><--Hay que ver como hacer esto
+                        <option value="0" <%= usuario.getRol() == 0 ? "selected" : ""%>>Creador de evento</option>
+                        <option value="1" <%= usuario.getRol() == 1 ? "selected" : ""%>>Administrador del sistema</option>
+                        <option value="2" <%= usuario.getRol() == 2 ? "selected" : ""%>>Teleoperador</option>
+                        <option value="3" <%= usuario.getRol() == 3 ? "selected" : ""%>>Analista de eventos</option>
+                        <option value="4" <%= usuario.getRol() == 4 ? "selected" : ""%>>Usuario de evento</option>
                     </select>
 
+
                     <div id="extra" style="display:none;">
-                            <%
-                                if(usuarioEvento == null){
-                            %>
+                        <%
+                            if (usuarioEvento == null) {
+                        %>
                         <p>
                             <label for="nombre" >Nombre</label>
                             <input type="text" name="Nombre" id="nombre" placeholder="Escribe tu nombre">
@@ -98,7 +99,7 @@
                             <label for="ciudad" >Ciudad</label>
                             <input type="text" name="Ciudad" id="ciudad" placeholder="Escribe tu ciudad">
                         </p>
-                            <%}else{%>
+                        <%} else {%>
                         <p>
                             <label for="nombre" >Nombre</label>
                             <input type="text" name="Nombre" id="nombre" value=<%=usuarioEvento.getNombre()%>>
@@ -116,10 +117,10 @@
 
                         <p>
                             <label for="sexo" >Sexo</label>
-                            <select id="seleccionador" name="sexo" onchange="mostrar_extra()" selected=<%=usuarioEvento.getSexo()%>><--Hay que ver como hacer esto
-                                <option value="Hombre">Hombre</option>
-                                <option value="Mujer">Mujer</option>
-                                <option value="Otro">Otro</option>
+                            <select id="seleccionador" name="sexo" onchange="mostrar_extra()" ><--Hay que ver como hacer esto
+                                <option value="Hombre" <%= usuarioEvento.getSexo().equals("Hombre") ? "selected" : ""%>>Hombre</option>
+                                <option value="Mujer" <%= usuarioEvento.getSexo().equals("Mujer") ? "selected" : ""%>>Mujer</option>
+                                <option value="Otro" <%= usuarioEvento.getSexo().equals("Otro") ? "selected" : ""%>>Otro</option>
                             </select>
                         </p>
 
@@ -132,13 +133,21 @@
                             <label for="ciudad" >Ciudad</label>
                             <input type="text" name="Ciudad" id="ciudad" value=<%=usuarioEvento.getCiudad()%>>
                         </p>
-                            <%}%>
+                        <%}%>
                     </div>
 
                     <button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>
                 </form>
             </div>  
         </div>
+
+        <%
+            if (usuario.getRol() == 4) {
+        %>
+        <script> mostrar_extra();</script>    
+        <%
+            }
+        %>
     </body>
-    
+
 </html>
