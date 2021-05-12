@@ -34,7 +34,7 @@ public class EventoFacade extends AbstractFacade<Evento> {
     
     public List<Evento> filtrarEventos(int min, int max, boolean dis, String nombre){
         Date fecha;
-        String s = "select e from Evento e where e.costeEntrada>= :min and e.costeEntrada<= :max and e.titulo like :nombre ";
+        String s = "select e from Evento e where e.costeEntrada>= :min and e.costeEntrada<= :max and e.titulo like '%" +nombre +"%' ";
         Query q;
         if(dis){
             fecha = new Date();
@@ -46,7 +46,7 @@ public class EventoFacade extends AbstractFacade<Evento> {
         }
         q.setParameter("min", min);
         q.setParameter("max", max);
-        q.setParameter("nombre", "'%" + nombre +"%'");
+        //q.setParameter("nombre", "'%" /*+ nombre*/ +"%'");
         return q.getResultList();
         
     }
