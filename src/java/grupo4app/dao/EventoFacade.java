@@ -46,7 +46,6 @@ public class EventoFacade extends AbstractFacade<Evento> {
         }
         q.setParameter("min", min);
         q.setParameter("max", max);
-        //q.setParameter("nombre", "'%" /*+ nombre*/ +"%'");
         return q.getResultList();
         
     }
