@@ -45,17 +45,32 @@ public class ServletListarConversaciones extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Usuario usuarioSesion = (Usuario)session.getAttribute("usuario");
+        String usBuscar = request.getParameter("usuarioBuscar");
         
-        List<Chat> listaConver = null;
-        if(usuarioSesion != null){
-            if(usuarioSesion.getRol() == 2){
-                listaConver = this.chatFacade.findAll();
-            } else {
-                listaConver = this.chatFacade.findByUsuario(usuarioSesion);
+        List<Chat> chats;
+        if(usBuscar == null || usBuscar.trim().length() == 0){
+            if(usuarioSesion != null){
+                if(usuarioSesion.getRol() == 2){
+                    chats = this.chatFacade.findAll();
+                } else {
+                    chats = this.chatFacade.findByUsuario(usuarioSesion);
+                }
+                
+                request.setAttribute("chats", chats);
+            }
+        } else {
+            if(usuarioSesion != null){
+                if(usuarioSesion.getRol() == 2){
+                    chats = this.chatFacade.filtrarTeleoperador(usBuscar);
+                } else {
+                    chats = this.chatFacade.filtrarUsuario(usBuscar,usuarioSesion);
+                }
+                
+                request.setAttribute("chats", chats);
+                request.setAttribute("buscado", true);
             }
         }
         
-        request.setAttribute("chats", listaConver);
         
         RequestDispatcher rd = request.getRequestDispatcher("Conversaciones.jsp");
         rd.forward(request, response);

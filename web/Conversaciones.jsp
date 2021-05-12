@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Conversaciones de Teleoperadores</title>
+        <title>Conversaciones</title>
         <style>
             li{
                 display: inline;
@@ -51,7 +51,16 @@
         </nav>
         <div>
             <h1>Conversaciones</h1>
-            <input type="text" name="buscador"/>
+            <form method="POST" action="ServletListarConversaciones">
+                <input type="search" name="usuarioBuscar" placeholder="Buscar por usuario"/>
+                <input type="submit" value="Buscar"/>
+            </form>
+            <% if(request.getAttribute("buscado") != null) {
+            %>
+                <br/>
+                <button onclick="location.href='ServletListarConversaciones';">Mostrar todos</button>
+            <% }
+            %>
         </div>
         <hr style="width: 100%">
         <% if(usuarioIniciado != null && (usuarioIniciado.getRol() == 0 || usuarioIniciado.getRol() == 4)) {

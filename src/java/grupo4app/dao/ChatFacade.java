@@ -41,4 +41,23 @@ public class ChatFacade extends AbstractFacade<Chat> {
         return chatsUsr;
     }
     
+    public List<Chat> filtrarTeleoperador(String cadena){
+        List<Chat> chatsUsr;
+        Query q = em.createQuery("SELECT c FROM Chat c WHERE upper(c.usuario1.nickname) LIKE :name OR upper(c.usuario2.nickname) LIKE :name");
+        q.setParameter("name", "%" + cadena.toUpperCase() + "%");
+        chatsUsr = q.getResultList();
+        
+        return chatsUsr;
+    }
+    
+    public List<Chat> filtrarUsuario(String cadena, Usuario us){
+        List<Chat> chatsUsr;
+        Query q = em.createQuery("SELECT c FROM Chat c WHERE c.usuario2.idusuario = :us AND (upper(c.usuario1.nickname) LIKE :name OR upper(c.usuario2.nickname) LIKE :name)");
+        q.setParameter("us", us.getIdusuario());
+        q.setParameter("name", "%" + cadena.toUpperCase() + "%");
+        chatsUsr = q.getResultList();
+        
+        return chatsUsr;
+    }
+    
 }
