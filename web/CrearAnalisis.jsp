@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>CrearAnalisis</title>
+        <link href="estilos/estiloFormulario.css" rel="stylesheet">
     </head>
     <%
         Filtro filtro = (Filtro)request.getAttribute("filtroEditar");
@@ -71,6 +72,8 @@
         }
     %> 
     <body>
+        <div class="contact_form">
+            <div class="formulario"> 
         <h1>Creacion de analisis</h1>
         <form method="post" action="ServletFiltroGuardar">
             <input type="hidden" name="id" value=<%=id%>>
@@ -241,5 +244,7 @@
             <input type="reset" value="Resetear"/>
             <input type="submit" value="Guardar">
         </form>
+            </div>
+        </div>
     </body>
 </html>

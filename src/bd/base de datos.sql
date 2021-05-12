@@ -27,6 +27,7 @@ create table EVENTO(
     coste_entrada integer not null,
     aforo integer not null,
     max_num_entradas integer not null,
+    asientosFijos integer not null,
     filas integer,
     columnas integer,
     musica integer,
@@ -41,6 +42,7 @@ create table EVENTO(
     arte integer,
     turismo integer,
     constraint ck_boolean check (musica in (1,0) and aire_libre in (1,0) and deporte in (1,0) and teatro in (1,0) and gaming in (1,0) and lectura in (1,0) and formacion in (1,0) and conferencia in (1,0) and benefico in (1,0) and arte in (1,0) and turismo in (1,0)),
+    constraint ck_boolean2 check (asientosFijos in (1,0)),
     constraint fk_evento foreign key(creadorEvento) references USUARIO(idUsuario),
     constraint pk_evento primary key(idEvento)
 );
@@ -57,8 +59,8 @@ create table ASIENTOS(
 create table EVENTO_USUARIO(
    usuario integer not null,
    idEvento integer not null,
-   fila integer not null,
-   columna integer not null,
+   fila integer,
+   columna integer,
    evento integer not null,
    constraint fk_EvUs1 foreign key(usuario) references USUARIO_EVENTO(usuario), 
    constraint fk_EvUs2 foreign key(idEvento) references EVENTO(idEvento),
