@@ -184,11 +184,7 @@
                     </select>
                 </div>  
             </div>
-            
             <input type = "submit" value="Añadir"/>
-            <button name="mostrar">Mostrar</button>
-            <button name="modificar">Modificar</button>
-            <button name="borrar">Borrar</button>
         </form>
     </body>
 </html>
