@@ -67,8 +67,8 @@
             </div>
         </div>
       
-        <form method="GET" action="ServletEnviarMensaje">
-            <input type="text" name="mensaje" size="100"/>
+        <form method="POST" action="ServletEnviarMensaje">
+            <textarea name="mensaje" rows="3" cols="70" maxlength="200"></textarea>
             <input type="hidden" name="idChat" value="<%=ch.getIdchat()%>">
             <input type="submit" name="enviar"/>
         </form>
