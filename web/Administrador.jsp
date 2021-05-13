@@ -85,7 +85,7 @@
         
         <!-- Contenido -->
         
-            
+        <div class="py-3 row">  
             <!-- Grid -->
             <div class="col-10">
                 <div class="row">
@@ -118,6 +118,65 @@
                     %>
                 </div>                
             </div>  
+            <div class="col-2">
+                <form method="post" action="ServletAñadirUsuario">
+                    <div class='row'>
+                        <p class="col-6 m-1">Usuario</p>
+                        <input class='col-6 px-1 m-1' type="text" name="usuario">
+                    </div>
+                    <div class='row'>
+                        <p class="col-6 m-1">Contraseña</p>
+                        <input class='col-6 px-1 m-1' type="password" name="password">
+                    </div>
+                    <div class='row'>
+                        <p class="col-6 m-1">Rol</p>
+                        <select class='col-8 px-1 m-1' id="seleccionador" name="rol" onchange="mostrar_extra()">
+                            <option value="0">Creador de evento</option>
+                            <option value="1">Administrador del sistema</option>
+                            <option value="2">Teleoperador</option>
+                            <option value="3">Analista de eventos</option>
+                            <option value="4">Usuario de evento</option>
+                        </select>
+                    </div>
+
+                    <div id="extra" style="display:none;">
+
+                        <hr style='width: 100%;'>                    
+                        <div class='row'>
+                            <p class="col-6 m-1">Nombre</p>
+                            <input class="m-1 px-1 col-6" type="text" name="nombre">
+                        </div>
+                        <div class='row'>
+                            <p class="col-6 m-1">Apellidos</p>
+                            <input class="m-1 px-1 col-6" type="text" name="apellidos">
+                        </div>
+                        <div class='row'>
+                            <p class="col-6 m-1">Domicilio</p>
+                            <input class="m-1 px-1 col-6" type="text" name="domicilio">
+                        </div>
+                        <div class='row'>
+                            <p class="col-6 m-1">Ciudad</p>
+                            <input class="m-1 px-1 col-6" type="text" name="ciudad">
+                        </div>
+                        <div class='row'>
+                            <p class="col-6 m-1">Edad</p>
+                            <input class="m-1 px-1 col-6" type="text" name="number" min="0" max="122">
+                        </div>
+                        <div class='row'>
+                            <p class="col-6 m-1">Sexo</p>
+                            <select class="m-1 px-1 col-6" name="sexo">
+                                <option value="0">Hombre</option>
+                                <option value="1">Mujer</option>
+                                <option value="2">Otro</option>
+                            </select>
+                        </div>  
+                    </div>
+                    <div class="row justify-content-start px-1 my-3">
+                        <input type = "submit" value="Añadir"/>
+                    </div>
+                </form>
+                </div>
+            </div>
         </div>
              <%
             if(request.getAttribute("error") != null){
@@ -135,56 +194,6 @@
             }
         </script>
 
-        <form class='row justify-content-center' method="post" action="ServletAñadirUsuario">
-            <div class='row'>
-                <p class="col-6">Usuario</p>
-                <input class='col-6 my-1' type="text" name="usuario">
-            </div>
-            <div class='row'>
-                <p class="col-6">Contraseña</p>
-                <input class='col-6 my-1' type="password" name="password">
-            </div>
-            <div class='row'>
-                <p class="col-6">Rol</p>
-                <select class='col-6 my-1' id="seleccionador" name="rol" onchange="mostrar_extra()">
-                    <option value="0">Creador de evento</option>
-                    <option value="1">Administrador del sistema</option>
-                    <option value="2">Teleoperador</option>
-                    <option value="3">Analista de eventos</option>
-                    <option value="4">Usuario de evento</option>
-                </select>
-            </div>
-
-            <div id="extra" style="display:none;">
-
-                <hr style='width: 100%;'>                    
-
-                <div class='row'>
-                    <p class="col-6">Apellidos</p>
-                    <input class="my-1 col-6" type="text" name="apellidos">
-                </div>
-                <div class='row'>
-                    <p class="col-6">Domicilio</p>
-                    <input class="my-1 col-6" type="text" name="domicilio">
-                </div>
-                <div class='row'>
-                    <p class="col-6">Ciudad</p>
-                    <input class="my-1 col-6" type="text" name="ciudad">
-                </div>
-                <div class='row'>
-                    <p class="col-6">Edad</p>
-                    <input class="my-1 col-6" type="text" name="number" min="0" max="122">
-                </div>
-                <div class='row'>
-                    <p class="col-6">Sexo</p>
-                    <select class="my-1 col-6" name="sexo">
-                        <option value="0">Hombre</option>
-                        <option value="1">Mujer</option>
-                        <option value="2">Otro</option>
-                    </select>
-                </div>  
-            </div>
-            <input type = "submit" value="Añadir"/>
-        </form>
+        
     </body>
 </html>
