@@ -57,6 +57,7 @@ create table ASIENTOS(
 );
 
 create table EVENTO_USUARIO(
+   idEventoUsuario integer not null generated always as identity (start with 1, increment by 1),
    usuario integer not null,
    idEvento integer not null,
    fila integer,
@@ -65,7 +66,7 @@ create table EVENTO_USUARIO(
    constraint fk_EvUs1 foreign key(usuario) references USUARIO_EVENTO(usuario), 
    constraint fk_EvUs2 foreign key(idEvento) references EVENTO(idEvento),
    constraint fk_EvUs3 foreign key(evento, fila, columna) references ASIENTOS(evento, fila, columna),
-   constraint pk_EvUs primary key(usuario, idEvento)
+   constraint pk_EvUs primary key(idEventoUsuario, usuario, idEvento)
 );
 
 create table CHAT(
