@@ -117,12 +117,12 @@
                     <div id="extra" style="display:none;">
                         <p>
                             <label for="numFilas">Numero de filas de asientos</label>
-                            <input type="text" name="numFilas" id="numFilas"  placeholder="Escribe el numero de filas" value="<%= filas%>">
+                            <input type="number" name="numFilas" id="numFilas"  placeholder="Escribe el numero de filas" value="<%= filas%>">
                         </p>
 
                         <p>
                             <label for="numColumnas">Numero de columnas de asientos</label>
-                            <input type="text" name="numColumnas" id="numColumnas"  placeholder="Escribe el numero de columnas" value="<%= columnas%>">
+                            <input type="number" name="numColumnas" id="numColumnas"  placeholder="Escribe el numero de columnas" value="<%= columnas%>">
                         </p>
                     </div>
                     <button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>
