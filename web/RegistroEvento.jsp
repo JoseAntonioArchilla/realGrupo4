@@ -106,18 +106,18 @@
                     </p>     
 
                     <p>
-                        <label for="maxEntradas">Numero de columnas de asientos</label>
+                        <label for="maxEntradas">Maximas entradas por persona</label>
                         <input type="number" name="maxEntradas" id="maxEntradas"  placeholder="Escribe el numero de entradas por persona que puede compra un usuario" value="<%= maxEntradas%>">
                     </p>
 
                     <p>
                         <label for="seleccionador" class="colocar_asunto">Asientos fijos </label>
-                        <input type="checkbox" name="asientosFijos" onchange="mostrar_extra()" id="seleccionador"  placeholder="Escribe un asunto">                       
+                        <input type="checkbox" name="asientosFijos" onchange="mostrar_extra()" id="seleccionador"  placeholder="Escribe un asunto" <%= e != null ? "onclick=\"return false;\"" : ""%>>                       
                     </p>
 
                     <p id="pAforo">
                         <label for="aforo">Aforo máximo</label>
-                        <input type="number" name="aforo" id="aforo" required placeholder="Escribe el aforo del evento" value="<%= aforo%>">
+                        <input type="number" name="aforo" id="aforo" required placeholder="Escribe el aforo del evento" value="<%= aforo%>" <%= e != null ? "readonly" : ""%>>
                     </p>
                     <div id="extra" style="display:none;">
                         <p>
@@ -127,7 +127,7 @@
 
                         <p>
                             <label for="numColumnas">Numero de columnas de asientos</label>
-                            <input type="number" name="numColumnas" id="numColumnas"  placeholder="Escribe el numero de columnas" value="<%= columnas%>">
+                            <input <%= e != null ? "readonly" : ""%> type="number" name="numColumnas" id="numColumnas"  placeholder="Escribe el numero de columnas" value="<%= columnas%>">
                         </p>
                     </div>
                     <button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>
