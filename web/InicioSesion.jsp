@@ -15,7 +15,9 @@
         <link href="estilos/estiloFormulario.css" rel="stylesheet">
          
     </head>
-    
+    <%
+        String creador = (String)request.getAttribute("creador");
+    %>
     <body>        
         <div class="contact_form">
 
@@ -42,7 +44,6 @@
                      %>
                     <button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>
                 </form>
-              
                 <a href="RegistroUsuario.jsp">¿Todavía no tienes una cuenta?</a>
             </div>  
         </div>               

@@ -82,9 +82,8 @@
             <input class="col-4" style="width: 100%; border-radius: 25px" type="search" id="buscador">
 
             <div class="col-4 d-flex justify-content-around ">
-                <a href="index.html">Inicio </a>
-                <a href="index.html">Servicios </a>
-                <a href="#">Contacto</a>
+                <a href="ServletListarEventos">Eventos</a>
+                <a href="<%= u == null ? "InicioSesion.jsp" : "RegistroEvento.jsp"%>">Crear evento</a>
             </div>
             <%
                 if (u == null) {
@@ -102,7 +101,7 @@
                     <a class="row dropdown-element" href="index.html">Mi perfil</a>
                     <a class="row dropdown-element" href="index.html">Mensajes</a>
                     <a class="row dropdown-element" href="index.html">Ajustes</a>
-                    <a class="row dropdown-element" href="index.html">Cerrar sesion</a>
+                    <a class="row dropdown-element" href="ServletCerrarSesion">Cerrar sesion</a>
                 </div>
             </div>   
             <%
