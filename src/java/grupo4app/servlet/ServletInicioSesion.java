@@ -65,11 +65,9 @@ public class ServletInicioSesion extends HttpServlet {
             if(usr.getRol() == 3){
                 response.sendRedirect("ServletFiltroListar"); 
             }else{
-                RequestDispatcher rd = request.getRequestDispatcher("index.html");
+                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
                 rd.forward(request, response);
             }
-
-           
         }
     }
         
