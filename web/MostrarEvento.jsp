@@ -134,7 +134,7 @@
                         int numEntradas = 0;
                         if (ue != null) {
                             for (EventoUsuario aux : ue.getEventoUsuarioList()) {
-                                if(aux.getEvento().equals(e) ) numEntradas++;
+                                if(aux.getEvento().getIdevento() == e.getIdevento() ) numEntradas++;
                             }
                         }
 

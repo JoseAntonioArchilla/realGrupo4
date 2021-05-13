@@ -68,7 +68,7 @@ public class ServletGuardarEvento extends HttpServlet {
         descripcion = request.getParameter("descripcion");
         precio = Integer.parseInt(request.getParameter("precio"));
         String fechaInicio = request.getParameter("fechaInicio");
-        String fechaFin = request.getParameter("fechaFin"); 
+        String fechaFin = request.getParameter("fechaFin");
         String imagen = request.getParameter("imagen");
         int maxEnt = Integer.parseInt(request.getParameter("maxEntradas"));
         String pattern = "yyyy-MM-dd";
@@ -85,9 +85,9 @@ public class ServletGuardarEvento extends HttpServlet {
             e.setCosteEntrada(precio);
             e.setFecha(fi);
             e.setFechaReserva(ff);
-            
+
             e.setMaxNumEntradas(maxEnt);
-            e.setEventoUsuarioList(new ArrayList<EventoUsuario>());
+            e.setEventoUsuarioList(new ArrayList<>());
             e.setDeporte(0);
             e.setMusica(1);
             e.setTeatro(0);
@@ -95,46 +95,45 @@ public class ServletGuardarEvento extends HttpServlet {
             e.setAireLibre(0);
             e.setCreadorevento(usu);
 
-            List<Asientos> listaAsientos = new ArrayList<Asientos>();
+            List<Asientos> listaAsientos = new ArrayList<>();
             e.setAsientosList(listaAsientos);
             // e.setFecha(new Date(anio, mes, dia));
             //e.setFechaReserva(new Date(anioLi, mesLi, diaLi));
-           
-              
+
             e.setAsientosFijos(asientoFijo);
-           if(!asientoFijo){
-               aforo = Integer.parseInt(request.getParameter("aforo"));
-               e.setAforo(aforo);
-             
-           }else{
-               numFila = Integer.parseInt(request.getParameter("numFilas"));
+            if (!asientoFijo) {
+                aforo = Integer.parseInt(request.getParameter("aforo"));
+                e.setAforo(aforo);
+
+            } else {
+                numFila = Integer.parseInt(request.getParameter("numFilas"));
                 numCol = Integer.parseInt(request.getParameter("numColumnas"));
-                e.setAforo(numFila*numCol);
-              
-           }
+                e.setAforo(numFila * numCol);
+
+            }
             if (editando) {
                 this.evento.edit(e);
             } else {
                 this.evento.create(e);
-            }
 
-            if (asientoFijo) {
-                numFila = Integer.parseInt(request.getParameter("numFilas"));
-                numCol = Integer.parseInt(request.getParameter("numColumnas"));
-                for (int i = 0; i < numFila; i++) {
-                    for (int j = 0; j < numCol; j++) {
-                        AsientosPK aux = new AsientosPK(i, j, e.getIdevento());
-                        Asientos as = new Asientos(aux);
-                        as.setOcupado(0);
-                        as.setEventoUsuarioList(new ArrayList<EventoUsuario>());
-                        this.asientos.create(as);
-                        listaAsientos.add(as);
+                if (asientoFijo) {
+                    numFila = Integer.parseInt(request.getParameter("numFilas"));
+                    numCol = Integer.parseInt(request.getParameter("numColumnas"));
+                    for (int i = 0; i < numFila; i++) {
+                        for (int j = 0; j < numCol; j++) {
+                            AsientosPK aux = new AsientosPK(i, j, e.getIdevento());
+                            Asientos as = new Asientos(aux);
+                            as.setOcupado(0);
+                            as.setEventoUsuarioList(new ArrayList<EventoUsuario>());
+                            this.asientos.create(as);
+                            listaAsientos.add(as);
+                        }
                     }
+                    e.setAsientosList(listaAsientos);
+                    e.setFilas(numFila);
+                    e.setColumnas(numCol);
+                    this.evento.edit(e);
                 }
-                e.setAsientosList(listaAsientos);
-                e.setFilas(numFila);
-                e.setColumnas(numCol);
-                this.evento.edit(e);
             }
 
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
