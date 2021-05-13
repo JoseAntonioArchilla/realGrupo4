@@ -122,6 +122,8 @@ public class Evento implements Serializable {
     private Integer benefico;
     @Column(name = "ARTE")
     private Integer arte;
+    @Column(name = "ASIENTOSFIJOS")
+    private Integer asientosFijos;
     @Column(name = "TURISMO")
     private Integer turismo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
@@ -198,6 +200,15 @@ public class Evento implements Serializable {
         this.costeEntrada = costeEntrada;
     }
 
+        public boolean getAsientosFijos() {
+        return this.asientosFijos != 0;
+    }
+
+    public void setAsientosFijos(boolean asientosFijos) {
+        this.asientosFijos = asientosFijos ? 1 : 0;
+    }
+
+    
     public int getAforo() {
         return aforo;
     }

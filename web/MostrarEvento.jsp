@@ -4,6 +4,7 @@
     Author     : chinchar@hotmail.es
 --%>
 
+<%@page import="grupo4app.entity.Asientos"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="grupo4app.entity.Evento"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,6 +19,7 @@
     
     <%
        Evento e = (Evento) request.getAttribute("evento");
+      
        String patron = "yyyy-MM-dd";
        SimpleDateFormat format = new SimpleDateFormat(patron);
      %>
@@ -110,7 +112,21 @@
                 <p>
                     <label for ="precio">Precio:</label> <span id="precio"><%= e.getCosteEntrada() %></span>
                 </p>
-                <button href="#">Comprar</button> 
+                
+                <form action="ServletRegistrarPersonaEnEvento?evento=<%=e.getIdevento()%>" method="post">
+                    
+                    <% if(e.getAsientosFijos()) { %>
+                    <select name="asiento">
+                        <% for(Asientos a : e.getAsientosList()) { 
+                            if(a.getOcupado() != 0) continue;
+                        %>
+                        <option value="<%= a.getAsientosPK().getFila() %> <%= a.getAsientosPK().getColumna() %>">Fila: <%= a.getAsientosPK().getFila() %> Columna: <%= a.getAsientosPK().getColumna() %></option>
+                        <% } %> 
+                    </select>
+                    <% } %>
+                    <input type="submit" value="Comprar">
+                </form>
+                
             </div>
             <div class="col-1"></div>
         </div>

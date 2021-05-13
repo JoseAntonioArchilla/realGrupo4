@@ -68,8 +68,7 @@ public class ServletGuardarEvento extends HttpServlet {
         descripcion = request.getParameter("descripcion");
         precio = Integer.parseInt(request.getParameter("precio"));
         String fechaInicio = request.getParameter("fechaInicio");
-        String fechaFin = request.getParameter("fechaFin");
-        aforo = Integer.parseInt(request.getParameter("aforo"));
+        String fechaFin = request.getParameter("fechaFin"); 
         String imagen = request.getParameter("imagen");
         
         String pattern = "yyyy-MM-dd";
@@ -86,7 +85,7 @@ public class ServletGuardarEvento extends HttpServlet {
             e.setCosteEntrada(precio);
             e.setFecha(fi);
             e.setFechaReserva(ff);
-            e.setAforo(aforo);
+            
             e.setMaxNumEntradas(5);
             e.setEventoUsuarioList(new ArrayList<EventoUsuario>());
             e.setDeporte(0);
@@ -100,20 +99,19 @@ public class ServletGuardarEvento extends HttpServlet {
             e.setAsientosList(listaAsientos);
             // e.setFecha(new Date(anio, mes, dia));
             //e.setFechaReserva(new Date(anioLi, mesLi, diaLi));
-            e.setAforo(aforo);
-            e.setMaxNumEntradas(aforo);  //TODO ESTO PUEDE QUE SOBRE EL MAXIMO NUMERO DE ENTRADAS
-
-            if (asientoFijo) {
-
-                numFila = Integer.parseInt(request.getParameter("numFilas"));
+           
+              
+            e.setAsientosFijos(asientoFijo);
+           if(!asientoFijo){
+               aforo = Integer.parseInt(request.getParameter("aforo"));
+               e.setAforo(aforo);
+               e.setMaxNumEntradas(aforo);//TODO ESTO PUEDE QUE SOBRE EL MAXIMO NUMERO DE ENTRADAS
+           }else{
+               numFila = Integer.parseInt(request.getParameter("numFilas"));
                 numCol = Integer.parseInt(request.getParameter("numColumnas"));
-
-                /* asientosPK.setFila(numFila);
-          asientosPK.setColumna(numCol);
-          asientosPK.setEvento(evento.getIdevento());
-          asientos.setAsientosPK(asientosPK);*/
-                ///LO DE LOS ASIENTOS ES CONFUSO Y NO SE QUE HACER EXACTAMENTE
-            }
+                e.setAforo(numFila*numCol);
+                e.setMaxNumEntradas(numFila*numCol);//TODO ESTO PUEDE QUE SOBRE EL MAXIMO NUMERO DE ENTRADAS
+           }
             if (editando) {
                 this.evento.edit(e);
             } else {
@@ -134,10 +132,12 @@ public class ServletGuardarEvento extends HttpServlet {
                     }
                 }
                 e.setAsientosList(listaAsientos);
+                e.setFilas(numFila);
+                e.setColumnas(numCol);
                 this.evento.edit(e);
             }
 
-            RequestDispatcher rd = request.getRequestDispatcher("index.html");
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request, response);
 
         } catch (ParseException ex) {

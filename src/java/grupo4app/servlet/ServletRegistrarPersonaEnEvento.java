@@ -5,35 +5,40 @@
  */
 package grupo4app.servlet;
 
-import grupo4app.dao.UsuarioEventoFacade;
-import grupo4app.dao.UsuarioFacade;
+import grupo4app.dao.AsientosFacade;
+import grupo4app.dao.EventoFacade;
+import grupo4app.dao.EventoUsuarioFacade;
+import grupo4app.entity.Asientos;
+import grupo4app.entity.AsientosPK;
+import grupo4app.entity.Evento;
 import grupo4app.entity.EventoUsuario;
 import grupo4app.entity.Usuario;
-import grupo4app.entity.UsuarioEvento;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author josea
+ * @author chinchar@hotmail.es
  */
-@WebServlet(name = "ServletRegistroUsuario", urlPatterns = {"/ServletRegistroUsuario"})
-public class ServletRegistroUsuario extends HttpServlet {
+@WebServlet(name = "ServletRegistrarPersonaEnEvento", urlPatterns = {"/ServletRegistrarPersonaEnEvento"})
+public class ServletRegistrarPersonaEnEvento extends HttpServlet {
 
     @EJB
-    private UsuarioFacade us;
-     
+    private AsientosFacade asientosFacade;
+
     @EJB
-    private UsuarioEventoFacade use; 
+    private EventoUsuarioFacade eventoUsuarioFacade;
+
+    @EJB
+    private EventoFacade eventoFacade;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -43,44 +48,29 @@ public class ServletRegistroUsuario extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nick = request.getParameter("usuario");
-        String contrasenia = request.getParameter("password");
-        int rol = Integer.parseInt(request.getParameter("rol"));        
-        
-        
-        Usuario u = new Usuario();
-        u.setPassword(contrasenia);
-        u.setNickname(nick);
-        u.setRol(rol);
-        this.us.create(u);
-        
-        if(rol == 4){
-            
-            String apellido = request.getParameter("Apellidos");
-            String domicilio = request.getParameter("Domicilio");
-            String nombre = request.getParameter("Nombre");
-            String ciudad = request.getParameter("Ciudad");
-            int edad = Integer.parseInt(request.getParameter("Edad"));
-            String sexo = request.getParameter("Sexo");
-            UsuarioEvento ue = new UsuarioEvento();
-            ue.setApellido(apellido);
-            ue.setCiudad(ciudad);
-            ue.setEdad(edad);
-            ue.setDomicilio(domicilio);
-            ue.setSexo("hombre");
-            ue.setUsuario(u.getIdusuario());
-            List<EventoUsuario> arrayList = new ArrayList<EventoUsuario>() ;
-            ue.setEventoUsuarioList(arrayList);
-            ue.setNombre(nombre);
-           // ue.setUsuario1(u);
-            this.use.create(ue);
+       
+        HttpSession ses = request.getSession();
+        Usuario u = (Usuario)ses.getAttribute("usuario");
+        String asiento_s = request.getParameter("asiento");
+        int e = Integer.parseInt(request.getParameter("evento"));
+        Evento evento = eventoFacade.find(e);
+        EventoUsuario eu = new EventoUsuario(u.getIdusuario(),e);
+                
+        if(evento.getAsientosFijos())
+        {
+            String[] asiento = asiento_s.split(" ");
+            Asientos a = asientosFacade.find(new AsientosPK(Integer.parseInt(asiento[0]),Integer.parseInt(asiento[1]), e));
+            eu.setAsientos(a);
+            a.setOcupado(1);
+            asientosFacade.edit(a);
         }
-        
-        RequestDispatcher rd = request.getRequestDispatcher("ServletInicioSesion?usuario=" +nick +"&contrasena="+contrasenia );
-        rd.forward(request, response); 
+        eventoUsuarioFacade.create(eu);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

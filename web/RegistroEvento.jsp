@@ -26,6 +26,8 @@
                 document.getElementById("extra").style.display = visible ? "block" : "none";
                 document.getElementById("numFilas").required = visible;
                 document.getElementById("numColumnas").required = visible;
+                document.getElementById("aforo").required = !visible;
+                document.getElementById("pAforo").style.display = !visible ? "block" : "none";
             }
         </script>
     </head>
@@ -76,7 +78,7 @@
 
                     <p>
                         <label for="precio">Precio evento</label>
-                        <input type="text" name="precio" id="precio" required placeholder="Escribe el precio del evento" value="<%= precio%>">
+                        <input type="number" name="precio" id="precio" required placeholder="Escribe el precio del evento" value="<%= precio%>">
                     </p>
 
 
@@ -89,12 +91,7 @@
                     <p>
                         <label for="fechaFin">Fin de la compra de entradas</label>
                         <input type="date" name="fechaFin" id="fechaFin" required placeholder="Escribe el fin de la compra de las entradas" value="<%= sdf.format(fin)%>">
-                    </p>
-
-                    <p>
-                        <label for="aforo">Aforo máximo</label>
-                        <input type="number" name="aforo" id="aforo" required placeholder="Escribe el aforo del evento" value="<%= aforo%>">
-                    </p>
+                    </p> 
 
                     <p>
                         <label for="imagen">Imagen del Evento</label>
@@ -111,6 +108,11 @@
                     <p>
                         <label for="seleccionador" class="colocar_asunto">Asientos fijos </label>
                         <input type="checkbox" name="asientosFijos" onchange="mostrar_extra()" id="seleccionador"  placeholder="Escribe un asunto">                       
+                    </p>
+                    
+                    <p id="pAforo">
+                        <label for="aforo">Aforo máximo</label>
+                        <input type="number" name="aforo" id="aforo" required placeholder="Escribe el aforo del evento" value="<%= aforo%>">
                     </p>
                     <div id="extra" style="display:none;">
                         <p>
