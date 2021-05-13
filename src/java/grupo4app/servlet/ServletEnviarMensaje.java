@@ -51,10 +51,14 @@ public class ServletEnviarMensaje extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nuevoMensaje = request.getParameter("mensaje");
-        
         Integer idCh = Integer.parseInt(request.getParameter("idChat"));
-        
         Chat chat = this.chatFacade.find(idCh);
+        
+        if(nuevoMensaje == null || nuevoMensaje.trim().length() == 0){
+            RequestDispatcher rd = request.getRequestDispatcher("ServletMostrarChat?idChat=" + idCh);
+            rd.forward(request, response);
+        } 
+        
         HttpSession ses = request.getSession();
         Usuario emisor = (Usuario)ses.getAttribute("usuario");
         

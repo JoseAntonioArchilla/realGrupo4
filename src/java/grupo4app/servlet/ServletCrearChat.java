@@ -11,6 +11,7 @@ import grupo4app.entity.Chat;
 import grupo4app.entity.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -58,12 +59,25 @@ public class ServletCrearChat extends HttpServlet {
             response.sendRedirect("ServletMostrarChat?idChat=" + nuevoChat.getIdchat());
 
         } else {
-           request.setAttribute("error","Error: No hay teleoperadores disponibles");
+            
+           request.setAttribute("error","Error: No hay teleoperadores adicionales disponibles");
            
-           RequestDispatcher rd = request.getRequestDispatcher("Conversaciones.jsp");
+           List<Chat> chats;
+           
+           if(usuarioIniciado.getRol() == 2){
+                chats = this.chatFacade.findAll();
+           } else {
+                chats = this.chatFacade.findByUsuario(usuarioIniciado);
+           }
+                
+            request.setAttribute("chats", chats);
+            
+            RequestDispatcher rd = request.getRequestDispatcher("Conversaciones.jsp");
            rd.forward(request, response); 
-           
         }
+           
+           
+           
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
