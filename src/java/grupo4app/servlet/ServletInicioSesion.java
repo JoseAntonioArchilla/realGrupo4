@@ -60,10 +60,8 @@ public class ServletInicioSesion extends HttpServlet {
         } else {
             session.setAttribute("usuario", usr);
             
-            if(usr.getRol()==4){
-                session.setAttribute("usuarioEvento", usuarioEventoFacade.find(usr.getIdusuario()));
-            }
-            
+            session.setAttribute("usuarioEvento", usr.getRol()==4 ? usuarioEventoFacade.find(usr.getIdusuario()):null);
+     
             if(usr.getRol() == 3){
                 response.sendRedirect("ServletFiltroListar"); 
             }else{

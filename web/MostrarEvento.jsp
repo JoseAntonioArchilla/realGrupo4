@@ -120,7 +120,32 @@
 
                 <form action="ServletRegistrarPersonaEnEvento?evento=<%=e.getIdevento()%>" method="post">
 
-                    <% if (e.getAsientosFijos()) { %>
+                    <% if (e.getAsientosFijos() && ue != null) {
+
+                            boolean hay_plazas = false;
+                            for (Asientos a : e.getAsientosList()) {
+                                if (a.getOcupado() == 0) {
+                                    hay_plazas = true;
+                                    break;
+                                }
+                            }
+                            int numEntradas = 0;
+                            for (EventoUsuario aux : ue.getEventoUsuarioList()) {
+                                if (aux.getEvento().getIdevento() == e.getIdevento()) {
+                                    numEntradas++;
+                                }
+                            }
+
+                            if (numEntradas > e.getMaxNumEntradas()) {
+                    %>
+                    <p>Has superado el cupo</p>
+                    <%
+                    } else if (!hay_plazas) {
+                    %>
+                    <p>No quedan plazas</p>
+                    <%
+                    } else {
+                    %>
                     <select name="asiento">
                         <% for (Asientos a : e.getAsientosList()) {
                                 if (a.getOcupado() != 0) {
@@ -129,18 +154,12 @@
                         %>
                         <option value="<%= a.getAsientosPK().getFila()%> <%= a.getAsientosPK().getColumna()%>">Fila: <%= a.getAsientosPK().getFila()%> Columna: <%= a.getAsientosPK().getColumna()%></option>
                         <% } %> 
-                    </select>
-                    <% }
-                        int numEntradas = 0;
-                        if (ue != null) {
-                            for (EventoUsuario aux : ue.getEventoUsuarioList()) {
-                                if(aux.getEvento().getIdevento() == e.getIdevento() ) numEntradas++;
-                            }
-                        }
-
-                        if (ue != null && e.getMaxNumEntradas() > numEntradas) {%>
+                    </select>                    
                     <input type="submit" value="Comprar">
-                    <% } %>
+                    <%
+                            }
+
+                        }%>
                 </form>
 
             </div>
