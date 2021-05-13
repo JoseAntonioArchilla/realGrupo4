@@ -3,31 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package grupo4app.servlet;
 
-import javax.ejb.EJB;
+import grupo4app.dao.UsuarioEventoFacade;
+import grupo4app.dao.UsuarioFacade;
+import grupo4app.entity.Usuario;
+import grupo4app.entity.UsuarioEvento;
 import java.io.IOException;
+import java.io.PrintWriter;
+import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import grupo4app.dao.UsuarioFacade;
-import grupo4app.entity.Usuario;
-
-import grupo4app.dao.UsuarioEventoFacade;
-import grupo4app.entity.UsuarioEvento;
-import javax.ejb.EJBException;
-import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author nieto
  */
-@WebServlet(name = "ServletAñadirUsuario", urlPatterns = {"/ServletAñadirUsuario"})
-public class ServletAñadirUsuario extends HttpServlet {
+@WebServlet(urlPatterns = {"/ServletEditarPerfil"})
+public class ServletEditarPerfil extends HttpServlet {
 
+    @EJB
+    private UsuarioFacade usuarioFacade;
+    
+    @EJB
+    private UsuarioEventoFacade usuarioEventoFacade;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,59 +40,62 @@ public class ServletAñadirUsuario extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    @EJB
-    private UsuarioFacade usuarioFacade;
-    
-    @EJB
-    private UsuarioEventoFacade usuarioEventoFacade;
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        HttpSession sesion = request.getSession();
+        Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+        
         String nickname = request.getParameter("usuario");
-        String contraseña = request.getParameter("password");
-        int rol = Integer.parseInt(request.getParameter("rol"));
+        String password = request.getParameter("password");
+        String rol = request.getParameter("rol");
         
-        if(nickname.equals("")){
-            request.setAttribute("error", "Debe rellenar todos los campos");
-            RequestDispatcher rd = request.getRequestDispatcher("Administrador.jsp");
-            rd.forward(request, response);
-        }
-        if(contraseña.equals("")){
-            request.setAttribute("error", "Debe rellenar todos los campos");
-            RequestDispatcher rd = request.getRequestDispatcher("Administrador.jsp");
-            rd.forward(request, response);
-        }
+        usuario.setNickname(nickname);
+        usuario.setPassword(password);
+        usuario.setRol(Integer.parseInt(rol));
         
-        Usuario user = new Usuario();
+        usuarioFacade.edit(usuario);
         
-        user.setNickname(nickname);
-        user.setPassword(contraseña);
-        user.setRol(rol);
-        this.usuarioFacade.create(user);
-
-        if(rol == 4){
+        if(rol.equals("4")){
+            UsuarioEvento usuarioEvento = (UsuarioEvento) sesion.getAttribute("usuarioEvento");
+            
             String nombre = request.getParameter("nombre");
             String apellidos = request.getParameter("apellidos");
+            String edad = request.getParameter("edad");
+            String sexo = request.getParameter("sexo");
             String domicilio = request.getParameter("domicilio");
             String ciudad = request.getParameter("ciudad");
-            int edad = Integer.parseInt(request.getParameter("edad"));
-            String sexo = request.getParameter("sexo");
-            UsuarioEvento usuarioEvento = new UsuarioEvento();
-
+            
+            boolean nuevo = false;
+            
+            if(usuarioEvento == null){
+                usuarioEvento = new UsuarioEvento();
+                nuevo = true;
+            }
+            
             usuarioEvento.setNombre(nombre);
             usuarioEvento.setApellido(apellidos);
+            usuarioEvento.setEdad(Integer.parseInt(edad));
+            usuarioEvento.setSexo(sexo);
             usuarioEvento.setDomicilio(domicilio);
             usuarioEvento.setCiudad(ciudad);
-            usuarioEvento.setEdad(edad);
-            usuarioEvento.setSexo(sexo);
-
-            this.usuarioEventoFacade.create(usuarioEvento);
+            
+            if(nuevo){
+                usuarioEvento.setUsuario(usuario.getIdusuario());
+                usuarioEventoFacade.create(usuarioEvento);
+                sesion.setAttribute("usuarioEvento", usuarioEvento);
+            }else{
+               usuarioEventoFacade.edit(usuarioEvento); 
+            }   
+        }else{
+            try{usuarioEventoFacade.remove((UsuarioEvento) sesion.getAttribute("usuarioEvento"));}catch(Exception e){}
+            sesion.setAttribute("usuarioEvento", null);
         }
-        RequestDispatcher rd = request.getRequestDispatcher("ServletUsuarioListar");
+        
+        RequestDispatcher rd = request.getRequestDispatcher("Perfil.jsp");
         rd.forward(request, response);
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
