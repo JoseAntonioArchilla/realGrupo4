@@ -70,7 +70,7 @@ public class ServletGuardarEvento extends HttpServlet {
         String fechaInicio = request.getParameter("fechaInicio");
         String fechaFin = request.getParameter("fechaFin"); 
         String imagen = request.getParameter("imagen");
-        
+        int maxEnt = Integer.parseInt(request.getParameter("maxEntradas"));
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
@@ -86,7 +86,7 @@ public class ServletGuardarEvento extends HttpServlet {
             e.setFecha(fi);
             e.setFechaReserva(ff);
             
-            e.setMaxNumEntradas(5);
+            e.setMaxNumEntradas(maxEnt);
             e.setEventoUsuarioList(new ArrayList<EventoUsuario>());
             e.setDeporte(0);
             e.setMusica(1);
@@ -105,12 +105,12 @@ public class ServletGuardarEvento extends HttpServlet {
            if(!asientoFijo){
                aforo = Integer.parseInt(request.getParameter("aforo"));
                e.setAforo(aforo);
-               e.setMaxNumEntradas(aforo);//TODO ESTO PUEDE QUE SOBRE EL MAXIMO NUMERO DE ENTRADAS
+             
            }else{
                numFila = Integer.parseInt(request.getParameter("numFilas"));
                 numCol = Integer.parseInt(request.getParameter("numColumnas"));
                 e.setAforo(numFila*numCol);
-                e.setMaxNumEntradas(numFila*numCol);//TODO ESTO PUEDE QUE SOBRE EL MAXIMO NUMERO DE ENTRADAS
+              
            }
             if (editando) {
                 this.evento.edit(e);

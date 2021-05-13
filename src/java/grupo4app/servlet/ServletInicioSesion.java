@@ -5,8 +5,10 @@
  */
 package grupo4app.servlet;
 
+import grupo4app.dao.UsuarioEventoFacade;
 import grupo4app.dao.UsuarioFacade;
 import grupo4app.entity.Usuario;
+import grupo4app.entity.UsuarioEvento;
 import java.io.IOException;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -25,6 +27,9 @@ import javax.servlet.http.HttpSession;
 public class ServletInicioSesion extends HttpServlet {
 
     @EJB
+    private UsuarioEventoFacade usuarioEventoFacade;
+
+    @EJB
     private UsuarioFacade usuarioFacade;
 
     /**
@@ -36,6 +41,7 @@ public class ServletInicioSesion extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -44,9 +50,8 @@ public class ServletInicioSesion extends HttpServlet {
         String password = request.getParameter("contrasena");
         
         nUsuario = nUsuario.trim();
-
         Usuario usr = this.usuarioFacade.findByNicknameAndPassword(nUsuario,password);
-
+      
         if(usr == null){
             request.setAttribute("error", "Error: El nombre de usuario o la contraseña son incorrectos");
 
@@ -55,11 +60,13 @@ public class ServletInicioSesion extends HttpServlet {
         } else {
             session.setAttribute("usuario", usr);
             
-            if(usr.getRol() == 3){
-                response.sendRedirect("ServletFiltroListar"); 
+            if(usr.getRol()==4){
+                session.setAttribute("usuarioEvento", usuarioEventoFacade.find(usr.getIdusuario()));
             }
             
-            else{
+            if(usr.getRol() == 3){
+                response.sendRedirect("ServletFiltroListar"); 
+            }else{
                 RequestDispatcher rd = request.getRequestDispatcher("index.html");
                 rd.forward(request, response);
             }

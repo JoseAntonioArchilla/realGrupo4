@@ -44,7 +44,7 @@
         String asientos_fijos = "";
         int filas = 0;
         int columnas = 0;
-
+        int maxEntradas = 0;
         if (e != null) {
             titulo = e.getTitulo();
             precio = e.getCosteEntrada();
@@ -54,8 +54,9 @@
             //imagen = e.getI;  TODO
             descripcion = e.getDescripcion();
             asientos_fijos = e.getAsientosList().size() != 0 ? "on" : "";
-            filas = e.getAsientosList().size();
-            //columnas = 0; TODO
+            filas = e.getFilas();
+            columnas = e.getColumnas(); 
+            maxEntradas = e.getMaxNumEntradas();
         }
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -102,14 +103,18 @@
                     <p>
                         <label for="descripcion" class="colocar_mensaje">Descripcion</label>                     
                         <textarea name="descripcion" class="texto_mensaje" id="descripcion" required="obligatorio" placeholder="Deja aquí la descripción del evento..." ><%= descripcion%></textarea> 
-                    </p>                    
+                    </p>     
 
+                    <p>
+                        <label for="maxEntradas">Numero de columnas de asientos</label>
+                        <input type="number" name="maxEntradas" id="maxEntradas"  placeholder="Escribe el numero de entradas por persona que puede compra un usuario" value="<%= maxEntradas%>">
+                    </p>
 
                     <p>
                         <label for="seleccionador" class="colocar_asunto">Asientos fijos </label>
                         <input type="checkbox" name="asientosFijos" onchange="mostrar_extra()" id="seleccionador"  placeholder="Escribe un asunto">                       
                     </p>
-                    
+
                     <p id="pAforo">
                         <label for="aforo">Aforo máximo</label>
                         <input type="number" name="aforo" id="aforo" required placeholder="Escribe el aforo del evento" value="<%= aforo%>">
