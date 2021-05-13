@@ -70,24 +70,25 @@ public class ServletAñadirUsuario extends HttpServlet {
         this.usuarioFacade.create(user);
 
         if(rol == 4){
-        String apellidos = request.getParameter("apellidos");
-        String domicilio = request.getParameter("domicilio");
-        String ciudad = request.getParameter("ciudad");
-        int edad = Integer.parseInt(request.getParameter("edad"));
-        String sexo = request.getParameter("sexo");
-        UsuarioEvento usuarioEvento = new UsuarioEvento();
+            String nombre = request.getParameter("nombre");
+            String apellidos = request.getParameter("apellidos");
+            String domicilio = request.getParameter("domicilio");
+            String ciudad = request.getParameter("ciudad");
+            int edad = Integer.parseInt(request.getParameter("edad"));
+            String sexo = request.getParameter("sexo");
+            UsuarioEvento usuarioEvento = new UsuarioEvento();
 
-        usuarioEvento.setApellido(apellidos);
-        usuarioEvento.setDomicilio(domicilio);
-        usuarioEvento.setCiudad(ciudad);
-        usuarioEvento.setEdad(edad);
-        usuarioEvento.setSexo(sexo);
+            usuarioEvento.setNombre(nombre);
+            usuarioEvento.setApellido(apellidos);
+            usuarioEvento.setDomicilio(domicilio);
+            usuarioEvento.setCiudad(ciudad);
+            usuarioEvento.setEdad(edad);
+            usuarioEvento.setSexo(sexo);
 
-        this.usuarioEventoFacade.create(usuarioEvento);
-
-        RequestDispatcher rd = request.getRequestDispatcher("Administrador.jsp");
-        rd.forward(request, response);
+            this.usuarioEventoFacade.create(usuarioEvento);
         }
+        RequestDispatcher rd = request.getRequestDispatcher("ServletUsuarioListar");
+        rd.forward(request, response);
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

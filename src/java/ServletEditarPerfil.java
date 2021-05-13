@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package grupo4app.servlet;
 
 import grupo4app.dao.UsuarioEventoFacade;
 import grupo4app.dao.UsuarioFacade;
 import grupo4app.entity.Usuario;
 import grupo4app.entity.UsuarioEvento;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,17 +21,16 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author chinchar@hotmail.es
+ * @author nieto
  */
-@WebServlet(name = "ServletInicioSesion", urlPatterns = {"/ServletInicioSesion"})
-public class ServletInicioSesion extends HttpServlet {
-
-    @EJB
-    private UsuarioEventoFacade usuarioEventoFacade;
+@WebServlet(urlPatterns = {"/ServletEditarPerfil"})
+public class ServletEditarPerfil extends HttpServlet {
 
     @EJB
     private UsuarioFacade usuarioFacade;
-
+    
+    @EJB
+    private UsuarioEventoFacade usuarioEventoFacade;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,43 +40,61 @@ public class ServletInicioSesion extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
         
-        String nUsuario = request.getParameter("usuario");
-        String password = request.getParameter("contrasena");
-        String creador = request.getParameter("creador");
+        HttpSession sesion = request.getSession();
+        Usuario usuario = (Usuario) sesion.getAttribute("usuario");
         
-        nUsuario = nUsuario.trim();
-        Usuario usr = this.usuarioFacade.findByNicknameAndPassword(nUsuario,password);
-      
+        String nickname = request.getParameter("usuario");
+        String password = request.getParameter("password");
+        String rol = request.getParameter("rol");
         
+        usuario.setNickname(nickname);
+        usuario.setPassword(password);
+        usuario.setRol(Integer.parseInt(rol));
         
-        if(usr == null){
-            request.setAttribute("error", "Error: El nombre de usuario o la contraseña son incorrectos");
-
-            RequestDispatcher rd = request.getRequestDispatcher("InicioSesion.jsp");
-            rd.forward(request, response);
-        } else {
-            session.setAttribute("usuario", usr);
+        usuarioFacade.edit(usuario);
+        
+        if(rol.equals("4")){
+            UsuarioEvento usuarioEvento = (UsuarioEvento) sesion.getAttribute("usuarioEvento");
             
-            session.setAttribute("usuarioEvento", usr.getRol()==4 ? usuarioEventoFacade.find(usr.getIdusuario()):null);
-     
-            if(usr.getRol() == 3){
-                response.sendRedirect("ServletFiltroListar"); 
-            }/*else if(creador != null){
-               RequestDispatcher rd = request.getRequestDispatcher("RegistroEvento.jsp");
-                rd.forward(request, response); 
-            }*/
-            else{
-                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-                rd.forward(request, response);
+            String nombre = request.getParameter("nombre");
+            String apellidos = request.getParameter("apellidos");
+            String edad = request.getParameter("edad");
+            String sexo = request.getParameter("sexo");
+            String domicilio = request.getParameter("domicilio");
+            String ciudad = request.getParameter("ciudad");
+            
+            boolean nuevo = false;
+            
+            if(usuarioEvento == null){
+                usuarioEvento = new UsuarioEvento();
+                nuevo = true;
             }
+            
+            usuarioEvento.setNombre(nombre);
+            usuarioEvento.setApellido(apellidos);
+            usuarioEvento.setEdad(Integer.parseInt(edad));
+            usuarioEvento.setSexo(sexo);
+            usuarioEvento.setDomicilio(domicilio);
+            usuarioEvento.setCiudad(ciudad);
+            
+            if(nuevo){
+                usuarioEvento.setUsuario(usuario.getIdusuario());
+                usuarioEventoFacade.create(usuarioEvento);
+                sesion.setAttribute("usuarioEvento", usuarioEvento);
+            }else{
+               usuarioEventoFacade.edit(usuarioEvento); 
+            }   
+        }else{
+            try{usuarioEventoFacade.remove((UsuarioEvento) sesion.getAttribute("usuarioEvento"));}catch(Exception e){}
+            sesion.setAttribute("usuarioEvento", null);
         }
-    }
         
+        RequestDispatcher rd = request.getRequestDispatcher("Perfil.jsp");
+        rd.forward(request, response);
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

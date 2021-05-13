@@ -114,6 +114,13 @@
                         <label for="seleccionador" class="colocar_asunto">Asientos fijos </label>
                         <input type="checkbox" name="asientosFijos" onchange="mostrar_extra()" id="seleccionador"  placeholder="Escribe un asunto" <%= e != null ? "onclick=\"return false;\"" : ""%>>                       
                     </p>
+                    
+                    <div>
+                        <label for="seleccionador" class="colocar_asunto">Asientos fijos </label>
+                        <input type="checkbox" name="asientosFijos" onchange="mostrar_extra()" id="seleccionador"  placeholder="Escribe un asunto" >                       
+                    
+                    </div>
+                        
 
                     <p id="pAforo">
                         <label for="aforo">Aforo máximo</label>

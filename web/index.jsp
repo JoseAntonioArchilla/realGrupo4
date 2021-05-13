@@ -4,6 +4,7 @@
     Author     : chinchar@hotmail.es
 --%>
 
+<%@page import="grupo4app.entity.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -17,28 +18,33 @@
 
         <link rel="stylesheet" href="estilos/estilo.css">
     </head>
+
+    <%
+        Usuario u = (Usuario) session.getAttribute("usuario");
+    %>
+
     <body>  
 
-                <!-- Navbar -->      
+        <!-- Navbar -->      
         <div class="row py-2 text-center" style="background: #de7ebf">
-             <style>
-                 body{
-                     background-image: url("img/pattern.jpg");
-                 }
-                 a{
-                     font-size: 1.3em;
-                     color: black
-                 }
-                 
-                 span{
+            <style>
+                body{
+                    background-image: url("img/pattern.jpg");
+                }
+                a{
+                    font-size: 1.3em;
+                    color: black
+                }
+
+                span{
                     border-radius: 5px;  
                     border-style: solid; 
                     border-width: 1px; 
                     border-color: #ab4493;
                     background: white;
                     padding: .2em;
-                 }
-                 
+                }
+
                 a:hover{
                     font-weight: bold;
                     color: black;
@@ -69,27 +75,41 @@
                     background: #f2f2f2;
                 }
             </style>
-            
+
             <a class="col-2  text-decoration-none" href="index.html">
                 Logo
             </a>
             <input class="col-4" style="width: 100%; border-radius: 25px" type="search" id="buscador">
-           
+
             <div class="col-4 d-flex justify-content-around ">
-                <a href="index.html">Inicio </a>
-                <a href="index.html">Servicios </a>
-                <a href="#">Contacto</a>
+                <a href="ServletListarEventos">Eventos</a>
+                <a href="<%= u == null ? "InicioSesion.jsp" : "RegistroEvento.jsp"%>">Crear evento</a>
             </div>
+            <%
+                if (u == null) {
+            %>
+            <div  class="col-2 ">
+                <a href="InicioSesion.jsp">Iniciar sesión </a>
+            </div>
+            <%
+            } else {
+            %>
             <div  class="col-2 dropdown">
+
                 <img src="img/Logo.png" style="width:2em; height:2em;">
                 <div class="dropdown-content">
                     <a class="row dropdown-element" href="index.html">Mi perfil</a>
                     <a class="row dropdown-element" href="index.html">Mensajes</a>
                     <a class="row dropdown-element" href="index.html">Ajustes</a>
-                    <a class="row dropdown-element" href="index.html">Cerrar sesion</a>
+                    <a class="row dropdown-element" href="ServletCerrarSesion">Cerrar sesion</a>
                 </div>
-            </div>       
+            </div>   
+            <%
+                }
+            %>
+
         </div>
+        <!-- End NavBar -->
         <section>
             <div id="eslogan">
                 <h3>TEXTO</h3>

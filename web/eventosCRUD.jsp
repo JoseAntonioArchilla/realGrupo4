@@ -125,7 +125,7 @@
                             <div class="col-6">
                                 <h2><%=e.getTitulo() %></h2>
                                 <p><%=e.getDescripcion() %> </p>
-                                <p><%=e.getCosteEntrada() %> </p>
+                                <p>Precio: <%=e.getCosteEntrada() %> </p>
                                 
                                 <a href="ServletCrearEditarEvento?id=<%= e.getIdevento()%>">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
