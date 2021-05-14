@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -17,7 +19,11 @@ import javax.validation.constraints.NotNull;
  */
 @Embeddable
 public class EventoUsuarioPK implements Serializable {
-
+    
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "IDEVENTOUSUARIO")
+    private int ideventousuario;
     @Basic(optional = false)
     //@NotNull
     @Column(name = "USUARIO", nullable = false)
@@ -30,9 +36,18 @@ public class EventoUsuarioPK implements Serializable {
     public EventoUsuarioPK() {
     }
 
-    public EventoUsuarioPK(int usuario, int idevento) {
+    public EventoUsuarioPK(int ideventousuario, int usuario, int idevento) {
+        this.ideventousuario = ideventousuario;
         this.usuario = usuario;
         this.idevento = idevento;
+    }
+
+    public int getIdeventousuario() {
+        return ideventousuario;
+    }
+
+    public void setIdeventousuario(int ideventousuario) {
+        this.ideventousuario = ideventousuario;
     }
 
     public int getUsuario() {
@@ -54,6 +69,7 @@ public class EventoUsuarioPK implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
+        hash += (int) ideventousuario;
         hash += (int) usuario;
         hash += (int) idevento;
         return hash;
@@ -66,6 +82,9 @@ public class EventoUsuarioPK implements Serializable {
             return false;
         }
         EventoUsuarioPK other = (EventoUsuarioPK) object;
+        if (this.ideventousuario != other.ideventousuario) {
+            return false;
+        }
         if (this.usuario != other.usuario) {
             return false;
         }
@@ -77,7 +96,7 @@ public class EventoUsuarioPK implements Serializable {
 
     @Override
     public String toString() {
-        return "grupo4app.entity.EventoUsuarioPK[ usuario=" + usuario + ", idevento=" + idevento + " ]";
+        return "grupo4app.entity.EventoUsuarioPK[ ideventousuario=" + ideventousuario + ", usuario=" + usuario + ", idevento=" + idevento + " ]";
     }
     
 }

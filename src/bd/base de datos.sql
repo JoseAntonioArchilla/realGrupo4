@@ -62,7 +62,7 @@ create table EVENTO_USUARIO(
    idEvento integer not null,
    fila integer,
    columna integer,
-   evento integer not null,
+   evento integer,
    constraint fk_EvUs1 foreign key(usuario) references USUARIO_EVENTO(usuario), 
    constraint fk_EvUs2 foreign key(idEvento) references EVENTO(idEvento),
    constraint fk_EvUs3 foreign key(evento, fila, columna) references ASIENTOS(evento, fila, columna),
