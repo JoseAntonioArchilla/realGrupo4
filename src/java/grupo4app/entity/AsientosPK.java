@@ -20,11 +20,11 @@ public class AsientosPK implements Serializable {
 
     @Basic(optional = false)
     //@NotNull
-    @Column(name = "FILA")
+    @Column(name = "FILA", nullable = false)
     private int fila;
     @Basic(optional = false)
     //@NotNull
-    @Column(name = "COLUMNA")
+    @Column(name = "COLUMNA", nullable = false)
     private int columna;
     @Basic(optional = false)
     //@NotNull

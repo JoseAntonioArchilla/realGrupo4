@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "EventoUsuario.findAll", query = "SELECT e FROM EventoUsuario e")
+    , @NamedQuery(name = "EventoUsuario.findByIdeventousuario", query = "SELECT e FROM EventoUsuario e WHERE e.eventoUsuarioPK.ideventousuario = :ideventousuario")
     , @NamedQuery(name = "EventoUsuario.findByUsuario", query = "SELECT e FROM EventoUsuario e WHERE e.eventoUsuarioPK.usuario = :usuario")
     , @NamedQuery(name = "EventoUsuario.findByIdevento", query = "SELECT e FROM EventoUsuario e WHERE e.eventoUsuarioPK.idevento = :idevento")})
 public class EventoUsuario implements Serializable {
@@ -36,7 +37,7 @@ public class EventoUsuario implements Serializable {
         @JoinColumn(name = "EVENTO", referencedColumnName = "EVENTO")
         , @JoinColumn(name = "FILA", referencedColumnName = "FILA")
         , @JoinColumn(name = "COLUMNA", referencedColumnName = "COLUMNA")})
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Asientos asientos;
     @JoinColumn(name = "IDEVENTO", referencedColumnName = "IDEVENTO", insertable = false, updatable = false)
     @ManyToOne(optional = false)
@@ -52,8 +53,8 @@ public class EventoUsuario implements Serializable {
         this.eventoUsuarioPK = eventoUsuarioPK;
     }
 
-    public EventoUsuario(int usuario, int idevento) {
-        this.eventoUsuarioPK = new EventoUsuarioPK(usuario, idevento);
+    public EventoUsuario(int ideventousuario, int usuario, int idevento) {
+        this.eventoUsuarioPK = new EventoUsuarioPK(ideventousuario, usuario, idevento);
     }
 
     public EventoUsuarioPK getEventoUsuarioPK() {

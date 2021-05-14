@@ -8,7 +8,6 @@ package grupo4app.entity;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -44,7 +43,7 @@ public class Asientos implements Serializable {
     //@NotNull
     @Column(name = "OCUPADO", nullable = false)
     private int ocupado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "asientos")
+    @OneToMany(mappedBy = "asientos")
     private List<EventoUsuario> eventoUsuarioList;
     @JoinColumn(name = "EVENTO", referencedColumnName = "IDEVENTO", insertable = false, updatable = false)
     @ManyToOne(optional = false)
