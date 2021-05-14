@@ -120,15 +120,9 @@
 
                 <form action="ServletRegistrarPersonaEnEvento?evento=<%=e.getIdevento()%>" method="post">
 
-                    <% if (e.getAsientosFijos() && ue != null) {
-
-                            boolean hay_plazas = false;
-                            for (Asientos a : e.getAsientosList()) {
-                                if (a.getOcupado() == 0) {
-                                    hay_plazas = true;
-                                    break;
-                                }
-                            }
+                    <% if (ue != null) {
+                            
+                            int plazas = e.getAforo() - e.getEventoUsuarioList().size();
                             int numEntradas = 0;
                             for (EventoUsuario aux : ue.getEventoUsuarioList()) {
                                 if (aux.getEvento().getIdevento() == e.getIdevento()) {
@@ -140,11 +134,12 @@
                     %>
                     <p>Has superado el cupo</p>
                     <%
-                    } else if (!hay_plazas) {
+                    } else if (plazas == 0) {
                     %>
                     <p>No quedan plazas</p>
                     <%
                     } else {
+                        if (e.getAsientosFijos()) {
                     %>
                     <select name="asiento">
                         <% for (Asientos a : e.getAsientosList()) {
@@ -153,13 +148,17 @@
                                 }
                         %>
                         <option value="<%= a.getAsientosPK().getFila()%> <%= a.getAsientosPK().getColumna()%>">Fila: <%= a.getAsientosPK().getFila()%> Columna: <%= a.getAsientosPK().getColumna()%></option>
-                        <% } %> 
-                    </select>                    
-                    <input type="submit" value="Comprar">
-                    <%
-                            }
 
+                    </select>  
+                        <input type="submit" value="Comprar">
+                    <% }
+                    } else {%>
+                    <span>Plazas disponibles: <%= plazas%></span>
+                    <input type="submit" value="Comprar">
+                    <% }
                         }%>
+                    
+                    <%}%>
                 </form>
 
             </div>

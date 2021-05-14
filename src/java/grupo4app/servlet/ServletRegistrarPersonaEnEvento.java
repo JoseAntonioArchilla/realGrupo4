@@ -12,6 +12,7 @@ import grupo4app.entity.Asientos;
 import grupo4app.entity.AsientosPK;
 import grupo4app.entity.Evento;
 import grupo4app.entity.EventoUsuario;
+import grupo4app.entity.EventoUsuarioPK;
 import grupo4app.entity.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -57,8 +58,13 @@ public class ServletRegistrarPersonaEnEvento extends HttpServlet {
         String asiento_s = request.getParameter("asiento");
         int e = Integer.parseInt(request.getParameter("evento"));
         Evento evento = eventoFacade.find(e);
-        EventoUsuario eu = new EventoUsuario(u.getIdusuario(),e);
-                
+        EventoUsuario eu = new EventoUsuario();
+        EventoUsuarioPK eupk = new EventoUsuarioPK();
+        eupk.setUsuario(u.getIdusuario());
+        eupk.setIdevento(evento.getIdevento());
+        eu.setEventoUsuarioPK(eupk);
+        eu.setEvento(evento);
+        eu.setUsuarioEvento(u.getUsuarioEvento());
         if(evento.getAsientosFijos())
         {
             String[] asiento = asiento_s.split(" ");
