@@ -62,6 +62,8 @@ public class ServletRegistrarPersonaEnEvento extends HttpServlet {
         lotad.setIdevento(e);
         lotad.setUsuario(u.getIdusuario());
         EventoUsuario eu = new EventoUsuario(lotad);
+        eu.setEvento(evento);
+        eu.setUsuarioEvento(u.getUsuarioEvento());
                 
         if(evento.getAsientosFijos())
         {
@@ -73,6 +75,9 @@ public class ServletRegistrarPersonaEnEvento extends HttpServlet {
             asientosFacade.edit(a);
         }
         eventoUsuarioFacade.create(eu);
+        
+        request.setAttribute("evento", eventoFacade.find(e));
+        
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
     

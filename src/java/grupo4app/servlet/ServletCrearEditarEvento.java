@@ -36,8 +36,7 @@ public class ServletCrearEditarEvento extends HttpServlet {
         String strId = request.getParameter("id");
         Evento e = this.ef.find(new Integer(strId));
         
-        HttpSession session = request.getSession();
-        session.setAttribute("evento", e);
+        request.setAttribute("evento", e);
         
         RequestDispatcher rd = request.getRequestDispatcher("RegistroEvento.jsp");
         rd.forward(request, response); 
