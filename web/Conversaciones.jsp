@@ -136,16 +136,16 @@
         
         <!-- CONTENIDO -->
         
-        <% if(usuarioIniciado != null && (usuarioIniciado.getRol() == 0 || usuarioIniciado.getRol() == 4)) {
+        <% if(usuarioIniciado != null && (usuarioIniciado.getRol() == 0 || usuarioIniciado.getRol() == 4 || usuarioIniciado.getRol() == 1)) {
         %>   
-            <form method="POST" action="ServletCrearChat">
+            <form class="px-sm-3" method="POST" action="ServletCrearChat">
                 <input type="submit" value="Inicia una conversación con un nuevo teleoperador">
             </form>
         <% }
-
+        
         if (error != null) {
         %>
-            <p style="color: red;"><%=error%></p>
+            <p class="px-sm-3" style="color: red;"><%=error%></p>
         <%
         }
         

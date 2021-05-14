@@ -117,19 +117,19 @@
                                 <div class="row">
                              <%if (msg.getEmisor().getIdusuario() == usuarioIniciado.getIdusuario()){
                              %>    
-                                <div class="col-10 px-sm-4 py-2 text-wrap text-end my-1 msg" style="background-color: #f5f5f5;">
+                                <div class="col-10 px-sm-4 py-2 text-wrap text-end my-1 msg" style="background-color: #f3edf7;">
                                      <%=msg.getTexto().replaceAll("(\r\n|\n)", "<br />") %> <br/>
                                     <span class="fechahora">(<%= new SimpleDateFormat("dd/MM/yyyy 'a las' HH:mm:ss").format(msg.getFechaHora()) %>) </span>
                                 </div>
-                                <div class="col-2 px-sm-2 py-2 text-end my-1" style="background-color: #f5f5f5;">
+                                <div class="col-2 px-sm-2 py-2 text-end my-1" style="background-color: #f3edf7;">
                                     <b><%=msg.getEmisor().getNickname()%></b><img src="img/Logo.png" width="50px" alt="...">
                                 </div>
                             <% } else {
                             %>
-                                <div class="col-2 px-sm-2 py-2 my-1">
+                                <div class="col-2 px-sm-2 py-2 my-1" style="background-color: #fafafa;">
                                     <img src="img/Logo.png" width="50px" alt="..."><b><%=msg.getEmisor().getNickname()%></b>
                                 </div>
-                                <div class="col-10 px-sm-4 py-2 text-wrap text-start my-1 msg">
+                                <div class="col-10 px-sm-4 py-2 text-wrap text-start my-1 msg" style="background-color: #fafafa;">
                                     <%=msg.getTexto().replaceAll("(\r\n|\n)", "<br />") %> <br/>
                                     <span class="fechahora">(<%= new SimpleDateFormat("dd/MM/yyyy 'a las' HH:mm:ss").format(msg.getFechaHora()) %>) </span>
                                 </div>
@@ -154,15 +154,21 @@
             </div>
         </div>
       
+        <% 
+            if (usuarioIniciado.getIdusuario() == usr.getIdusuario() || usuarioIniciado.getIdusuario() == teleOp.getIdusuario()) {
+        %>
         <div class="mx-sm-3 my-sm-3">
             <form name="enviar" method="POST" action="ServletEnviarMensaje">
                 <input type="hidden" name="idChat" value="<%=ch.getIdchat()%>">
                 <div class="d-flex align-items-md-center">
-                    <textarea name="mensaje" id="mensaje" rows="3" cols="70" maxlength="200" placeholder="Envía un mensaje"></textarea>
+                    <textarea name="mensaje" id="mensaje" rows="3" cols="80" maxlength="200" placeholder="Envía un mensaje"></textarea>
                     <input class="mx-2" type="submit" name="enviar"/>
                 </div>
             </form>
         </div>
+        <%
+            }
+        %>
         <div class="mx-sm-3 my-sm-3">
             <button class="btn" style="background-color: rgb(239, 239, 239); border: 1px solid black;" onclick="location.href='ServletMostrarChat?idChat=<%=ch.getIdchat()%>';">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
@@ -174,11 +180,9 @@
     </body>
     <script>
         document.getElementById("mensaje").addEventListener('keydown', function (e) {
-            if (e.key === 'Enter' && !e.ctrlKey) {
+            if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
                 document.enviar.submit();
-            } else if(e.key=== 'Enter') {
-                document.getElementById("mensaje").value += "\n"; 
             }
         });
     </script>
