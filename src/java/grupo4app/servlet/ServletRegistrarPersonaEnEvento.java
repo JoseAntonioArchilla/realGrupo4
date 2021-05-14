@@ -63,13 +63,13 @@ public class ServletRegistrarPersonaEnEvento extends HttpServlet {
         eupk.setUsuario(u.getIdusuario());
         eupk.setIdevento(evento.getIdevento());
         eu.setEventoUsuarioPK(eupk);
-        eu.setEvento(evento);
-        eu.setUsuarioEvento(u.getUsuarioEvento());
+        
         if(evento.getAsientosFijos())
         {
             String[] asiento = asiento_s.split(" ");
             Asientos a = asientosFacade.find(new AsientosPK(Integer.parseInt(asiento[0]),Integer.parseInt(asiento[1]), e));
             eu.setAsientos(a);
+            
             a.setOcupado(1);
             asientosFacade.edit(a);
         }

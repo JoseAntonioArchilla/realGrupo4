@@ -44,6 +44,17 @@ public class ServletListarEventos extends HttpServlet {
         String max = request.getParameter("maximoPrecio");
         String dis = request.getParameter("disponible");
         String nombre = request.getParameter("nombre");
+        String musica = request.getParameter("musica");
+        String aire_libre = request.getParameter("aire_libre");
+        String deporte = request.getParameter("deporte");
+        String teatro = request.getParameter("teatro");
+        String gaming = request.getParameter("gaming");
+        String lectura = request.getParameter("lectura");
+        String formacion = request.getParameter("formacion");
+        String conferencia = request.getParameter("conferencia");
+        String beneficico = request.getParameter("beneficico");
+        String arte = request.getParameter("arte");
+        String turismo = request.getParameter("turismo");
         
         int maximo = max ==null || max.isEmpty() ? Integer.MAX_VALUE : Integer.parseInt(max);
         int minimo = min ==null || min.isEmpty() ? 0 : Integer.parseInt(min);
@@ -51,7 +62,7 @@ public class ServletListarEventos extends HttpServlet {
         boolean disponible =  dis != null && dis.equals("on");
         
         
-       List<Evento> listaEventos = this.evento.filtrarEventos(minimo, maximo, disponible, nombre);
+       List<Evento> listaEventos = this.evento.filtrarEventos(minimo, maximo, disponible, nombre,musica,aire_libre,deporte,teatro,gaming,lectura,formacion,conferencia,beneficico,arte,turismo);
        request.setAttribute("eventos", listaEventos);
        RequestDispatcher rd = request.getRequestDispatcher("eventosCRUD.jsp");
        rd.forward(request, response);
