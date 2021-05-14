@@ -71,6 +71,17 @@ public class ServletGuardarEvento extends HttpServlet {
         String fechaFin = request.getParameter("fechaFin");
         String imagen = request.getParameter("imagen");
         int maxEnt = Integer.parseInt(request.getParameter("maxEntradas"));
+        String musica = request.getParameter("musica");
+        String aire_libre = request.getParameter("aire_libre");
+        String deporte = request.getParameter("deporte");
+        String teatro = request.getParameter("teatro");
+        String gaming = request.getParameter("gaming");
+        String lectura = request.getParameter("lectura");
+        String formacion = request.getParameter("formacion");
+        String conferencia = request.getParameter("conferencia");
+        String beneficico = request.getParameter("beneficico");
+        String arte = request.getParameter("arte");
+        String turismo = request.getParameter("turismo");
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
@@ -88,11 +99,17 @@ public class ServletGuardarEvento extends HttpServlet {
 
             e.setMaxNumEntradas(maxEnt);
             e.setEventoUsuarioList(new ArrayList<>());
-            e.setDeporte(0);
-            e.setMusica(1);
-            e.setTeatro(0);
-            e.setGaming(0);
-            e.setAireLibre(0);
+            e.setDeporte(deporte == null ? 0 : 1);
+            e.setMusica(musica  == null ? 0 : 1);
+            e.setTeatro(teatro == null ? 0 : 1);
+            e.setGaming(gaming == null ? 0 : 1);
+            e.setAireLibre(aire_libre == null ? 0 : 1);
+            e.setLectura(lectura == null ? 0 : 1);
+            e.setFormacion(formacion == null ? 0 : 1);
+            e.setConferencia(conferencia == null ? 0 : 1);
+            e.setBenefico(beneficico == null ? 0 : 1);
+            e.setArte(arte == null ? 0 : 1);
+            e.setTurismo(turismo == null ? 0 : 1);
             e.setCreadorevento(usu);
 
             List<Asientos> listaAsientos = new ArrayList<>();

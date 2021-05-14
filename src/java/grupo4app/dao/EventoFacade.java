@@ -40,17 +40,17 @@ public class EventoFacade extends AbstractFacade<Evento> {
         if(musica != null || aire_libre!=null || deporte!=null || teatro!=null || gaming!=null || lectura!=null
                 || formacion!=null || conferencia!=null || benefico!=null || arte!=null || turismo!=null)
         {
-            s += " and e.musica = " + musica!=null ? "1 " : "0 ";
-            s += " and e.aire_libre = " + aire_libre!=null ? "1 " : "0 ";
-            s += " and e.deporte = " + deporte!=null ? "1 " : "0 ";
-            s += " and e.teatro = " + teatro!=null ? "1 " : "0 ";
-            s += " and e.gaming = " + gaming!=null ? "1 " : "0 ";
-            s += " and e.lectura = " + lectura!=null ? "1 " : "0 ";
-            s += " and e.formacion = " + formacion!=null ? "1 " : "0 ";
-            s += " and e.conferencia = " + conferencia!=null ? "1 " : "0 ";           
-            s += " and e.benefico = " + benefico!=null ? "1 " : "0 ";           
-            s += " and e.arte = " + arte!=null ? "1 " : "0 ";           
-            s += " and e.turismo = " + turismo!=null ? "1 " : "0 ";                    
+            s += (" and e.musica = " + (musica!=null ? "1 " : "0 "));
+            s += (" and e.aireLibre = " + (aire_libre!=null ? "1 " : "0 "));
+            s += (" and e.deporte = " + (deporte!=null ? "1 " : "0 "));
+            s += (" and e.teatro = " + (teatro!=null ? "1 " : "0 "));
+            s += (" and e.gaming = " + (gaming!=null ? "1 " : "0 "));
+            s += (" and e.lectura = " + (lectura!=null ? "1 " : "0 "));
+            s += (" and e.formacion = " + (formacion!=null ? "1 " : "0 "));
+            s += (" and e.conferencia = " + (conferencia!=null ? "1 " : "0 "));           
+            s += (" and e.benefico = " + (benefico!=null ? "1 " : "0 "));           
+            s += (" and e.arte = " + (arte!=null ? "1 " : "0 "));           
+            s += (" and e.turismo = " + (turismo!=null ? "1 " : "0 "));                    
         }
                 
         if(disponible){
