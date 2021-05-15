@@ -6,7 +6,9 @@
 package grupo4app.servlet;
 
 import grupo4app.dao.EventoFacade;
+import grupo4app.dao.UsuarioFacade;
 import grupo4app.entity.Evento;
+import grupo4app.entity.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -15,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,15 +37,35 @@ public class ServletBorrarEvento extends HttpServlet {
      */
     @EJB
     private EventoFacade ef;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
+
+        Evento e = ef.find(id);
+        ef.remove(e);
         
-       Evento e = ef.find(id);
-       ef.remove(e);
-       response.sendRedirect("ServletListarEventos");
-        
-        
+        HttpSession sesion = request.getSession();        
+        Usuario usr = (Usuario)sesion.getAttribute("usuario");        
+        usr.getEventoList().remove(e);
+
+        switch (usr.getRol()) {
+            case 0: // Creador de evento
+                response.sendRedirect("InicioCreadorEvento.jsp");
+                break;
+            case 1: // Administrador
+                response.sendRedirect("ServletUsuarioListar");
+                break;
+            case 2: // Teleoperador
+                response.sendRedirect("ServletListarConversaciones");
+                break;
+            case 3: // Analista
+                response.sendRedirect("ServletFiltroListar");
+                break;
+            case 4: // Usuario evento
+                response.sendRedirect("ServletListarEventos");
+                break;
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

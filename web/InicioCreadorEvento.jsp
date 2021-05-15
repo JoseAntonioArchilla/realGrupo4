@@ -49,14 +49,13 @@
                 }
             </style>
 
-            <a class="col-2  text-decoration-none" href="Serv">
-                Logo
-            </a>
+            <a class="col-2  text-decoration-none" href="InicioCreadorEvento.jsp">Logo</a>
             <form class="col-4">
                 <input style="width: 100%; border-radius: 25px" type="text">
             </form>
 
-            <div class="col-4"></div>
+            <div class="col-2"></div>
+            <a class="col-2  text-decoration-none" href="RegistroEvento.jsp">Crear evento</a>
 
             <div  class="col-2 dropdown">
                 <img src="img/avatar.png" style="width:2em; height:2em;">

@@ -7,6 +7,7 @@ package grupo4app.servlet;
 
 import grupo4app.dao.AsientosFacade;
 import grupo4app.dao.EventoFacade;
+import grupo4app.dao.UsuarioFacade;
 import grupo4app.entity.Asientos;
 import grupo4app.entity.AsientosPK;
 import grupo4app.entity.Evento;
@@ -41,6 +42,9 @@ public class ServletGuardarEvento extends HttpServlet {
 
     @EJB
     AsientosFacade asientos;
+    
+    @EJB
+    private UsuarioFacade usuarioFacade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -153,8 +157,27 @@ public class ServletGuardarEvento extends HttpServlet {
                 }
             }
 
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-            rd.forward(request, response);
+            HttpSession sesion = request.getSession();        
+            Usuario usr = (Usuario)sesion.getAttribute("usuario");        
+            usr.getEventoList().add(e);
+            
+            switch (usu.getRol()) {
+                case 0: // Creador de evento
+                    response.sendRedirect("InicioCreadorEvento.jsp");
+                    break;
+                case 1: // Administrador
+                    response.sendRedirect("ServletUsuarioListar");
+                    break;
+                case 2: // Teleoperador
+                    response.sendRedirect("ServletListarConversaciones");
+                    break;
+                case 3: // Analista
+                    response.sendRedirect("ServletFiltroListar");                    
+                    break;
+                case 4: // Usuario evento
+                    response.sendRedirect("ServletListarEventos");
+                    break;
+            }
 
         } catch (ParseException ex) {
             Logger.getLogger(ServletGuardarEvento.class.getName()).log(Level.SEVERE, null, ex);
