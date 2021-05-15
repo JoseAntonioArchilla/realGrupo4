@@ -17,7 +17,8 @@
     </head>
     <%
         List<Evento> eventos = (List<Evento>) request.getAttribute("eventos");
-        boolean puede_editar = ((Usuario) session.getAttribute("usuario")).getRol() != 4;
+        Usuario u = (Usuario) session.getAttribute("usuario");
+        boolean puede_editar = (u).getRol() != 4;
     %>
     <body>
 
@@ -50,7 +51,9 @@
                 }
             </style>
 
-            <a class="col-2  text-decoration-none" href="InicioCreadorEvento.jsp">Logo</a>
+            <a class="col-2  text-decoration-none" href="ServletInicioSesion?usuario=<%= u.getNickname()%>&contrasena=<%= u.getPassword()%>">
+                <img src="img/Logo.png" style="width:2em; height:2em;">
+            </a>
             <form class="col-4">
                 <input style="width: 100%; border-radius: 25px" type="text">
             </form>
@@ -67,7 +70,7 @@
             <div  class="col-2 dropdown">
                 <img src="img/avatar.png" style="width:2em; height:2em;">
                 <div class="dropdown-content">
-                    <a class="row dropdown-element" href="ServletMiPerfil">Mi perfil</a>
+                    <a class="row dropdown-element" href="Perfil.jsp">Mi perfil</a>
                     <a class="row dropdown-element" href="ServletListarConversaciones">Mensajes</a>
                     <a class="row dropdown-element" href="ServletCerrarSesion">Cerrar sesion</a>
                 </div>

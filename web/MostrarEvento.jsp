@@ -24,7 +24,8 @@
     <%
         Evento e = (Evento) request.getAttribute("evento");
         List<EventoUsuario> lista_evento_usuario = (List<EventoUsuario>) request.getAttribute("lista_evento_usuario");
-        UsuarioEvento ue = ((Usuario) session.getAttribute("usuario")).getUsuarioEvento();
+        Usuario u = (Usuario) session.getAttribute("usuario");
+        UsuarioEvento ue = u.getUsuarioEvento();
         String patron = "yyyy-MM-dd";
         SimpleDateFormat format = new SimpleDateFormat(patron);
 
@@ -82,24 +83,19 @@
                 }
             </style>
 
-            <a class="col-2  text-decoration-none" href="index.html">
-                Logo
+            <a class="col-2  text-decoration-none" href="ServletInicioSesion?usuario=<%= u.getNickname()%>&contrasena=<%= u.getPassword()%>">
+                <img src="img/Logo.png" style="width:2em; height:2em;">
             </a>
             <form class="col-4">
                 <input style="width: 100%; border-radius: 25px" type="text">
             </form>
-            <div class="col-4 d-flex justify-content-around ">
-                <a href="index.html">Inicio </a>
-                <a href="index.html">Servicios </a>
-                <a href="#">Contacto</a>
-            </div>
+            <div class="col-4"></div>
             <div  class="col-2 dropdown">
-                <img src="img/Logo.png" style="width:2em; height:2em;">
+                <img src="img/avatar.png" style="width:2em; height:2em;">
                 <div class="dropdown-content">
-                    <a class="row dropdown-element" href="index.html">Mi perfil</a>
-                    <a class="row dropdown-element" href="index.html">Mensajes</a>
-                    <a class="row dropdown-element" href="index.html">Ajustes</a>
-                    <a class="row dropdown-element" href="index.html">Cerrar sesion</a>
+                    <a class="row dropdown-element" href="Perfil.jsp">Mi perfil</a>
+                    <a class="row dropdown-element" href="ServletListarConversaciones">Mensajes</a>
+                    <a class="row dropdown-element" href="ServletCerrarSesion">Cerrar sesion</a>
                 </div>
             </div>       
         </div>
