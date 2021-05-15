@@ -25,7 +25,7 @@
     </head>
     
     <body>     
-        <div class="row py-2 text-center" style="background: #de7ebf">
+        <div class="row py-2 text-center" style="background: #77e5ff">
              <style>
                  a{
                      font-size: 1.3em;
@@ -94,7 +94,7 @@
                     %>
                     <div class="col-4">
                         <div class="row">
-                            <a href="index.html" class="col-6"><img width="100%" height="100%" src="img/Logo.png"></a>
+                            <a href="ServletCargarPerfil?usuario=<%=e.getIdusuario()%>" class="col-6"><img width="100%" height="100%" src="img/Logo.png"></a>
                             <div class="col-6">
                                 <h2><%=e.getNickname()%></h2>
                                 <p><%=e.getRol() == 0 ? "Creador de evento" : (e.getRol() == 1 ? "Administrador del sistema" : (e.getRol() == 2 ? "Teleoperador" : (e.getRol() == 3 ? "Analista de eventos" : "Usuario de evento")))%> </p>
@@ -174,6 +174,18 @@
                     <div class="row justify-content-start px-1 my-3">
                         <input type = "submit" value="Añadir"/>
                     </div>
+                </form>
+                <form action="">
+                    <br>
+                    <br>
+                    <br>
+                    <div>
+                        <h3>Todos los eventos</h3>
+                        <div class="row justify-content-start px-1 my-3">
+                            <input type = "submit" value="Mostrar todos los eventos"/>
+                        </div>
+                    </div>
+                    
                 </form>
                 </div>
             </div>
