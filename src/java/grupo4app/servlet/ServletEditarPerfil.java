@@ -94,7 +94,7 @@ public class ServletEditarPerfil extends HttpServlet {
             sesion.setAttribute("usuarioEvento", null);
         }
         
-        RequestDispatcher rd = request.getRequestDispatcher("Perfil.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("ServletCargarListaEventosUsuario?usuario=" + usuario.getIdusuario());
         rd.forward(request, response);
     }
 
