@@ -27,7 +27,7 @@
                 usuario = (Usuario) sesion.getAttribute("usuario");
                 usuarioEvento = (UsuarioEvento) sesion.getAttribute("usuarioEvento");
             }
-            List<EventoUsuario> listaEventos = null;
+            List<EventoUsuario> listaEventos = new ArrayList<EventoUsuario>();
         %>
         <h1>Mi perfil</h1>
         <form action="EditarPerfil.jsp">
