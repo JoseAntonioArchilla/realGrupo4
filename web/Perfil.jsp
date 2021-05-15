@@ -23,6 +23,78 @@
             UsuarioEvento usuarioEvento = (UsuarioEvento) request.getAttribute("usuarioEvento");
             List<EventoUsuario> listaEventos = (List) request.getAttribute("listaEventos");
         %>
+        
+        <!-- Navbar -->      
+        <div class="row py-2 text-center" style="background: #de7ebf">
+            <style>
+                body{
+                    background-image: url("img/pattern.jpg");
+                }
+                a{
+                    font-size: 1.3em;
+                    color: black
+                }
+
+                span{
+                    border-radius: 5px;  
+                    border-style: solid; 
+                    border-width: 1px; 
+                    border-color: #ab4493;
+                    background: white;
+                    padding: .2em;
+                }
+
+                a:hover{
+                    font-weight: bold;
+                    color: black;
+                    text-decoration: none;
+                }
+                button{
+                    border-radius: 15px;
+                    background: #f48542;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+                .dropdown{
+                    position: relative;display: inline-block;
+                }
+                .dropdown-content{
+                    display: none; position: absolute; z-index: 1
+                }
+                .dropdown:hover .dropdown-content{
+                    display: block;
+                }
+                .dropdown-element
+                {
+                    background: #eccbe8;
+                    text-align: center;
+                    padding:  .3em;
+                }
+                .fondito {
+                    background: #f2f2f2;
+                }
+            </style>
+
+            <a class="col-2  text-decoration-none" href="ServletInicioSesion?usuario=<%= usuario.getNickname()%>&contrasena=<%= usuario.getPassword()%>">
+                <img src="img/Logo.png" style="width:2em; height:2em;">
+            </a>
+            <form class="col-4">
+                <input style="width: 100%; border-radius: 25px" type="text">
+            </form>
+            <div class="col-4"></div>
+            <div  class="col-2 dropdown">
+                <img src="img/avatar.png" style="width:2em; height:2em;">
+                <div class="dropdown-content">
+                    <a class="row dropdown-element" href="ServletCargarListaEventosUsuario">Mi perfil</a>
+                    <%
+                        if(usuario.getRol() != 1){
+                            %><a class="row dropdown-element" href="ServletListarConversaciones">Mensajes</a><%
+                        }
+                    %>
+                    <a class="row dropdown-element" href="ServletCerrarSesion">Cerrar sesion</a>
+                </div>
+            </div>       
+        </div>
         <h1>Mi perfil</h1>
         <form action="EditarPerfil.jsp">
             Nombre: <%=usuario.getNickname()%><br>
