@@ -5,9 +5,11 @@
  */
 package grupo4app.dao;
 
+import grupo4app.entity.Evento;
 import grupo4app.entity.EventoUsuario;
 import grupo4app.entity.Filtro;
 import grupo4app.entity.Usuario;
+import grupo4app.entity.UsuarioEvento;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -35,6 +37,28 @@ public class EventoUsuarioFacade extends AbstractFacade<EventoUsuario> {
     public EventoUsuarioFacade() {
         super(EventoUsuario.class);
     }
+    
+        public EventoUsuario findById(int id)
+    {
+        Query q = em.createQuery("select e from EventoUsuario e where e.eventoUsuarioPK.ideventousuario = :id").setParameter("id", id);
+        return (EventoUsuario)q.getResultList().get(0);
+    }
+        
+            
+    public List<EventoUsuario> findByUsuario(UsuarioEvento u)
+    {
+        Query q = em.createQuery("select e from EventoUsuario e where e.usuarioEvento = :usuario").setParameter("usuario", u);
+        
+        return q.getResultList();
+    }
+
+     public List<EventoUsuario> findByEvento(Evento e)
+    {
+        Query q = em.createQuery("select e from EventoUsuario e where e.evento = :evento").setParameter("evento", e);
+        
+        return q.getResultList();
+    }
+    
     
     public List<EventoUsuario> filtrosEventoUsuario(Filtro filtro) throws ParseException{
         
