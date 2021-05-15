@@ -74,7 +74,7 @@ public class ServletListarEventos extends HttpServlet {
        
        switch (usr.getRol()) {
             case 0: // Creador de evento
-                request.getRequestDispatcher("InicioCreadorEvento.jsp").forward(request, response);
+                request.getRequestDispatcher("ListaEventos.jsp").forward(request, response);
                 break;
             case 1: // Administrador
                 response.sendRedirect("ServletUsuarioListar");
@@ -86,7 +86,7 @@ public class ServletListarEventos extends HttpServlet {
                 response.sendRedirect("ServletFiltroListar");
                 break;
             case 4: // Usuario evento
-                response.sendRedirect("ServletListarEventos");
+                request.getRequestDispatcher("ListaEventos.jsp").forward(request, response);
                 break;
         }       
     }

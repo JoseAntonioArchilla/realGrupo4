@@ -5,10 +5,13 @@
  */
 package grupo4app.dao;
 
+import grupo4app.entity.Evento;
 import grupo4app.entity.EventoUsuario;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +30,13 @@ public class EventoUsuarioFacade extends AbstractFacade<EventoUsuario> {
 
     public EventoUsuarioFacade() {
         super(EventoUsuario.class);
+    }
+    
+    public List<EventoUsuario> findByEvento(Evento e)
+    {
+        Query q = em.createQuery("select e from EventoUsuario e where e.evento = :evento").setParameter("evento", e);
+        
+        return q.getResultList();
     }
     
 }

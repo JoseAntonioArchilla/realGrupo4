@@ -10,6 +10,7 @@ import grupo4app.dao.UsuarioFacade;
 import grupo4app.entity.Usuario;
 import grupo4app.entity.UsuarioEvento;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,18 +18,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author chinchar@hotmail.es
+ * @author nieto
  */
-@WebServlet(name = "ServletInicioSesion", urlPatterns = {"/ServletInicioSesion"})
-public class ServletInicioSesion extends HttpServlet {
+@WebServlet(name = "ServletCargarPerfil", urlPatterns = {"/ServletCargarPerfil"})
+public class ServletCargarPerfil extends HttpServlet {
 
     @EJB
     private UsuarioFacade usuarioFacade;
-
+    @EJB
+    private UsuarioEventoFacade usuarioEventoFacade;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,48 +39,18 @@ public class ServletInicioSesion extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
+        int id = Integer.parseInt(request.getParameter("usuario"));
+        Usuario usuario = usuarioFacade.find(id);
+        UsuarioEvento usuarioEvento = usuarioEventoFacade.find(id);
         
-        String nUsuario = request.getParameter("usuario");
-        String password = request.getParameter("contrasena");
+        request.setAttribute("usuario", usuario);
+        request.setAttribute("usuarioEvento", usuarioEvento);
         
-        nUsuario = nUsuario.trim();
-        Usuario usr = this.usuarioFacade.findByNicknameAndPassword(nUsuario,password);
-      
-        
-        
-        if(usr == null){
-            request.setAttribute("error", "Error: El nombre de usuario o la contraseña son incorrectos");
-
-            RequestDispatcher rd = request.getRequestDispatcher("InicioSesion.jsp");
-            rd.forward(request, response);
-        } else {
-            session.setAttribute("usuario", usr);
-            
-            switch (usr.getRol()) {
-                case 0: // Creador de evento
-                    request.getRequestDispatcher("ServletListarEventos").forward(request, response);
-                    break;
-                case 1: // Administrador
-                    response.sendRedirect("ServletUsuarioListar");
-                    break;
-                case 2: // Teleoperador
-                    response.sendRedirect("ServletListarConversaciones");
-                    break;
-                case 3: // Analista
-                    response.sendRedirect("ServletFiltroListar");                    
-                    break;
-                case 4: // Usuario evento
-                    session.setAttribute("usuarioEvento", usr.getUsuarioEvento());
-                    response.sendRedirect("ServletListarEventos");
-                    break;
-            }
-        }
+        RequestDispatcher rd = request.getRequestDispatcher("Perfil.jsp");
+        rd.forward(request, response);
     }
-        
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
