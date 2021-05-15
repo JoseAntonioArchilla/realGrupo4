@@ -18,15 +18,26 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
         <title>Chat</title>
         <style>
-            th{
-                padding-left: 10px;
-                padding-right: 10px;
+            .btn .tooltiptext {
+                visibility: hidden;
+                width: 120px;
+                background-color: black;
+                color: #fff;
+                text-align: center;
+                margin-left: 5px;
+                padding: 5px 0;
+                border-radius: 6px;
+
+                /* Position the tooltip text - see examples below! */
+                position: absolute;
+                z-index: 1;
+            }
+
+            /* Show the tooltip text when you mouse over the tooltip container */
+            .btn:hover .tooltiptext {
+                visibility: visible;
             }
             
-            td{
-                padding-left: 10px;
-                padding-right: 10px;
-            }
             a{
                 font-size: 1.3em;
                 color: black;
@@ -178,6 +189,7 @@
                 <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"></path>
                 <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"></path>
                 </svg>
+                <span class="tooltiptext">Recargar chat</span>
             </button>
         </div>
     </body>
