@@ -151,42 +151,127 @@
             <p class="px-sm-3" style="color: red;"><%=error%></p>
         <%
         }
-        
-    if(conversaciones != null && conversaciones.size() > 0) {  
+        %>
+    <!-- TELEOPERADOR -->
+    <%
+    if(usuarioIniciado.getRol() == 2){
+        // MIS CONVERSACIONES
     %>
-         <div class="mx-sm-3 p-sm-3">
-            <div class="row justify-content-start">
-                <div class="filaprim col-4 px-sm-3 py-sm-4 my-1"><b>Teleoperador</b></div>
-                <div class="filaprim col-4 px-sm-3 py-sm-4 my-1"><b>Usuario atendido</b></div>
-            </div>
-            <%  
-                for(Chat ch : conversaciones) {
-            %>    
+        <h2 class="px-sm-3">Mis conversaciones</h2>
+    <%
+        if(conversaciones != null && conversaciones.size() > 0) {  
+        %>
+             <div class="mx-sm-3 p-sm-3">
                 <div class="row justify-content-start">
-                    <div class="columna col-4 p-sm-3 my-1" onclick="location.href='ServletMostrarChat?idChat=<%=ch.getIdchat()%>';" ><img src="img/avatar.png" width="50px" alt="..."><%=ch.getUsuario1().getNickname()%>
-                        <span class="tooltiptext">Ver la conversación</span>
+                    <div class="filaprim col-4 px-sm-3 py-sm-4 my-1"><b>Teleoperador</b></div>
+                    <div class="filaprim col-4 px-sm-3 py-sm-4 my-1"><b>Usuario atendido</b></div>
+                </div>
+                <%  
+                    for(Chat ch : conversaciones) {
+                %>    
+                    <div class="row justify-content-start">
+                        <div class="columna col-4 p-sm-3 my-1" onclick="location.href='ServletMostrarChat?idChat=<%=ch.getIdchat()%>';" ><img src="img/avatar.png" width="50px" alt="..."><%=ch.getUsuario1().getNickname()%>
+                            <span class="tooltiptext">Ver la conversación</span>
+                        </div>
+                        <div class="columna col-4 p-sm-3 my-1" onclick="location.href='ServletMostrarChat?idChat=<%=ch.getIdchat()%>';" ><img src="img/avatar.png" width="50px" alt="..."><%=ch.getUsuario2().getNickname()%>
+                            <span class="tooltiptext">Ver la conversación</span>
+                        </div>
+                        <% if(usuarioIniciado.getRol() == 2) {
+                        %>    
+                            <div class="col-1 p-sm-3 my-1"><a href="ServletBorrarChat?idChat=<%=ch.getIdchat()%>"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                          </svg></a>
+                            </div>
+                        <% }
+                        %>
                     </div>
-                    <div class="columna col-4 p-sm-3 my-1" onclick="location.href='ServletMostrarChat?idChat=<%=ch.getIdchat()%>';" ><img src="img/avatar.png" width="50px" alt="..."><%=ch.getUsuario2().getNickname()%>
-                        <span class="tooltiptext">Ver la conversación</span>
-                    </div>
-                    <% if(usuarioIniciado.getRol() == 2) {
-                    %>    
+                <% }
+                %>
+            </div>
+        <% } else {
+        %>
+            <p class="mx-sm-3">No hay conversaciones que mostrar</p>
+        <%
+           }
+        
+        List<Chat> otrosC = (List<Chat>)request.getAttribute("otrosChats");
+        /// OTRAS CONVERSACIONES
+        %>
+            <h2 class="px-sm-3">Otras conversaciones</h2>
+        <%
+        if(otrosC != null && otrosC.size() > 0) {
+    %>
+            <div class="mx-sm-3 p-sm-3">
+                <div class="row justify-content-start">
+                    <div class="filaprim col-4 px-sm-3 py-sm-4 my-1"><b>Teleoperador</b></div>
+                    <div class="filaprim col-4 px-sm-3 py-sm-4 my-1"><b>Usuario atendido</b></div>
+                </div>
+                <%  
+                    for(Chat ch : otrosC) {
+                %>    
+                    <div class="row justify-content-start">
+                        <div class="columna col-4 p-sm-3 my-1" onclick="location.href='ServletMostrarChat?idChat=<%=ch.getIdchat()%>';" ><img src="img/avatar.png" width="50px" alt="..."><%=ch.getUsuario1().getNickname()%>
+                            <span class="tooltiptext">Ver la conversación</span>
+                        </div>
+                        <div class="columna col-4 p-sm-3 my-1" onclick="location.href='ServletMostrarChat?idChat=<%=ch.getIdchat()%>';" ><img src="img/avatar.png" width="50px" alt="..."><%=ch.getUsuario2().getNickname()%>
+                            <span class="tooltiptext">Ver la conversación</span>
+                        </div>   
                         <div class="col-1 p-sm-3 my-1"><a href="ServletBorrarChat?idChat=<%=ch.getIdchat()%>"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                                         <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                                       </svg></a>
                         </div>
-                    <% }
-                    %>
-                </div>
-            <% }
-            %>
-        </div>
+                    </div>
+                <% }
+                
+                %>
+            </div>
+        <%
+            } else {
+        %>
+                <p class="mx-sm-3">No hay conversaciones que mostrar</p>
+        <%
+            }
+        %>
     <% } else {
-    %>
-        <p class="mx-sm-3">No hay conversaciones que mostrar</p>
-    <% }
-    %>
+        //// USUARIOS NO TELEOPERADORES
+        if(conversaciones != null && conversaciones.size() > 0) {  
+        %>
+             <div class="mx-sm-3 p-sm-3">
+                <div class="row justify-content-start">
+                    <div class="filaprim col-4 px-sm-3 py-sm-4 my-1"><b>Teleoperador</b></div>
+                    <div class="filaprim col-4 px-sm-3 py-sm-4 my-1"><b>Usuario atendido</b></div>
+                </div>
+                <%  
+                    for(Chat ch : conversaciones) {
+                %>    
+                    <div class="row justify-content-start">
+                        <div class="columna col-4 p-sm-3 my-1" onclick="location.href='ServletMostrarChat?idChat=<%=ch.getIdchat()%>';" ><img src="img/avatar.png" width="50px" alt="..."><%=ch.getUsuario1().getNickname()%>
+                            <span class="tooltiptext">Ver la conversación</span>
+                        </div>
+                        <div class="columna col-4 p-sm-3 my-1" onclick="location.href='ServletMostrarChat?idChat=<%=ch.getIdchat()%>';" ><img src="img/avatar.png" width="50px" alt="..."><%=ch.getUsuario2().getNickname()%>
+                            <span class="tooltiptext">Ver la conversación</span>
+                        </div>
+                        <% if(usuarioIniciado.getRol() == 2) {
+                        %>    
+                            <div class="col-1 p-sm-3 my-1"><a href="ServletBorrarChat?idChat=<%=ch.getIdchat()%>"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                          </svg></a>
+                            </div>
+                        <% }
+                        %>
+                    </div>
+                <% }
+                %>
+            </div>
+        <% } else {
+        %>
+            <p class="mx-sm-3">No hay conversaciones que mostrar</p>
+        <% }
+        }   
+        %>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js" integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ" crossorigin="anonymous"></script>
     </body>

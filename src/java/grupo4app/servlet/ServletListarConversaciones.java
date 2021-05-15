@@ -51,7 +51,10 @@ public class ServletListarConversaciones extends HttpServlet {
         if(usBuscar == null || usBuscar.trim().length() == 0){
             if(usuarioSesion != null){
                 if(usuarioSesion.getRol() == 2){
-                    chats = this.chatFacade.findAll();
+                    chats = this.chatFacade.findByTeleoperador(usuarioSesion);
+                    List<Chat> otrosChats = this.chatFacade.findByTeleoperadorNot(usuarioSesion);
+                    
+                    request.setAttribute("otrosChats", otrosChats);
                 } else {
                     chats = this.chatFacade.findByUsuario(usuarioSesion);
                 }
@@ -61,7 +64,10 @@ public class ServletListarConversaciones extends HttpServlet {
         } else {
             if(usuarioSesion != null){
                 if(usuarioSesion.getRol() == 2){
-                    chats = this.chatFacade.filtrarTeleoperador(usBuscar);
+                    chats = this.chatFacade.filtrarMisChatsTeleoperador(usBuscar,usuarioSesion);
+                    List<Chat> otrosChats = this.chatFacade.filtrarOtrosChatsTeleoperador(usBuscar, usuarioSesion);
+                    
+                    request.setAttribute("otrosChats", otrosChats);
                 } else {
                     chats = this.chatFacade.filtrarUsuario(usBuscar,usuarioSesion);
                 }

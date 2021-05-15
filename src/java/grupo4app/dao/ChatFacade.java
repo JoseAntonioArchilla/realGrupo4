@@ -39,12 +39,41 @@ public class ChatFacade extends AbstractFacade<Chat> {
         chatsUsr = q.getResultList();
         
         return chatsUsr;
-}
+    }
     
-    public List<Chat> filtrarTeleoperador(String cadena){
+    public List<Chat> findByTeleoperador(Usuario u){
         List<Chat> chatsUsr;
-        Query q = em.createQuery("SELECT c FROM Chat c WHERE upper(c.usuario1.nickname) LIKE :name OR upper(c.usuario2.nickname) LIKE :name");
+        Query q = em.createQuery("SELECT c FROM Chat c WHERE c.usuario1.idusuario = :us");
+        q.setParameter("us", u.getIdusuario());
+        chatsUsr = q.getResultList();
+        
+        return chatsUsr;
+    }
+    
+    public List<Chat> findByTeleoperadorNot(Usuario u){
+        List<Chat> chatsUsr;
+        Query q = em.createQuery("SELECT c FROM Chat c WHERE c.usuario1.idusuario != :us");
+        q.setParameter("us", u.getIdusuario());
+        chatsUsr = q.getResultList();
+        
+        return chatsUsr;
+    }
+    
+    public List<Chat> filtrarMisChatsTeleoperador(String cadena, Usuario usuario){
+        List<Chat> chatsUsr;
+        Query q = em.createQuery("SELECT c FROM Chat c WHERE c.usuario1.idusuario = :us and (upper(c.usuario1.nickname) LIKE :name OR upper(c.usuario2.nickname) LIKE :name)");
         q.setParameter("name", "%" + cadena.toUpperCase() + "%");
+        q.setParameter("us", usuario.getIdusuario());
+        chatsUsr = q.getResultList();
+        
+        return chatsUsr;
+    }
+    
+    public List<Chat> filtrarOtrosChatsTeleoperador(String cadena, Usuario usuario){
+        List<Chat> chatsUsr;
+        Query q = em.createQuery("SELECT c FROM Chat c WHERE c.usuario1.idusuario != :us and (upper(c.usuario1.nickname) LIKE :name OR upper(c.usuario2.nickname) LIKE :name)");
+        q.setParameter("name", "%" + cadena.toUpperCase() + "%");
+        q.setParameter("us", usuario.getIdusuario());
         chatsUsr = q.getResultList();
         
         return chatsUsr;
