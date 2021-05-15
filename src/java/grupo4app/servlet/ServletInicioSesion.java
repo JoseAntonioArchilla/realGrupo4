@@ -27,9 +27,6 @@ import javax.servlet.http.HttpSession;
 public class ServletInicioSesion extends HttpServlet {
 
     @EJB
-    private UsuarioEventoFacade usuarioEventoFacade;
-
-    @EJB
     private UsuarioFacade usuarioFacade;
 
     /**

@@ -71,7 +71,7 @@ public class ServletRegistroUsuario extends HttpServlet {
             ue.setDomicilio(domicilio);
             ue.setSexo("hombre");
             ue.setUsuario(u.getIdusuario());
-            List<EventoUsuario> arrayList = new ArrayList<EventoUsuario>() ;
+            List<EventoUsuario> arrayList = new ArrayList<>() ;
             ue.setEventoUsuarioList(arrayList);
             ue.setNombre(nombre);
            // ue.setUsuario1(u);

@@ -4,6 +4,7 @@
     Author     : chinchar@hotmail.es
 --%>
 
+<%@page import="java.util.List"%>
 <%@page import="grupo4app.entity.EventoUsuario"%>
 <%@page import="grupo4app.entity.UsuarioEvento"%>
 <%@page import="grupo4app.entity.Usuario"%>
@@ -22,7 +23,7 @@
 
     <%
         Evento e = (Evento) request.getAttribute("evento");
-        Usuario u = (Usuario) session.getAttribute("usuario");
+        List<EventoUsuario> lista_evento_usuario = (List<EventoUsuario>) request.getAttribute("lista_evento_usuario");
         UsuarioEvento ue = (UsuarioEvento) session.getAttribute("usuarioEvento");
         String patron = "yyyy-MM-dd";
         SimpleDateFormat format = new SimpleDateFormat(patron);
@@ -122,7 +123,7 @@
 
                     <% if (ue != null) {
                             
-                            int plazas = e.getAforo() - e.getEventoUsuarioList().size();
+                            int plazas = e.getAforo() - lista_evento_usuario.size();
                             int numEntradas = 0;
                             for (EventoUsuario aux : ue.getEventoUsuarioList()) {
                                 if (aux.getEvento().getIdevento() == e.getIdevento()) {

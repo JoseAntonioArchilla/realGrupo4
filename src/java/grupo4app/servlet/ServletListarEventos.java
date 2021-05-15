@@ -86,7 +86,7 @@ public class ServletListarEventos extends HttpServlet {
                 response.sendRedirect("ServletFiltroListar");
                 break;
             case 4: // Usuario evento
-                response.sendRedirect("ServletListarEventos");
+                request.getRequestDispatcher("InicioUsuarioEvento.jsp").forward(request, response);
                 break;
         }       
     }
