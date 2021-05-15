@@ -45,7 +45,7 @@ public class ServletBorrarEvento extends HttpServlet {
                 request.getRequestDispatcher("ServletListarEventos").forward(request, response);
                 break;
             case 1: // Administrador
-                response.sendRedirect("ServletUsuarioListar");
+                request.getRequestDispatcher("ServletListarEventos").forward(request, response);
                 break;
             case 2: // Teleoperador
                 response.sendRedirect("ServletListarConversaciones");

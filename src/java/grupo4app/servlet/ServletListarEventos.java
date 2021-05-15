@@ -77,7 +77,7 @@ public class ServletListarEventos extends HttpServlet {
                 request.getRequestDispatcher("ListaEventos.jsp").forward(request, response);
                 break;
             case 1: // Administrador
-                response.sendRedirect("ServletUsuarioListar");
+                request.getRequestDispatcher("ListaEventos.jsp").forward(request, response);
                 break;
             case 2: // Teleoperador
                 response.sendRedirect("ServletListarConversaciones");

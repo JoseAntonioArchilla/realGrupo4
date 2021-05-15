@@ -175,7 +175,7 @@
                         <input type = "submit" value="Añadir"/>
                     </div>
                 </form>
-                <form action="">
+                <form action="ServletListarEventos">
                     <br>
                     <br>
                     <br>
