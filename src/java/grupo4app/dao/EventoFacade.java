@@ -49,17 +49,42 @@ public class EventoFacade extends AbstractFacade<Evento> {
         if(musica != null || aire_libre!=null || deporte!=null || teatro!=null || gaming!=null || lectura!=null
                 || formacion!=null || conferencia!=null || benefico!=null || arte!=null || turismo!=null)
         {
-            s += (" and e.musica = " + (musica!=null ? "1 " : "0 "));
-            s += (" and e.aireLibre = " + (aire_libre!=null ? "1 " : "0 "));
-            s += (" and e.deporte = " + (deporte!=null ? "1 " : "0 "));
-            s += (" and e.teatro = " + (teatro!=null ? "1 " : "0 "));
-            s += (" and e.gaming = " + (gaming!=null ? "1 " : "0 "));
-            s += (" and e.lectura = " + (lectura!=null ? "1 " : "0 "));
-            s += (" and e.formacion = " + (formacion!=null ? "1 " : "0 "));
-            s += (" and e.conferencia = " + (conferencia!=null ? "1 " : "0 "));           
-            s += (" and e.benefico = " + (benefico!=null ? "1 " : "0 "));           
-            s += (" and e.arte = " + (arte!=null ? "1 " : "0 "));           
-            s += (" and e.turismo = " + (turismo!=null ? "1 " : "0 "));                    
+            s+=" and (2 = 2 ";
+            if(musica != null){
+                s += (" and e.musica = 1" );
+            }
+            if(aire_libre!=null){
+                s += (" and e.aireLibre = 1" );
+                 
+            }
+            if(deporte!=null){
+                s += (" and e.deporte = 1" );
+            }
+            if(teatro!=null){
+                s += (" and e.teatro = 1" );
+            }
+            if(gaming!=null){
+                s += (" and e.gaming = 1" );
+            }
+            if(lectura!=null){
+                s += (" and e.lectura = 1" );
+            }
+            if(formacion!=null){
+                s += (" and e.formacion = 1" );
+            }
+            if(conferencia!=null){
+                s += (" and e.conferencia = 1" );
+            }
+            if(benefico!=null){
+                s += (" and e.benefico = 1" );
+            }
+            if(arte!=null){
+                s += (" and e.arte = 1" );
+            }
+            if(turismo!=null){
+                s += (" and e.turismo = 1" );
+            }          
+            s += ")";
         }
                 
         if(disponible){

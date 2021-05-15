@@ -112,47 +112,47 @@
                     <div style="display: grid; grid-template-columns:1fr 1fr 1fr; width:460px">
                         <div>
                             <label style="width:auto; height:auto" for="musica">Música </label>
-                            <input style="width:auto; height:auto" type="checkbox" name="musica" id="musica" >
+                            <input <%=e.getMusica()== 0 ? "" : "checked"%> style="width:auto; height:auto" type="checkbox" name="musica" id="musica" >
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="aire_libre">Aire libre</label>
-                            <input style="width:auto; height:auto" type="checkbox" name="aire_libre" id="aire_libre">  
+                            <input <%=e.getAireLibre()== 0 ? "" : "checked"%> style="width:auto; height:auto" type="checkbox" name="aire_libre" id="aire_libre">  
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="deporte">Deporte </label>
-                            <input style="width:auto; height:auto" type="checkbox" name="deporte" id="deporte">  
+                            <input <%=e.getDeporte()== 0 ? "" : "checked"%> style="width:auto; height:auto" type="checkbox" name="deporte" id="deporte">  
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="teatro">Teatro </label>
-                            <input style="width:auto; height:auto" type="checkbox" name="teatro" id="teatro">
+                            <input <%=e.getTeatro()== 0 ? "" : "checked"%> style="width:auto; height:auto" type="checkbox" name="teatro" id="teatro">
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="gaming">Gaming </label>
-                            <input style="width:auto; height:auto" type="checkbox" name="gaming" id="gaming">
+                            <input <%=e.getGaming() == 0 ? "" : "checked"%> style="width:auto; height:auto" type="checkbox" name="gaming" id="gaming">
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="lectura">Lectura</label>
-                            <input style="width:auto; height:auto" type="checkbox" name="lectura" id="lectura">
+                            <input <%=e.getLectura()== 0 ? "" : "checked"%> style="width:auto; height:auto" type="checkbox" name="lectura" id="lectura">
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="formacion">Formacion </label>
-                            <input style="width:auto; height:auto" type="checkbox" name="formacion" id="formacion"> 
+                            <input <%=e.getFormacion()== 0 ? "" : "checked"%> style="width:auto; height:auto" type="checkbox" name="formacion" id="formacion"> 
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="conferencia">Conferencia </label>
-                            <input style="width:auto; height:auto" type="checkbox" name="conferencia" id="conferencia">
+                            <input <%=e.getConferencia()== 0 ? "" : "checked"%> style="width:auto; height:auto" type="checkbox" name="conferencia" id="conferencia">
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="benefico">Benéfico</label>
-                            <input style="width:auto; height:auto" type="checkbox" name="benefico" id="benefico"> 
+                            <input <%=e.getBenefico()== 0 ? "" : "checked"%> style="width:auto; height:auto" type="checkbox" name="benefico" id="benefico"> 
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="arte">Arte </label>
-                            <input style="width:auto; height:auto" type="checkbox" name="arte" id="arte">
+                            <input <%=e.getArte()== 0 ? "" : "checked"%> style="width:auto; height:auto" type="checkbox" name="arte" id="arte">
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="turismo">Turismo </label>
-                            <input style="width:auto; height:auto" type="checkbox" name="turismo" id="turismo">
+                            <input <%=e.getTurismo()== 0 ? "" : "checked"%> style="width:auto; height:auto" type="checkbox" name="turismo" id="turismo">
                         </div>  
                     </div>
 
