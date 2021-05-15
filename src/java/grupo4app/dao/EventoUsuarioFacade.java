@@ -93,14 +93,35 @@ public class EventoUsuarioFacade extends AbstractFacade<EventoUsuario> {
         if(edadSup > 0 || !sexo.isEmpty() || !ciudad.isEmpty() || usuario != null || anyo > 0 || costeEntrada > 0 || !categoria.isEmpty()){
             
             filtrar = true;
-            sentencia += (" and eu.usuarioEvento.edad <= " + (edadSup));
-            sentencia += (" and eu.usuarioEvento.sexo like ('%"+ (sexo) +"%')");
-            sentencia += (" and upper(eu.usuarioEvento.ciudad) like upper('" + ciudad + "')");
-            sentencia += (" and eu.eventoUsuarioPK.usuario = '" + idUsuario + "'");
+            if(edadSup > 0){
+                sentencia += (" and eu.usuarioEvento.edad <= " + (edadSup));
+            }
+            
+            if(!sexo.isEmpty()){
+                sentencia += (" and eu.usuarioEvento.sexo like ('%"+ (sexo) +"%')");
+            }
+            
+            if(!ciudad.isEmpty()){
+                sentencia += (" and upper(eu.usuarioEvento.ciudad) like upper('" + ciudad + "')");
+            }
+            
+            if(usuario != null){
+               sentencia += (" and eu.usuarioEvento.usuario = '" + idUsuario + "'"); 
+            }
+            
+            if(costeEntrada > 0){
+                sentencia += (" and eu.evento.costeEntrada = '" + costeEntrada + "'"); 
+            }
+            
+            if(!categoria.isEmpty()){
+                sentencia += (" and eu.evento."+ categoria + " = '" + 1 + "'"); 
+            }
+            
+            
+            
+            
             /////////
-            //sentencia += (" and eu.eventoUsuarioPK.idevento.fecha between :inf and :sup");
-            //sentencia += (" and eu.eventoUsuarioPK.idevento.costeEntrada = " + costeEntrada);
-            //sentencia += (" and eu.eventoUsuarioPK.idevento.categoria like '" + categoria + "'");                      
+            //sentencia += (" and eu.eventoUsuarioPK.idevento.fecha between :inf and :sup");                      
         }
              
         q = em.createQuery(sentencia);
