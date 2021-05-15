@@ -111,7 +111,7 @@
                 <div class="dropdown-content">
                     <a class="row dropdown-element" href="Perfil.jsp">Mi perfil</a>
                     <a class="row dropdown-element" href="ServletListarConversaciones">Mensajes</a>
-                    <a class="row dropdown-element" href="index.html">Cerrar sesion</a>
+                    <a class="row dropdown-element" href="ServletCerrarSesion">Cerrar sesion</a>
                 </div>
             </div>       
         </div>
