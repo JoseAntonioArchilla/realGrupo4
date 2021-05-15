@@ -43,8 +43,6 @@ public class ServletGuardarEvento extends HttpServlet {
     @EJB
     AsientosFacade asientos;
     
-    @EJB
-    private UsuarioFacade usuarioFacade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -64,9 +62,10 @@ public class ServletGuardarEvento extends HttpServlet {
         HttpSession session = request.getSession();
         Usuario usu = (Usuario) session.getAttribute("usuario");
 
-        Evento e = (Evento) session.getAttribute("evento");
-        boolean editando = e != null;
-        e = editando ? e : new Evento();
+        String id_evento = request.getParameter("evento");
+        boolean editando = id_evento != null && !id_evento.equals("");
+        
+        Evento e = editando ? evento.find(Integer.parseInt(id_evento)) : new Evento();
 
         titulo = request.getParameter("titulo");
         descripcion = request.getParameter("descripcion");
@@ -136,7 +135,6 @@ public class ServletGuardarEvento extends HttpServlet {
                 this.evento.edit(e);
             } else {
                 this.evento.create(e);
-
                 if (asientoFijo) {
                     numFila = Integer.parseInt(request.getParameter("numFilas"));
                     numCol = Integer.parseInt(request.getParameter("numColumnas"));
@@ -145,7 +143,7 @@ public class ServletGuardarEvento extends HttpServlet {
                             AsientosPK aux = new AsientosPK(i, j, e.getIdevento());
                             Asientos as = new Asientos(aux);
                             as.setOcupado(0);
-                            as.setEventoUsuarioList(new ArrayList<EventoUsuario>());
+                            as.setEventoUsuarioList(new ArrayList<>());
                             this.asientos.create(as);
                             listaAsientos.add(as);
                         }
@@ -156,14 +154,11 @@ public class ServletGuardarEvento extends HttpServlet {
                     this.evento.edit(e);
                 }
             }
-
-            HttpSession sesion = request.getSession();        
-            Usuario usr = (Usuario)sesion.getAttribute("usuario");        
-            usr.getEventoList().add(e);
-            
+     
+           
             switch (usu.getRol()) {
                 case 0: // Creador de evento
-                    response.sendRedirect("InicioCreadorEvento.jsp");
+                    request.getRequestDispatcher("ServletListarEventos").forward(request, response);
                     break;
                 case 1: // Administrador
                     response.sendRedirect("ServletUsuarioListar");

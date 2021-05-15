@@ -7,6 +7,7 @@ package grupo4app.servlet;
 
 import grupo4app.dao.EventoFacade;
 import grupo4app.entity.Evento;
+import grupo4app.entity.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -17,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -61,11 +63,32 @@ public class ServletListarEventos extends HttpServlet {
         nombre = nombre == null ? "" : nombre;
         boolean disponible =  dis != null && dis.equals("on");
         
+       
+       HttpSession session = request.getSession();        
+       Usuario usr = (Usuario)session.getAttribute("usuario"); 
         
-       List<Evento> listaEventos = this.evento.filtrarEventos(minimo, maximo, disponible, nombre,musica,aire_libre,deporte,teatro,gaming,lectura,formacion,conferencia,beneficico,arte,turismo);
+       List<Evento> listaEventos = this.evento.filtrarEventos(
+               minimo, maximo, disponible, nombre,musica,aire_libre,deporte,teatro,gaming,
+               lectura,formacion,conferencia,beneficico,arte,turismo, usr.getRol() == 0 ? usr : null);
        request.setAttribute("eventos", listaEventos);
-       RequestDispatcher rd = request.getRequestDispatcher("eventosCRUD.jsp");
-       rd.forward(request, response);
+       
+       switch (usr.getRol()) {
+            case 0: // Creador de evento
+                request.getRequestDispatcher("InicioCreadorEvento.jsp").forward(request, response);
+                break;
+            case 1: // Administrador
+                response.sendRedirect("ServletUsuarioListar");
+                break;
+            case 2: // Teleoperador
+                response.sendRedirect("ServletListarConversaciones");
+                break;
+            case 3: // Analista
+                response.sendRedirect("ServletFiltroListar");
+                break;
+            case 4: // Usuario evento
+                response.sendRedirect("ServletListarEventos");
+                break;
+        }       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

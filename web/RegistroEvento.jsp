@@ -74,6 +74,8 @@
                 <h1>Registro de Evento</h1>
 
                 <form method="post" action="ServletGuardarEvento">  
+                    <input type="number" hidden="true" <%=e != null ? "value=\""+e.getIdevento()+"\"" : "" %> name="evento">
+                    
                     <p>
                         <label for="titulo">Titulo Evento</label>
                         <input type="text" name="titulo" id="titulo" required placeholder="Escribe el titulo del Evento" value="<%= titulo%>">

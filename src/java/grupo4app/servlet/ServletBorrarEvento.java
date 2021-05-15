@@ -26,15 +26,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "ServletBorrarEvento", urlPatterns = {"/ServletBorrarEvento"})
 public class ServletBorrarEvento extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @EJB
     private EventoFacade ef;
 
@@ -45,13 +37,12 @@ public class ServletBorrarEvento extends HttpServlet {
         Evento e = ef.find(id);
         ef.remove(e);
         
-        HttpSession sesion = request.getSession();        
-        Usuario usr = (Usuario)sesion.getAttribute("usuario");        
-        usr.getEventoList().remove(e);
+        HttpSession session = request.getSession();        
+        Usuario usr = (Usuario)session.getAttribute("usuario");        
 
         switch (usr.getRol()) {
             case 0: // Creador de evento
-                response.sendRedirect("InicioCreadorEvento.jsp");
+                request.getRequestDispatcher("ServletListarEventos").forward(request, response);
                 break;
             case 1: // Administrador
                 response.sendRedirect("ServletUsuarioListar");
