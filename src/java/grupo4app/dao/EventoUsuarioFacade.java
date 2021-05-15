@@ -77,22 +77,23 @@ public class EventoUsuarioFacade extends AbstractFacade<EventoUsuario> {
         
         //////////////////////////////////////////////
         int anyo = filtro.getAnyo(); //Evento
-        String anyoSup = "31/12/" + anyo;
-        String anyoInf = "01/01/" + (anyo);
+        if(anyo == 0){
+            anyo = 0000;
+        }
+        String anyoSup = anyo + "-12-31";
+        String anyoInf = anyo + "-01-01";
         
-        Date inf = new SimpleDateFormat("dd/MM/yyyy").parse(anyoInf);
-        Date sup = new SimpleDateFormat("dd/MM/yyyy").parse(anyoInf);
+        Date inf = new SimpleDateFormat("yyyy-MM-dd").parse(anyoInf);
+        Date sup = new SimpleDateFormat("yyyy-MM-dd").parse(anyoSup);
         
         int costeEntrada = filtro.getCosteEntrada(); //Evento
         String categoria = filtro.getCategoria(); //Evento
         
-        String sentencia = "select eu from EventoUsuario eu where eu.usuarioEvento.edad >= :min";
-        boolean filtrar = false;
+        String sentencia = "select eu from EventoUsuario eu where eu.usuarioEvento.edad >= :min";       
         Query q;
         
         if(edadSup > 0 || !sexo.isEmpty() || !ciudad.isEmpty() || usuario != null || anyo > 0 || costeEntrada > 0 || !categoria.isEmpty()){
-            
-            filtrar = true;
+                      
             if(edadSup > 0){
                 sentencia += (" and eu.usuarioEvento.edad <= " + (edadSup));
             }
@@ -117,19 +118,18 @@ public class EventoUsuarioFacade extends AbstractFacade<EventoUsuario> {
                 sentencia += (" and eu.evento."+ categoria + " = '" + 1 + "'"); 
             }
             
-            
-            
-            
-            /////////
-            //sentencia += (" and eu.eventoUsuarioPK.idevento.fecha between :inf and :sup");                      
+            if(anyo > 0){
+                sentencia += (" and eu.evento.fecha between :inf and :sup"); 
+            }
+                                                                          
         }
              
         q = em.createQuery(sentencia);
         q.setParameter("min", edadInf); 
-        /*if(filtrar){
+        if(anyo > 0){
            q.setParameter("inf", inf);
-        q.setParameter("sup", sup); 
-        } */
+           q.setParameter("sup", sup); 
+        } 
         
         
         return q.getResultList();       
