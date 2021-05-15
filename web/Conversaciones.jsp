@@ -95,29 +95,28 @@
         <!-- BARRA -->
         
         <div class="row py-2 text-center" style="background: #de7ebf">
-            <% 
-                if(usuarioIniciado.getRol() == 0){
-            %>
-                <a class="col-2  text-decoration-none" href="ServletListarEventos">
-                    Logo
-                </a>
+            <a class="col-2  text-decoration-none" href="ServletInicioSesion?usuario=<%= usuarioIniciado.getNickname()%>&contrasena=<%= usuarioIniciado.getPassword()%>">
+                <img src="img/Logo.png" style="width:2em; height:2em;">            
+            </a>
+           
+            <div class="col-4">
+            </div>
             <%
-                } else if (usuarioIniciado.getRol() == 4){
+                if(usuarioIniciado.getRol() == 2){
             %>
-                <a class="col-2  text-decoration-none" href="index.html">
-                    Logo
-                </a>
+                <div class="col-4 d-flex justify-content-center ">
+                    <a href="ServletCrearChatManual">Crear una nueva conversación</a>
+                </div>
+            <%
+                } else {
+            %>
+                <div class="col-4">
+                </div>
             <%
                 }
             %>
-            
-            <div class="col-4">
-            </div>
-            <div class="col-4">
-            </div>
-            
             <div  class="col-2 dropdown">
-                <img src="img/Logo.png" style="width:2em; height:2em;">
+                <img src="img/avatar.png" style="width:2em; height:2em;">
                 <div class="dropdown-content">
                     <a class="row dropdown-element" href="Perfil.jsp">Mi perfil</a>
                     <a class="row dropdown-element" href="ServletListarConversaciones">Mensajes</a>
@@ -145,7 +144,7 @@
         
         <!-- CONTENIDO -->
         
-        <% if(usuarioIniciado != null && (usuarioIniciado.getRol() == 0 || usuarioIniciado.getRol() == 4)) {
+        <% if(usuarioIniciado.getRol() == 0 || usuarioIniciado.getRol() == 4) {
         %>   
             <form class="px-sm-3" method="POST" action="ServletCrearChat">
                 <input type="submit" value="Inicia una conversación con un nuevo teleoperador">

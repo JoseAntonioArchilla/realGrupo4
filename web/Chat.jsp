@@ -74,37 +74,17 @@
         <!-- BARRA -->
         
         <div class="row py-2 text-center" style="background: #de7ebf">
-            <%
-                switch(usuarioIniciado.getRol()){
-                    case 0:
-                        %>
-                        <a class="col-2  text-decoration-none" href="ServletListarEventos">
-                           Logo
-                        </a>
-                        <%
-                        break;
-                    case 2:
-                        %>
-                        <a class="col-2  text-decoration-none" href="ServletListarConversaciones">
-                            Logo
-                        </a>
-                        <%
-                        break;
-                    case 4:
-                        %>
-                        <a class="col-2  text-decoration-none" href="index.html">
-                            Logo
-                        </a>
-                        <%
-                        break;
-                }
-            %>
+            
+            <a class="col-2  text-decoration-none" href="ServletInicioSesion?usuario=<%= usuarioIniciado.getNickname()%>&contrasena=<%= usuarioIniciado.getPassword()%>">
+                <img src="img/Logo.png" style="width:2em; height:2em;">            
+            </a>
+                
             <div class="col-4">
             </div>
             <div class="col-4 d-flex justify-content-around ">
             </div>
             <div  class="col-2 dropdown">
-                <img src="img/Logo.png" style="width:2em; height:2em;">
+                <img src="img/avatar.png" style="width:2em; height:2em;">
                 <div class="dropdown-content">
                     <a class="row dropdown-element" href="Perfil.jsp">Mi perfil</a>
                     <a class="row dropdown-element" href="ServletListarConversaciones">Mensajes</a>
