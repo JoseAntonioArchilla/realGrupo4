@@ -50,7 +50,7 @@
                 }
             </style>
 
-            <a class="col-2  text-decoration-none" href="InicioCreadorEvento.jsp">Logo</a>
+            <a class="col-2  text-decoration-none" href="ServletListarEventos">Logo</a>
             <form class="col-4">
                 <input style="width: 100%; border-radius: 25px" type="text">
             </form>
