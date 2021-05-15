@@ -7,11 +7,9 @@ package grupo4app.servlet;
 
 import grupo4app.dao.AsientosFacade;
 import grupo4app.dao.EventoFacade;
-import grupo4app.dao.UsuarioFacade;
 import grupo4app.entity.Asientos;
 import grupo4app.entity.AsientosPK;
 import grupo4app.entity.Evento;
-import grupo4app.entity.EventoUsuario;
 import grupo4app.entity.Usuario;
 import java.io.IOException;
 import java.text.ParseException;
@@ -22,7 +20,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,20 +41,11 @@ public class ServletGuardarEvento extends HttpServlet {
     AsientosFacade asientos;
     
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String titulo, descripcion;
-        String[] etiquetas = request.getParameterValues("etiqueta");
-        Integer precio, dia, mes, anio, diaLi, mesLi, anioLi, aforo, numFila, numCol;
+        Integer precio, aforo, numFila, numCol;
 
         HttpSession session = request.getSession();
         Usuario usu = (Usuario) session.getAttribute("usuario");
@@ -72,7 +60,6 @@ public class ServletGuardarEvento extends HttpServlet {
         precio = Integer.parseInt(request.getParameter("precio"));
         String fechaInicio = request.getParameter("fechaInicio");
         String fechaFin = request.getParameter("fechaFin");
-        String imagen = request.getParameter("imagen");
         int maxEnt = Integer.parseInt(request.getParameter("maxEntradas"));
         String musica = request.getParameter("musica");
         String aire_libre = request.getParameter("aire_libre");
@@ -117,8 +104,6 @@ public class ServletGuardarEvento extends HttpServlet {
 
             List<Asientos> listaAsientos = new ArrayList<>();
             e.setAsientosList(listaAsientos);
-            // e.setFecha(new Date(anio, mes, dia));
-            //e.setFechaReserva(new Date(anioLi, mesLi, diaLi));
 
             e.setAsientosFijos(asientoFijo);
             if (!asientoFijo) {
@@ -158,7 +143,7 @@ public class ServletGuardarEvento extends HttpServlet {
            
             switch (usu.getRol()) {
                 case 0: // Creador de evento
-                    request.getRequestDispatcher("ServletListarEventos").forward(request, response);
+                    response.sendRedirect("ServletListarEventos");
                     break;
                 case 1: // Administrador
                     request.getRequestDispatcher("ServletListarEventos").forward(request, response);

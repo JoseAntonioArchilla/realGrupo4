@@ -98,12 +98,7 @@
                         <input type="date" name="fechaFin" id="fechaFin" required placeholder="Escribe el fin de la compra de las entradas" value="<%= sdf.format(fin)%>">
                     </p> 
 
-                    <p>
-                        <label for="imagen">Imagen del Evento</label>
-                        <input type="file"
-                               id="imagen" name="imagen"
-                               accept="image/png, image/jpeg" value="<%= imagen%>">
-                    </p>
+                 
                     <p>
                         <label for="descripcion" class="colocar_mensaje">Descripcion</label>                     
                         <textarea name="descripcion" class="texto_mensaje" id="descripcion" required="obligatorio" placeholder="Deja aquí la descripción del evento..." ><%= descripcion%></textarea> 
