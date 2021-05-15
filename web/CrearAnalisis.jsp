@@ -161,32 +161,53 @@
                 <select name="categorias">
                     <option value="musica">Musica</option>
                     <option value="">-----</option>
-                    <option value="aire_libre">Aire Libre</option>
+                    <option value="aireLibre">Aire Libre</option>
                     <option value="deporte">Deporte</option>
                     <option value="teatro">Teatro</option>
-                    <option value="gaming">Gaming</option>    
+                    <option value="gaming">Gaming</option> 
+                    <option value="lectura">Lectura</option> 
+                <option value="formacion">Formacion</option>
+                <option value="conferencia">Conferencia</option>
+                <option value="benefico">Benefico</option>
+                <option value="arte">Arte</option>
+                <option value="turismo">Turismo</option>
+            
                 </select>
             <%
-                }else if(categorias.equals("aire_libre")){
+                }else if(categorias.equals("aireLibre")){
                 %>  
                 <select name="categorias">
-                    <option value="aire_libre">Aire Libre</option>
+                    <option value="aireLibre">Aire Libre</option>
                     <option value="">-----</option>
                     <option value="musica">Musica</option>               
                     <option value="deporte">Deporte</option>
                     <option value="teatro">Teatro</option>
                     <option value="gaming">Gaming</option>  
+                    <option value="lectura">Lectura</option> 
+                <option value="formacion">Formacion</option>
+                <option value="conferencia">Conferencia</option>
+                <option value="benefico">Benefico</option>
+                <option value="arte">Arte</option>
+                <option value="turismo">Turismo</option>
+            
                 </select>
             <%
                 }else if(categorias.equals("deporte")){
                 %> 
                 <select name="categorias">
                     <option value="deporte">Deporte</option>
-                    <option value="aire_libre">Aire Libre</option>
+                    <option value="aireLibre">Aire Libre</option>
                     <option value="">-----</option>
                     <option value="musica">Musica</option>                              
                     <option value="teatro">Teatro</option>
-                    <option value="gaming">Gaming</option>   
+                    <option value="gaming">Gaming</option>  
+                    <option value="lectura">Lectura</option> 
+                <option value="formacion">Formacion</option>
+                <option value="conferencia">Conferencia</option>
+                <option value="benefico">Benefico</option>
+                <option value="arte">Arte</option>
+                <option value="turismo">Turismo</option>
+            
                 </select>
             <%
                 }else if(categorias.equals("teatro")){
@@ -194,10 +215,17 @@
                 <select name="categorias">
                     <option value="teatro">Teatro</option>
                     <option value="deporte">Deporte</option>
-                    <option value="aire_libre">Aire Libre</option>
+                    <option value="aireLibre">Aire Libre</option>
                     <option value="">-----</option>
                     <option value="musica">Musica</option>                                             
-                    <option value="gaming">Gaming</option>   
+                    <option value="gaming">Gaming</option> 
+                    <option value="lectura">Lectura</option> 
+                <option value="formacion">Formacion</option>
+                <option value="conferencia">Conferencia</option>
+                <option value="benefico">Benefico</option>
+                <option value="arte">Arte</option>
+                <option value="turismo">Turismo</option>
+            
                 </select>
             <%
                 }else if(categorias.equals("gaming")){
@@ -206,10 +234,131 @@
                     <option value="gaming">Gaming</option> 
                     <option value="teatro">Teatro</option>
                     <option value="deporte">Deporte</option>
-                    <option value="aire_libre">Aire Libre</option>
+                    <option value="aireLibre">Aire Libre</option>
                     <option value="">-----</option>
                     <option value="musica">Musica</option> 
+                    <option value="lectura">Lectura</option> 
+                <option value="formacion">Formacion</option>
+                <option value="conferencia">Conferencia</option>
+                <option value="benefico">Benefico</option>
+                <option value="arte">Arte</option>
+                <option value="turismo">Turismo</option>
+            
                 </select>
+                <%
+                }else if(categorias.equals("lectura")){
+                %>
+                <select name="categorias">
+                    <option value="lectura">Lectura</option>                     
+                    <option value="teatro">Teatro</option>
+                    <option value="deporte">Deporte</option>
+                    <option value="aireLibre">Aire Libre</option>
+                    <option value="">-----</option>
+                    <option value="musica">Musica</option> 
+                    <option value="gaming">Gaming</option>
+                <option value="formacion">Formacion</option>
+                <option value="conferencia">Conferencia</option>
+                <option value="benefico">Benefico</option>
+                <option value="arte">Arte</option>
+                <option value="turismo">Turismo</option>
+            
+                </select>
+                
+                <%
+                }else if(categorias.equals("formacion")){
+                %>
+                <select name="categorias">                    
+                    <option value="formacion">Formacion</option>                
+                    <option value="teatro">Teatro</option>
+                    <option value="deporte">Deporte</option>
+                    <option value="aireLibre">Aire Libre</option>
+                    <option value="">-----</option>
+                    <option value="musica">Musica</option> 
+                    <option value="gaming">Gaming</option>
+                <option value="lectura">Lectura</option> 
+                <option value="conferencia">Conferencia</option>
+                <option value="benefico">Benefico</option>
+                <option value="arte">Arte</option>
+                <option value="turismo">Turismo</option>
+            
+                </select>
+                
+                 <%
+                }else if(categorias.equals("conferencia")){
+                %>
+                <select name="categorias">  
+                    <option value="conferencia">Conferencia</option>
+                    <option value="formacion">Formacion</option>                
+                    <option value="teatro">Teatro</option>
+                    <option value="deporte">Deporte</option>
+                    <option value="aireLibre">Aire Libre</option>
+                    <option value="">-----</option>
+                    <option value="musica">Musica</option> 
+                    <option value="gaming">Gaming</option>
+                <option value="lectura">Lectura</option>                 
+                <option value="benefico">Benefico</option>
+                <option value="arte">Arte</option>
+                <option value="turismo">Turismo</option>
+            
+                </select>
+                
+                 <%
+                }else if(categorias.equals("benefico")){
+                %>
+                <select name="categorias">  
+                    <option value="benefico">Benefico</option>
+                    <option value="conferencia">Conferencia</option>
+                    <option value="formacion">Formacion</option>                
+                    <option value="teatro">Teatro</option>
+                    <option value="deporte">Deporte</option>
+                    <option value="aireLibre">Aire Libre</option>
+                    <option value="">-----</option>
+                    <option value="musica">Musica</option> 
+                    <option value="gaming">Gaming</option>
+                <option value="lectura">Lectura</option>                                
+                <option value="arte">Arte</option>
+                <option value="turismo">Turismo</option>
+            
+                </select>
+                
+                 <%
+                }else if(categorias.equals("arte")){
+                %>
+                <select name="categorias">  
+                    <option value="arte">Arte</option>
+                    <option value="benefico">Benefico</option>
+                    <option value="conferencia">Conferencia</option>
+                    <option value="formacion">Formacion</option>                
+                    <option value="teatro">Teatro</option>
+                    <option value="deporte">Deporte</option>
+                    <option value="aireLibre">Aire Libre</option>
+                    <option value="">-----</option>
+                    <option value="musica">Musica</option> 
+                    <option value="gaming">Gaming</option>
+                <option value="lectura">Lectura</option>                                              
+                <option value="turismo">Turismo</option>
+            
+                </select>
+                
+                  <%
+                }else if(categorias.equals("turismo")){
+                %>
+                <select name="categorias">  
+                    <option value="turismo">Turismo</option>
+                    <option value="arte">Arte</option>
+                    <option value="benefico">Benefico</option>
+                    <option value="conferencia">Conferencia</option>
+                    <option value="formacion">Formacion</option>                
+                    <option value="teatro">Teatro</option>
+                    <option value="deporte">Deporte</option>
+                    <option value="aireLibre">Aire Libre</option>
+                    <option value="">-----</option>
+                    <option value="musica">Musica</option> 
+                    <option value="gaming">Gaming</option>
+                <option value="lectura">Lectura</option>                                              
+                           
+                </select>
+                                           
             <%
                 }else{
                 %>
@@ -218,8 +367,15 @@
                     <option value="gaming">Gaming</option> 
                     <option value="teatro">Teatro</option>
                     <option value="deporte">Deporte</option>
-                    <option value="aire_libre">Aire Libre</option>                
+                    <option value="aireLibre">Aire Libre</option>                
                     <option value="musica">Musica</option>  
+                    <option value="lectura">Lectura</option> 
+                <option value="formacion">Formacion</option>
+                <option value="conferencia">Conferencia</option>
+                <option value="benefico">Benefico</option>
+                <option value="arte">Arte</option>
+                <option value="turismo">Turismo</option>
+            
                 </select>
             <%
                 }
@@ -229,10 +385,17 @@
             <!--<select name="categorias">
                 <option value="">-----</option>
                 <option value="musica">Musica</option>
-                <option value="aire_libre">Aire Libre</option>
+                <option value="aireLibre">Aire Libre</option>
                 <option value="deporte">Deporte</option>
                 <option value="teatro">Teatro</option>
-                <option value="gaming">Gaming</option>  
+                <option value="gaming">Gaming</option>
+                <option value="lectura">Lectura</option> 
+                <option value="formacion">Formacion</option>
+                <option value="conferencia">Conferencia</option>
+                <option value="benefico">Benefico</option>
+                <option value="arte">Arte</option>
+                <option value="turismo">Turismo</option>
+            
             </select> -->
             <br/>
             <label>Codigo Usuario: <input type="text" id="opUsuario" name="usuario" value=<%=usuario%>></label>

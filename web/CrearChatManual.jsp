@@ -35,7 +35,7 @@
                         %>
                        
                     </select>
-                    <label for="usuario" >Usuario atendido</label>
+                    <label for="usuario" >Usuario a atender</label>
                     <select id="usuario" name="usuario">
                         <% 
                             for(Usuario us : usrs){
