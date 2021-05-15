@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Conversaciones
-    Created on : 22-abr-2021, 20:51:37
+    Document   : InicioTeleoperador
+    Created on : 15-may-2021, 17:28:21
     Author     : franc
 --%>
 
@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Conversaciones</title>
+        <title>Inicio - Teleoperador</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
         <style>   
             th{
@@ -84,81 +84,55 @@
             
         </style>
     </head>
+    <body>
     <%
         List<Chat> conversaciones = (List<Chat>)request.getAttribute("chats");
         String error = (String)request.getAttribute("error");
         HttpSession ses = request.getSession();
         Usuario usuarioIniciado = (Usuario)ses.getAttribute("usuario");
     %>
-    <body>
-        
-        <!-- BARRA -->
-        
-        <div class="row py-2 text-center" style="background: #de7ebf">
-            <% 
-                if(usuarioIniciado.getRol() == 0){
-            %>
-                <a class="col-2  text-decoration-none" href="ServletListarEventos">
-                    Logo
-                </a>
-            <%
-                } else if (usuarioIniciado.getRol() == 4){
-            %>
-                <a class="col-2  text-decoration-none" href="index.html">
-                    Logo
-                </a>
-            <%
-                }
-            %>
-            
-            <div class="col-4">
-            </div>
-            <div class="col-4">
-            </div>
-            
-            <div  class="col-2 dropdown">
-                <img src="img/Logo.png" style="width:2em; height:2em;">
-                <div class="dropdown-content">
-                    <a class="row dropdown-element" href="Perfil.jsp">Mi perfil</a>
-                    <a class="row dropdown-element" href="ServletListarConversaciones">Mensajes</a>
-                    <a class="row dropdown-element" href="index.html">Cerrar sesion</a>
-                </div>
-            </div>       
+    <div class="row py-2 text-center" style="background: #de7ebf">
+        <a class="col-2  text-decoration-none" href="ServletListarConversaciones">
+            Logo
+        </a>
+        <div class="col-4">
         </div>
-        
-        <!-- TÍTULO Y BUSCADOR -->
-        
-        <div class="p-sm-3 text-sm-left">
-            <h1 class="py-2">Conversaciones</h1>
-            <form method="POST" action="ServletListarConversaciones">
-                <input type="search" name="usuarioBuscar" placeholder="Buscar por usuario"/>
-                <input type="submit" value="Buscar"/>
-            </form>
-            <% if(request.getAttribute("buscado") != null) {
-            %>
-                <br/>
-                <button onclick="location.href='ServletListarConversaciones';">Mostrar todas</button>
-            <% }
-            %>
+        <div class="col-4 d-flex justify-content-center ">
+            <a href="ServletCrearChatManual">Crear una nueva conversación</a>
         </div>
-        <hr style="width: 100%">
-        
-        <!-- CONTENIDO -->
-        
-        <% if(usuarioIniciado != null && (usuarioIniciado.getRol() == 0 || usuarioIniciado.getRol() == 4)) {
-        %>   
-            <form class="px-sm-3" method="POST" action="ServletCrearChat">
-                <input type="submit" value="Inicia una conversación con un nuevo teleoperador">
-            </form>
-        <% }
-        
-        if (error != null) {
+        <div  class="col-2 dropdown">
+            <img src="img/Logo.png" style="width:2em; height:2em;">
+            <div class="dropdown-content">
+                <a class="row dropdown-element" href="Perfil.jsp">Mi perfil</a>
+                <a class="row dropdown-element" href="ServletListarConversaciones">Mensajes</a>
+                <a class="row dropdown-element" href="ServletCerrarSesion">Cerrar sesion</a>
+            </div>
+        </div>       
+    </div>   
+    
+    <div class="p-sm-3 text-sm-left">
+        <h1 class="py-2">Conversaciones</h1>
+        <form method="POST" action="ServletListarConversaciones">
+            <input type="search" name="usuarioBuscar" placeholder="Buscar por usuario"/>
+            <input type="submit" value="Buscar"/>
+        </form>
+        <% if(request.getAttribute("buscado") != null) {
         %>
-            <p class="px-sm-3" style="color: red;"><%=error%></p>
-        <%
-        }
-        
-    if(conversaciones != null && conversaciones.size() > 0) {  
+            <br/>
+            <button onclick="location.href='ServletListarConversaciones';">Mostrar todas</button>
+        <% }
+        %>
+    </div>
+    <hr style="width: 100%">
+    <%
+        if (error != null) {
+    %>
+       <p class="px-sm-3" style="color: red;"><%=error%></p>
+    <%
+           }
+    %>
+    <%
+        if(conversaciones != null && conversaciones.size() > 0) {  
     %>
          <div class="mx-sm-3 p-sm-3">
             <div class="row justify-content-start">
@@ -191,9 +165,10 @@
     <% } else {
     %>
         <p class="mx-sm-3">No hay conversaciones que mostrar</p>
-    <% }
+    <% 
+        }
     %>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js" integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ" crossorigin="anonymous"></script>
     </body>
 </html>

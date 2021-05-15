@@ -71,9 +71,14 @@ public class ServletListarConversaciones extends HttpServlet {
             }
         }
         
+        if(usuarioSesion.getRol() == 2){
+            RequestDispatcher rd = request.getRequestDispatcher("InicioTeleoperador.jsp");
+            rd.forward(request, response);  
+        } else {
+            RequestDispatcher rd = request.getRequestDispatcher("Conversaciones.jsp");
+            rd.forward(request, response);
+        }
         
-        RequestDispatcher rd = request.getRequestDispatcher("Conversaciones.jsp");
-        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
