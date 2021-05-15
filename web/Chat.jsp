@@ -135,12 +135,12 @@
                                     <span class="fechahora">(<%= new SimpleDateFormat("dd/MM/yyyy 'a las' HH:mm:ss").format(msg.getFechaHora()) %>) </span>
                                 </div>
                                 <div class="col-2 px-sm-2 py-2 text-end my-1" style="background-color: #f3edf7;">
-                                    <b><%=msg.getEmisor().getNickname()%></b><img src="img/Logo.png" width="50px" alt="...">
+                                    <b><%=msg.getEmisor().getNickname()%></b><img class="px-1" src="img/avatar.png" width="50px" alt="...">
                                 </div>
                             <% } else {
                             %>
                                 <div class="col-2 px-sm-2 py-2 my-1" style="background-color: #fafafa;">
-                                    <img src="img/Logo.png" width="50px" alt="..."><b><%=msg.getEmisor().getNickname()%></b>
+                                    <img class="px-1" src="img/avatar.png" width="50px" alt="..."><b><%=msg.getEmisor().getNickname()%></b>
                                 </div>
                                 <div class="col-10 px-sm-4 py-2 text-wrap text-start my-1 msg" style="background-color: #fafafa;">
                                     <%=msg.getTexto().replaceAll("(\r\n|\n)", "<br />") %> <br/>
@@ -158,14 +158,14 @@
                     <div class="d-block p-2">
                         <b>Teleoperador</b><br/>
                         <div class="d-flex flex-row justify-content-center align-items-center">
-                            <div class="py-2 px-1"><img src="img/Logo.png" width="100px" alt="..."></div>
+                            <div class="py-2 px-1"><img src="img/avatar.png" width="100px" alt="..."></div>
                             <div class="py-2 px-1" style="width: 8em;"><%=teleOp.getNickname()%></div>
                         </div>
                     </div>
                     <div class="d-block p-2">
                         <b>Usuario</b></br>
                         <div class="d-flex flex-row justify-content-center align-items-center">
-                            <div class="py-2 px-1"><img src="img/Logo.png" width="100px" alt="..."></div>
+                            <div class="py-2 px-1"><img src="img/avatar.png" width="100px" alt="..."></div>
                             <div class="py-2 px-1" style="width: 8em;"><%=usr.getNickname()%></div>
                         </div>
                     </div>

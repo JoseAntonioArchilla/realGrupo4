@@ -163,10 +163,10 @@
                 for(Chat ch : conversaciones) {
             %>    
                 <div class="row justify-content-start">
-                    <div class="columna col-4 p-sm-3 my-1" onclick="location.href='ServletMostrarChat?idChat=<%=ch.getIdchat()%>';" ><img src="img/Logo.png" width="50px" alt="..."><%=ch.getUsuario1().getNickname()%>
+                    <div class="columna col-4 p-sm-3 my-1" onclick="location.href='ServletMostrarChat?idChat=<%=ch.getIdchat()%>';" ><img src="img/avatar.png" width="50px" alt="..."><%=ch.getUsuario1().getNickname()%>
                         <span class="tooltiptext">Ver la conversación</span>
                     </div>
-                    <div class="columna col-4 p-sm-3 my-1" onclick="location.href='ServletMostrarChat?idChat=<%=ch.getIdchat()%>';" ><img src="img/Logo.png" width="50px" alt="..."><%=ch.getUsuario2().getNickname()%>
+                    <div class="columna col-4 p-sm-3 my-1" onclick="location.href='ServletMostrarChat?idChat=<%=ch.getIdchat()%>';" ><img src="img/avatar.png" width="50px" alt="..."><%=ch.getUsuario2().getNickname()%>
                         <span class="tooltiptext">Ver la conversación</span>
                     </div>
                     <% if(usuarioIniciado.getRol() == 2) {
