@@ -125,13 +125,13 @@
                             
                             int plazas = e.getAforo() - lista_evento_usuario.size();
                             int numEntradas = 0;
-                            for (EventoUsuario aux : ue.getEventoUsuarioList()) {
+                            for (EventoUsuario aux : lista_evento_usuario) {
                                 if (aux.getEvento().getIdevento() == e.getIdevento()) {
                                     numEntradas++;
                                 }
                             }
 
-                            if (numEntradas > e.getMaxNumEntradas()) {
+                            if (numEntradas >= e.getMaxNumEntradas()) {
                     %>
                     <p>Has superado el cupo</p>
                     <%
