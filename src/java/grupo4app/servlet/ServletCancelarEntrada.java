@@ -25,13 +25,13 @@ import javax.servlet.http.HttpServletResponse;
 public class ServletCancelarEntrada extends HttpServlet {
 
     @EJB
-    private EventoUsuarioFacade eventoUsuarioFacade;;
+    private EventoUsuarioFacade eventoUsuarioFacade;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Usuario usr = (Usuario)request.getSession().getAttribute("usuario");
         
-        eventoUsuarioFacade.remove(eventoUsuarioFacade.find(Integer.parseInt(request.getParameter("eventoUsuario"))));
+        eventoUsuarioFacade.remove(eventoUsuarioFacade.findById(Integer.parseInt(request.getParameter("eventoUsuario"))));
         
         switch (usr.getRol()) {
                 case 0: // Creador de evento

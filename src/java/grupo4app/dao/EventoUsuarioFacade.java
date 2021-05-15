@@ -39,4 +39,9 @@ public class EventoUsuarioFacade extends AbstractFacade<EventoUsuario> {
         return q.getResultList();
     }
     
+    public EventoUsuario findById(int id)
+    {
+        Query q = em.createQuery("select e from EventoUsuario e where e.eventoUsuarioPK.ideventousuario = :id").setParameter("id", id);
+        return (EventoUsuario)q.getResultList().get(0);
+    }
 }
