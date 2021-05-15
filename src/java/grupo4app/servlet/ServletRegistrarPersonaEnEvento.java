@@ -40,15 +40,6 @@ public class ServletRegistrarPersonaEnEvento extends HttpServlet {
     @EJB
     private EventoFacade eventoFacade;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -78,7 +69,7 @@ public class ServletRegistrarPersonaEnEvento extends HttpServlet {
         
         request.setAttribute("evento", eventoFacade.find(e));
         
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("ServletListarEventos").forward(request, response);
     }
     
 

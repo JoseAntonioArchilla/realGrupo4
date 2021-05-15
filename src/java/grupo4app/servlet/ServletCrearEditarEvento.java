@@ -33,7 +33,7 @@ public class ServletCrearEditarEvento extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
       
-        String strId = request.getParameter("id");
+        String strId = request.getParameter("evento");
         Evento e = this.ef.find(new Integer(strId));
         
         request.setAttribute("evento", e);

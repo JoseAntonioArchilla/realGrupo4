@@ -6,9 +6,9 @@
 package grupo4app.servlet;
 
 import grupo4app.dao.EventoFacade;
+import grupo4app.dao.EventoUsuarioFacade;
 import grupo4app.entity.Evento;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,16 +25,10 @@ public class ServletMostrarEvento extends HttpServlet {
 
     @EJB
     private EventoFacade eventoFacade;
+    
+    @EJB
+    private EventoUsuarioFacade eventoUsuarioFacade;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,10 +36,8 @@ public class ServletMostrarEvento extends HttpServlet {
         int idEvento = Integer.parseInt(request.getParameter("idEvento"));
         Evento e = eventoFacade.find(idEvento);
         request.setAttribute("evento", e);
-        request.getRequestDispatcher("MostrarEvento.jsp").forward(request, response);
-        
-        
-        
+        request.setAttribute("lista_evento_usuario", eventoUsuarioFacade.findByEvento(e));
+        request.getRequestDispatcher("MostrarEvento.jsp").forward(request, response);    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

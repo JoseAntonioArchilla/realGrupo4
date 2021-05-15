@@ -7,6 +7,7 @@ package grupo4app.servlet;
 
 import grupo4app.dao.AsientosFacade;
 import grupo4app.dao.EventoFacade;
+import grupo4app.dao.UsuarioFacade;
 import grupo4app.entity.Asientos;
 import grupo4app.entity.AsientosPK;
 import grupo4app.entity.Evento;
@@ -41,6 +42,7 @@ public class ServletGuardarEvento extends HttpServlet {
 
     @EJB
     AsientosFacade asientos;
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -60,9 +62,10 @@ public class ServletGuardarEvento extends HttpServlet {
         HttpSession session = request.getSession();
         Usuario usu = (Usuario) session.getAttribute("usuario");
 
-        Evento e = (Evento) session.getAttribute("evento");
-        boolean editando = e != null;
-        e = editando ? e : new Evento();
+        String id_evento = request.getParameter("evento");
+        boolean editando = id_evento != null && !id_evento.equals("");
+        
+        Evento e = editando ? evento.find(Integer.parseInt(id_evento)) : new Evento();
 
         titulo = request.getParameter("titulo");
         descripcion = request.getParameter("descripcion");
@@ -132,7 +135,6 @@ public class ServletGuardarEvento extends HttpServlet {
                 this.evento.edit(e);
             } else {
                 this.evento.create(e);
-
                 if (asientoFijo) {
                     numFila = Integer.parseInt(request.getParameter("numFilas"));
                     numCol = Integer.parseInt(request.getParameter("numColumnas"));
@@ -141,7 +143,7 @@ public class ServletGuardarEvento extends HttpServlet {
                             AsientosPK aux = new AsientosPK(i, j, e.getIdevento());
                             Asientos as = new Asientos(aux);
                             as.setOcupado(0);
-                            as.setEventoUsuarioList(new ArrayList<EventoUsuario>());
+                            as.setEventoUsuarioList(new ArrayList<>());
                             this.asientos.create(as);
                             listaAsientos.add(as);
                         }
@@ -152,9 +154,25 @@ public class ServletGuardarEvento extends HttpServlet {
                     this.evento.edit(e);
                 }
             }
-
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-            rd.forward(request, response);
+     
+           
+            switch (usu.getRol()) {
+                case 0: // Creador de evento
+                    request.getRequestDispatcher("ServletListarEventos").forward(request, response);
+                    break;
+                case 1: // Administrador
+                    response.sendRedirect("ServletUsuarioListar");
+                    break;
+                case 2: // Teleoperador
+                    response.sendRedirect("ServletListarConversaciones");
+                    break;
+                case 3: // Analista
+                    response.sendRedirect("ServletFiltroListar");                    
+                    break;
+                case 4: // Usuario evento
+                    response.sendRedirect("ServletListarEventos");
+                    break;
+            }
 
         } catch (ParseException ex) {
             Logger.getLogger(ServletGuardarEvento.class.getName()).log(Level.SEVERE, null, ex);

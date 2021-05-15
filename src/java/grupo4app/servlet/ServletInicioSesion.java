@@ -27,9 +27,6 @@ import javax.servlet.http.HttpSession;
 public class ServletInicioSesion extends HttpServlet {
 
     @EJB
-    private UsuarioEventoFacade usuarioEventoFacade;
-
-    @EJB
     private UsuarioFacade usuarioFacade;
 
     /**
@@ -48,7 +45,6 @@ public class ServletInicioSesion extends HttpServlet {
         
         String nUsuario = request.getParameter("usuario");
         String password = request.getParameter("contrasena");
-        String creador = request.getParameter("creador");
         
         nUsuario = nUsuario.trim();
         Usuario usr = this.usuarioFacade.findByNicknameAndPassword(nUsuario,password);
@@ -65,7 +61,7 @@ public class ServletInicioSesion extends HttpServlet {
             
             switch (usr.getRol()) {
                 case 0: // Creador de evento
-                    response.sendRedirect("InicioCreadorEvento.jsp");
+                    request.getRequestDispatcher("ServletListarEventos").forward(request, response);
                     break;
                 case 1: // Administrador
                     response.sendRedirect("ServletUsuarioListar");
