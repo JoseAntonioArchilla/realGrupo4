@@ -24,7 +24,7 @@
     <%
         Evento e = (Evento) request.getAttribute("evento");
         List<EventoUsuario> lista_evento_usuario = (List<EventoUsuario>) request.getAttribute("lista_evento_usuario");
-        UsuarioEvento ue = (UsuarioEvento) session.getAttribute("usuarioEvento");
+        UsuarioEvento ue = ((Usuario) session.getAttribute("usuario")).getUsuarioEvento();
         String patron = "yyyy-MM-dd";
         SimpleDateFormat format = new SimpleDateFormat(patron);
 
