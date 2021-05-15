@@ -63,17 +63,23 @@ public class ServletInicioSesion extends HttpServlet {
         } else {
             session.setAttribute("usuario", usr);
             
-            session.setAttribute("usuarioEvento", usr.getRol()==4 ? usuarioEventoFacade.find(usr.getIdusuario()):null);
-     
-            if(usr.getRol() == 3){
-                response.sendRedirect("ServletFiltroListar"); 
-            }/*else if(creador != null){
-               RequestDispatcher rd = request.getRequestDispatcher("RegistroEvento.jsp");
-                rd.forward(request, response); 
-            }*/
-            else{
-                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-                rd.forward(request, response);
+            switch (usr.getRol()) {
+                case 0: // Creador de evento
+                    response.sendRedirect("InicioCreadorEvento.jsp");
+                    break;
+                case 1: // Administrador
+                    response.sendRedirect("ServletUsuarioListar");
+                    break;
+                case 2: // Teleoperador
+                    response.sendRedirect("ServletListarConversaciones");
+                    break;
+                case 3: // Analista
+                    response.sendRedirect("ServletFiltroListar");                    
+                    break;
+                case 4: // Usuario evento
+                    session.setAttribute("usuarioEvento", usr.getUsuarioEvento());
+                    response.sendRedirect("ServletListarEventos");
+                    break;
             }
         }
     }

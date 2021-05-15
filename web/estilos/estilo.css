@@ -38,11 +38,6 @@ header{
     grid-template-columns: 1fr 1fr;
     height: 20%;
     text-align: center;
-    background-color: orange;
-    border-radius: 50%;
-    padding: 3em;
-    margin: 3em;
-
 }
 
 #eslogan h3,#eslogan img{

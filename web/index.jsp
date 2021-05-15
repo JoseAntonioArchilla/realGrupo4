@@ -36,185 +36,51 @@
                     color: black
                 }
 
-                span{
-                    border-radius: 5px;  
-                    border-style: solid; 
-                    border-width: 1px; 
-                    border-color: #ab4493;
-                    background: white;
-                    padding: .2em;
-                }
-
                 a:hover{
                     font-weight: bold;
                     color: black;
                     text-decoration: none;
                 }
-                button{
-                    border-radius: 15px;
-                    background: #f48542;
-                    font-weight: bold;
-                    cursor: pointer;
-                }
-                .dropdown{
-                    position: relative;display: inline-block;
-                }
-                .dropdown-content{
-                    display: none; position: absolute; z-index: 1
-                }
-                .dropdown:hover .dropdown-content{
-                    display: block;
-                }
-                .dropdown-element
-                {
-                    background: #eccbe8;
-                    text-align: center;
-                    padding:  .3em;
-                }
+               
                 .fondito {
                     background: #f2f2f2;
                 }
             </style>
 
-            <a class="col-2  text-decoration-none" href="index.html">
+            <a class="col-2  text-decoration-none" href="index.jsp">
                 Logo
             </a>
-            <input class="col-4" style="width: 100%; border-radius: 25px" type="search" id="buscador">
+            
 
-            <div class="col-4 d-flex justify-content-around ">
-                <a href="ServletListarEventos">Eventos</a>
-                <a href="<%= u == null ? "InicioSesion.jsp" : "RegistroEvento.jsp"%>">Crear evento</a>
+            <div class="col-6">
+                
             </div>
-            <%
-                if (u == null) {
-            %>
-            <div  class="col-2 ">
+           
+            <div  class="col-2 " style="font-size: .9em">
+                <a href="RegistroUsuario.jsp">Registrarse </a>
+            </div>            
+            <div  class="col-2 " style="font-weight: bold">
                 <a href="InicioSesion.jsp">Iniciar sesión </a>
-            </div>
-            <%
-            } else {
-            %>
-            <div  class="col-2 dropdown">
-
-                <img src="img/Logo.png" style="width:2em; height:2em;">
-                <div class="dropdown-content">
-                    <a class="row dropdown-element" href="index.html">Mi perfil</a>
-                    <a class="row dropdown-element" href="index.html">Mensajes</a>
-                    <a class="row dropdown-element" href="index.html">Ajustes</a>
-                    <a class="row dropdown-element" href="ServletCerrarSesion">Cerrar sesion</a>
-                </div>
-            </div>   
-            <%
-                }
-            %>
-
+            </div>            
         </div>
         <!-- End NavBar -->
+        
+        
         <section>
-            <div id="eslogan">
-                <h3>TEXTO</h3>
-                <img src="img/lotad.png" alt="imagenEslogan">
-            </div>
-            <div id="categoriasEventos">
-                <h4>Categorias</h4>
-                <ul>
-                    <li><a href="index.html">C1</a></li>
-                    <li><a href="portafolio.html">C2</a></li>
-                    <li><a href="registroEvento.jsp">C3</a></li>
-                    <li><a href="contacto.html">C4</a></li>
-                </ul>
-            </div>
-            <a href="ServletListarEventos"><h4>Eventos</h4></a>
-            <div id="eventos">
-                <article id="evento1">
-                    <img src="img/lotad.png" alt="evento1">
-                    <p>TEXTO</p>
-                </article>
-                <article id="evento2">
-                    <img src="img/lotad.png" alt="evento2">
-                    <p>TEXTO</p>
-                </article>
-                <article id="evento3">
-                    <img src="img/lotad.png" alt="evento3">
-                    <p>TEXTO</p>
-                </article>
-                <article id="evento4">
-                    <img src="img/lotad.png" alt="evento3">
-                    <p>TEXTO</p>
-                </article>
-                <article id="evento1">
-                    <img src="img/lotad.png" alt="evento1">
-                    <p>TEXTO</p>
-                </article>
-                <article id="evento2">
-                    <img src="img/lotad.png" alt="evento2">
-                    <p>TEXTO</p>
-                </article>
-                <article id="evento3">
-                    <img src="img/lotad.png" alt="evento3">
-                    <p>TEXTO</p>
-                </article>
-                <article id="evento4">
-                    <img src="img/lotad.png" alt="evento3">
-                    <p>TEXTO</p>
-                </article>
-            </div>
+            <div id="eslogan" class="container-fluid my-4" style="background: #cccccc ">
+                
+                <h3><span>Haz lo que</span><br> <span style="color:#f48542 ">te apasiona</span></h3>
+                <img class="my-4" src="img/gente-feliz.jpg" alt="imagenEslogan">
+            </div>            
         </section>
+        
+        <p>
+            Crea todo tipo de eventos, desde un concierto hasta un torneo de Magic
+        </p>
+        
         <footer>
-            <ul>
-                <li><a href="index.html">C1</a></li>
-                <li><a href="portafolio.html">C2</a></li>
-                <li><a href="registroEvento.jsp">C3</a></li>
-                <li><a href="contacto.html">C4</a></li>
-            </ul>
-            <ul>
-                <li><a href="index.html">C1</a></li>
-                <li><a href="portafolio.html">C2</a></li>
-                <li><a href="cursos.html">C3</a></li>
-                <li><a href="contacto.html">C4</a></li>
-            </ul>
-            <ul>
-                <li><a href="index.html">C1</a></li>
-                <li><a href="portafolio.html">C2</a></li>
-                <li><a href="cursos.html">C3</a></li>
-                <li><a href="contacto.html">C4</a></li>
-            </ul>
-            <ul>
-                <li><a href="index.html">C1</a></li>
-                <li><a href="portafolio.html">C2</a></li>
-                <li><a href="cursos.html">C3</a></li>
-                <li><a href="contacto.html">C4</a></li>
-            </ul>
-
-            <p>Lorem ipsum dolor sit amet consectetur.</p>
-            <ul id="listaPie">
-                <li><a href="cambio.html">C1</a></li>
-                <li><a href="portafolio.html">C2</a></li>
-                <li><a href="cursos.html">C3</a></li>
-                <li><a href="#.html">C4</a></li>
-                <li>metralleta puñetazo</li>
-                <li>jose mata al brahydios<li>
-            </ul>
+           
         </footer>
-
-
-
-
-        <script>
-            var input = document.getElementById("buscador");
-
-            // Execute a function when the user releases a key on the keyboard
-            input.addEventListener("keyup", function (event) {
-                // Number 13 is the "Enter" key on the keyboard
-                if (event.keyCode === 13) {
-                    // Cancel the default action, if needed
-                    event.preventDefault();
-                    // Trigger the button element with a click
-                    window.location.href = './ServletListarEventos?nombre=' + input.value;
-                }
-            });
-        </script>
-
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
