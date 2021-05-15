@@ -7,6 +7,7 @@ package grupo4app.dao;
 
 import grupo4app.entity.Evento;
 import grupo4app.entity.EventoUsuario;
+import grupo4app.entity.UsuarioEvento;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -43,5 +44,12 @@ public class EventoUsuarioFacade extends AbstractFacade<EventoUsuario> {
     {
         Query q = em.createQuery("select e from EventoUsuario e where e.eventoUsuarioPK.ideventousuario = :id").setParameter("id", id);
         return (EventoUsuario)q.getResultList().get(0);
+    }
+    
+    public List<EventoUsuario> findByUsuario(UsuarioEvento u)
+    {
+        Query q = em.createQuery("select e from EventoUsuario e where e.usuarioEvento = :usuario").setParameter("usuario", u);
+        
+        return q.getResultList();
     }
 }

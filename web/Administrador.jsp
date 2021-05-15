@@ -20,21 +20,42 @@
         if(listaUsuarios == null){
             response.sendRedirect("ServletUsuarioListar");
         }
+        Usuario usuario = (Usuario) sesionUsuario.getAttribute("usuario");
     %>
 
     </head>
     
     <body>     
-        <div class="row py-2 text-center" style="background: #77e5ff">
-             <style>
-                 a{
-                     font-size: 1.3em;
-                     color: black
-                 }
+        <!-- Navbar -->      
+        <div class="row py-2 text-center" style="background: #de7ebf">
+            <style>
+                body{
+                    background-image: url("img/pattern.jpg");
+                }
+                a{
+                    font-size: 1.3em;
+                    color: black
+                }
+
+                span{
+                    border-radius: 5px;  
+                    border-style: solid; 
+                    border-width: 1px; 
+                    border-color: #ab4493;
+                    background: white;
+                    padding: .2em;
+                }
+
                 a:hover{
                     font-weight: bold;
                     color: black;
                     text-decoration: none;
+                }
+                button{
+                    border-radius: 15px;
+                    background: #f48542;
+                    font-weight: bold;
+                    cursor: pointer;
                 }
                 .dropdown{
                     position: relative;display: inline-block;
@@ -51,26 +72,23 @@
                     text-align: center;
                     padding:  .3em;
                 }
+                .fondito {
+                    background: #f2f2f2;
+                }
             </style>
-            
-            <a class="col-2  text-decoration-none" href="index.html">
-                Logo
+
+            <a class="col-2  text-decoration-none" href="ServletInicioSesion?usuario=<%= usuario.getNickname()%>&contrasena=<%= usuario.getPassword()%>">
+                <img src="img/Logo.png" style="width:2em; height:2em;">
             </a>
             <form class="col-4">
                 <input style="width: 100%; border-radius: 25px" type="text">
             </form>
-            <div class="col-4 d-flex justify-content-around ">
-                <a href="index.html">Inicio </a>
-                <a href="index.html">Servicios </a>
-                <a href="#">Contacto</a>
-            </div>
+            <div class="col-4"></div>
             <div  class="col-2 dropdown">
-                <img src="img/Logo.png" style="width:2em; height:2em;">
+                <img src="img/avatar.png" style="width:2em; height:2em;">
                 <div class="dropdown-content">
-                    <a class="row dropdown-element" href="index.html">Mi perfil</a>
-                    <a class="row dropdown-element" href="index.html">Mensajes</a>
-                    <a class="row dropdown-element" href="index.html">Ajustes</a>
-                    <a class="row dropdown-element" href="index.html">Cerrar sesion</a>
+                    <a class="row dropdown-element" href="ServletCargarListaEventosUsuario">Mi perfil</a>
+                    <a class="row dropdown-element" href="ServletCerrarSesion">Cerrar sesion</a>
                 </div>
             </div>       
         </div>
@@ -94,7 +112,7 @@
                     %>
                     <div class="col-4">
                         <div class="row">
-                            <a href="ServletCargarPerfil?usuario=<%=e.getIdusuario()%>" class="col-6"><img width="100%" height="100%" src="img/Logo.png"></a>
+                            <a href="ServletCargarListaEventosUsuario?usuario=<%=e.getIdusuario()%>" class="col-6"><img width="100%" height="100%" src="img/Logo.png"></a>
                             <div class="col-6">
                                 <h2><%=e.getNickname()%></h2>
                                 <p><%=e.getRol() == 0 ? "Creador de evento" : (e.getRol() == 1 ? "Administrador del sistema" : (e.getRol() == 2 ? "Teleoperador" : (e.getRol() == 3 ? "Analista de eventos" : "Usuario de evento")))%> </p>

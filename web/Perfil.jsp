@@ -21,13 +21,7 @@
         <%
             Usuario usuario = (Usuario) request.getAttribute("usuario");
             UsuarioEvento usuarioEvento = (UsuarioEvento) request.getAttribute("usuarioEvento");
-            
-            if(usuario == null){
-                HttpSession sesion = request.getSession();
-                usuario = (Usuario) sesion.getAttribute("usuario");
-                usuarioEvento = (UsuarioEvento) sesion.getAttribute("usuarioEvento");
-            }
-            List<EventoUsuario> listaEventos = new ArrayList<EventoUsuario>();
+            List<EventoUsuario> listaEventos = (List) request.getAttribute("listaEventos");
         %>
         <h1>Mi perfil</h1>
         <form action="EditarPerfil.jsp">
@@ -35,7 +29,6 @@
             Rol: <%=usuario.getRol() == 0 ? "Creador de evento" : (usuario.getRol() == 1 ? "Administrador del sistema" : (usuario.getRol() == 2 ? "Teleoperador" : (usuario.getRol() == 3 ? "Analista de eventos" : "Usuario de evento")))%><br>
             <%
                 if(usuarioEvento != null){
-                    listaEventos = usuarioEvento.getEventoUsuarioList();
             %>
             Nombre: <%=usuarioEvento.getNombre()%><br>
             Apellido: <%=usuarioEvento.getApellido()%><br>

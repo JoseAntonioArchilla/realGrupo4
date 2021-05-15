@@ -5,6 +5,7 @@
  */
 package grupo4app.servlet;
 
+import grupo4app.dao.EventoUsuarioFacade;
 import grupo4app.dao.UsuarioEventoFacade;
 import grupo4app.dao.UsuarioFacade;
 import grupo4app.entity.Usuario;
@@ -18,18 +19,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author nieto
  */
-@WebServlet(name = "ServletCargarPerfil", urlPatterns = {"/ServletCargarPerfil"})
-public class ServletCargarPerfil extends HttpServlet {
+@WebServlet(name = "ServletCargarListaEventosUsuario", urlPatterns = {"/ServletCargarListaEventosUsuario"})
+public class ServletCargarListaEventosUsuario extends HttpServlet {
 
     @EJB
     private UsuarioFacade usuarioFacade;
     @EJB
     private UsuarioEventoFacade usuarioEventoFacade;
+    @EJB
+    private EventoUsuarioFacade eventoUsuarioFacade;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,12 +45,21 @@ public class ServletCargarPerfil extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("usuario"));
-        Usuario usuario = usuarioFacade.find(id);
-        UsuarioEvento usuarioEvento = usuarioEventoFacade.find(id);
+        String id = request.getParameter("usuario");
+        Usuario usuario;
+        UsuarioEvento usuarioEvento;
+        if(id == null){
+            HttpSession sesion = request.getSession();
+            usuario = (Usuario) sesion.getAttribute("usuario");
+            usuarioEvento = (UsuarioEvento) sesion.getAttribute("usuarioEvento");
+        }else{
+            usuario = usuarioFacade.find(Integer.parseInt(id));
+            usuarioEvento = usuarioEventoFacade.find(Integer.parseInt(id));
+        }
         
         request.setAttribute("usuario", usuario);
         request.setAttribute("usuarioEvento", usuarioEvento);
+        request.setAttribute("listaEventos", eventoUsuarioFacade.findByUsuario(usuarioEvento));
         
         RequestDispatcher rd = request.getRequestDispatcher("Perfil.jsp");
         rd.forward(request, response);

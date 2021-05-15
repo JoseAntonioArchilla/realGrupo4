@@ -93,8 +93,12 @@
             <div  class="col-2 dropdown">
                 <img src="img/avatar.png" style="width:2em; height:2em;">
                 <div class="dropdown-content">
-                    <a class="row dropdown-element" href="Perfil.jsp">Mi perfil</a>
-                    <a class="row dropdown-element" href="ServletListarConversaciones">Mensajes</a>
+                    <a class="row dropdown-element" href="ServletCargarListaEventosUsuario">Mi perfil</a>
+                    <%
+                        if(u.getRol() != 1){
+                            %><a class="row dropdown-element" href="ServletListarConversaciones">Mensajes</a><%
+                        }
+                    %>
                     <a class="row dropdown-element" href="ServletCerrarSesion">Cerrar sesion</a>
                 </div>
             </div>       
