@@ -5,15 +5,20 @@
  */
 package grupo4app.servlet;
 
+import grupo4app.dao.EventoUsuarioFacade;
 import grupo4app.dao.FiltroFacade;
 import grupo4app.dao.UsuarioEventoFacade;
+import grupo4app.entity.EventoUsuario;
 import grupo4app.entity.Filtro;
 import grupo4app.entity.FiltroPK;
 import grupo4app.entity.Usuario;
 import grupo4app.entity.UsuarioEvento;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,7 +36,9 @@ import javax.servlet.http.HttpSession;
 public class ServletMostrarEventoUsuarios extends HttpServlet {
 
     @EJB
-    private UsuarioEventoFacade usuarioEventoFacade;
+    private EventoUsuarioFacade eventoUsuarioFacade;
+
+   
 
     @EJB
     private FiltroFacade filtroFacade;
@@ -48,7 +55,7 @@ public class ServletMostrarEventoUsuarios extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
         
         //Variables
@@ -59,13 +66,14 @@ public class ServletMostrarEventoUsuarios extends HttpServlet {
         int idCreador = creadorFiltro.getIdusuario();
         FiltroPK filtroPk = new FiltroPK(idFiltro, idCreador);
         
+        
         Filtro filtroUsado = this.filtroFacade.find(filtroPk);
-        //List<UsuarioEvento> usuarios = this.usuarioEventoFacade.EncontrarUsuarios(filtroUsado);
-        //request.setAttribute("usuarios", usuarios);
+        List<EventoUsuario> usuariosFiltrados = this.eventoUsuarioFacade.filtrosEventoUsuario(filtroUsado);
+        request.setAttribute("filtrados", usuariosFiltrados);
         
         String direccion = "FiltrosUsuariosEventos.jsp";
         RequestDispatcher rd = request.getRequestDispatcher(direccion);
-        rd.forward(request, response);
+        rd.forward(request, response);                
                 
     }
 
@@ -81,7 +89,11 @@ public class ServletMostrarEventoUsuarios extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(ServletMostrarEventoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -95,7 +107,11 @@ public class ServletMostrarEventoUsuarios extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(ServletMostrarEventoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

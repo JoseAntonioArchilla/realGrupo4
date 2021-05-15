@@ -22,7 +22,7 @@
         <div class="contact_form">
 
             <div class="formulario">      
-              <h1>Incicio de sesión</h1>               
+              <h1>Inicio de sesión</h1>               
 
                 <form method="post" action="ServletInicioSesion">       
                     <p>

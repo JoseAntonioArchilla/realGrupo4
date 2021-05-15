@@ -54,10 +54,7 @@
             <a class="col-2  text-decoration-none" href="ServletInicioSesion?usuario=<%= u.getNickname()%>&contrasena=<%= u.getPassword()%>">
                 <img src="img/Logo.png" style="width:2em; height:2em;">
             </a>
-            <form class="col-4">
-                <input style="width: 100%; border-radius: 25px" type="text">
-            </form>
-
+                <div class="col-4"></div>
 
             <%
                 if (puede_editar) {
@@ -86,7 +83,10 @@
             <!-- Filtros -->
             <div class="col-2" style="background: #77e5ff;">
                 <form action="ServletListarEventos">
-                    <!-- TODO: poner nombres y el action ademas de las categorias-->
+                   
+                    <div class="row m-1">
+                         <input style="width: 100%; border-radius: 25px" type="search" name="nombre">
+                    </div>
                     <div class="row m-1">
                         <p class="col-6">Min:</p>
                         <input name="minimoPrecio" class="col-6" type="number">

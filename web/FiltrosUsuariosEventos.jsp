@@ -4,6 +4,7 @@
     Author     : carlo
 --%>
 
+<%@page import="grupo4app.entity.EventoUsuario"%>
 <%@page import="grupo4app.entity.UsuarioEvento"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,20 +15,22 @@
         <title>Muestro los usuarios filtrados</title>
     </head>
     <%
-        List<UsuarioEvento> listaUsuarios = (List)request.getAttribute("usuarios");
+        List<EventoUsuario> listaUsuarios = (List)request.getAttribute("filtrados");
         %>
     <body>
         <h1>Usuarios filtrados: </h1>
-        <table>
+        <table border="1">
         <tr>
-            <th>Filtros</th>
+            <th>Nombre usuario</th>
+            <th>Nombre evento</th>
         <tr/>
         <%
             if(!listaUsuarios.isEmpty()){
-            for(UsuarioEvento filtrado : listaUsuarios){
+            for(EventoUsuario filtrado : listaUsuarios){
         %>
         <tr>
-            <%= filtrado.getCiudad()%>            
+            <td><%= filtrado.getUsuarioEvento().getNombre() %></td>
+            <td><%= filtrado.getEvento().getTitulo() %></td>
         </tr>     
         <%
             }  

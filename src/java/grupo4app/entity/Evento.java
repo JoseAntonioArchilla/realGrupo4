@@ -52,12 +52,12 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Evento.findByDeporte", query = "SELECT e FROM Evento e WHERE e.deporte = :deporte")
     , @NamedQuery(name = "Evento.findByTeatro", query = "SELECT e FROM Evento e WHERE e.teatro = :teatro")
     , @NamedQuery(name = "Evento.findByGaming", query = "SELECT e FROM Evento e WHERE e.gaming = :gaming")
-    , @NamedQuery(name = "Evento.findByLectura", query = "SELECT e FROM Evento e WHERE e.lectura = :lectura")
-    , @NamedQuery(name = "Evento.findByFormacion", query = "SELECT e FROM Evento e WHERE e.formacion = :formacion")
-    , @NamedQuery(name = "Evento.findByConferencia", query = "SELECT e FROM Evento e WHERE e.conferencia = :conferencia")
-    , @NamedQuery(name = "Evento.findByBenefico", query = "SELECT e FROM Evento e WHERE e.benefico = :benefico")
-    , @NamedQuery(name = "Evento.findByArte", query = "SELECT e FROM Evento e WHERE e.arte = :arte")
-    , @NamedQuery(name = "Evento.findByTurismo", query = "SELECT e FROM Evento e WHERE e.turismo = :turismo")})
+    , @NamedQuery(name = "Evento.findByLectura", query = "SELECT e FROM Evento e WHERE e.lectura = :lectura") 
+    , @NamedQuery(name = "Evento.findByFormacion", query = "SELECT e FROM Evento e WHERE e.formacion = :formacion") 
+    , @NamedQuery(name = "Evento.findByConferencia", query = "SELECT e FROM Evento e WHERE e.conferencia = :conferencia") 
+    , @NamedQuery(name = "Evento.findByBenefico", query = "SELECT e FROM Evento e WHERE e.benefico = :benefico") 
+    , @NamedQuery(name = "Evento.findByArte", query = "SELECT e FROM Evento e WHERE e.arte = :arte") 
+    , @NamedQuery(name = "Evento.findByTurismo", query = "SELECT e FROM Evento e WHERE e.turismo = :turismo")}) 
 public class Evento implements Serializable {
 
     private static final long serialVersionUID = 1L;
