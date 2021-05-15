@@ -60,4 +60,18 @@ public class ChatFacade extends AbstractFacade<Chat> {
         return chatsUsr;
     }
     
+    public Chat findByTeleoperadorAndUsuario(Usuario tele, Usuario usr){
+        List<Chat> chatsUsr;
+        Query q = em.createQuery("SELECT c FROM Chat c WHERE c.usuario1.idusuario = :teleid and  c.usuario2.idusuario = :usrid");
+        q.setParameter("teleid", tele.getIdusuario());
+        q.setParameter("usrid", usr.getIdusuario());
+        chatsUsr = q.getResultList();
+        
+        if(chatsUsr.isEmpty()){
+            return null;
+        }
+        
+        return chatsUsr.get(0);
+    }
+    
 }

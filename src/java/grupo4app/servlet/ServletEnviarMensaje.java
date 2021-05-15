@@ -57,26 +57,29 @@ public class ServletEnviarMensaje extends HttpServlet {
         if(nuevoMensaje == null || nuevoMensaje.trim().length() == 0){
             RequestDispatcher rd = request.getRequestDispatcher("ServletMostrarChat?idChat=" + idCh);
             rd.forward(request, response);
-        } 
+        }  else {
+             nuevoMensaje = new String(nuevoMensaje.getBytes("ISO-8859-1"),"UTF8");
+
+            HttpSession ses = request.getSession();
+            Usuario emisor = (Usuario)ses.getAttribute("usuario");
+
+            MensajePK mpk = new MensajePK();
+            mpk.setChat(idCh);
+            //int idMensaje = this.mensajeFacade.findNewId();
+            //mpk.setIdmensaje(idMensaje);
+
+            Mensaje nuevo = new Mensaje(mpk);
+            nuevo.setChat1(chat);
+            nuevo.setEmisor(emisor);
+            nuevo.setTexto(nuevoMensaje);
+            nuevo.setFechaHora(new Date());
+
+            this.mensajeFacade.create(nuevo);
+
+            RequestDispatcher rd = request.getRequestDispatcher("ServletMostrarChat?idChat=" + idCh);
+            rd.forward(request, response);
+        }
         
-        HttpSession ses = request.getSession();
-        Usuario emisor = (Usuario)ses.getAttribute("usuario");
-        
-        MensajePK mpk = new MensajePK();
-        mpk.setChat(idCh);
-        //int idMensaje = this.mensajeFacade.findNewId();
-        //mpk.setIdmensaje(idMensaje);
-        
-        Mensaje nuevo = new Mensaje(mpk);
-        nuevo.setChat1(chat);
-        nuevo.setEmisor(emisor);
-        nuevo.setTexto(nuevoMensaje);
-        nuevo.setFechaHora(new Date());
-        
-        this.mensajeFacade.create(nuevo);
-        
-        RequestDispatcher rd = request.getRequestDispatcher("ServletMostrarChat?idChat=" + idCh);
-        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

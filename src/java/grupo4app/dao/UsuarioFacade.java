@@ -65,4 +65,18 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         return usr;
     }
     
+    public List<Usuario> findAllTeleoperadores(){
+        Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.rol = 2");
+        List<Usuario> resultados = q.getResultList();
+        
+        return resultados;
+    }
+    
+    public List<Usuario> findAllCreadoresUsuariosEventos(){
+        Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.rol = 0 or u.rol = 4");
+        List<Usuario> resultados = q.getResultList();
+        
+        return resultados;
+    }
+    
 }
