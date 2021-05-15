@@ -54,10 +54,7 @@
             <a class="col-2  text-decoration-none" href="ServletInicioSesion?usuario=<%= u.getNickname()%>&contrasena=<%= u.getPassword()%>">
                 <img src="img/Logo.png" style="width:2em; height:2em;">
             </a>
-            <form class="col-4">
-                <input style="width: 100%; border-radius: 25px" type="text" name="">
-            </form>
-
+                <div class="col-4"></div>
 
             <%
                 if (puede_editar) {
