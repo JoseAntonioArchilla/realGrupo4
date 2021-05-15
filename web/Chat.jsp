@@ -144,11 +144,17 @@
                 <div class="col-md-4 col-sm-12 px-sm-3 py-sm-4 text-center">
                     <div class="d-block p-2">
                         <b>Teleoperador</b><br/>
-                        <img src="img/Logo.png" width="100px" alt="..."><span style="padding-left: 5px;"><%=teleOp.getNickname()%></span>
+                        <div class="d-flex flex-row justify-content-center align-items-center">
+                            <div class="py-2 px-1"><img src="img/Logo.png" width="100px" alt="..."></div>
+                            <div class="py-2 px-1" style="width: 8em;"><%=teleOp.getNickname()%></div>
+                        </div>
                     </div>
                     <div class="d-block p-2">
                         <b>Usuario</b></br>
-                        <img src="img/Logo.png" width="100px" alt="..."><span style="padding-left: 5px;"><%=usr.getNickname()%></span>
+                        <div class="d-flex flex-row justify-content-center align-items-center">
+                            <div class="py-2 px-1"><img src="img/Logo.png" width="100px" alt="..."></div>
+                            <div class="py-2 px-1" style="width: 8em;"><%=usr.getNickname()%></div>
+                        </div>
                     </div>
                 </div>
             </div>

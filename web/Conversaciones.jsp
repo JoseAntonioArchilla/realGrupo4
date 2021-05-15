@@ -136,12 +136,20 @@
         
         <!-- CONTENIDO -->
         
-        <% if(usuarioIniciado != null && (usuarioIniciado.getRol() == 0 || usuarioIniciado.getRol() == 4 || usuarioIniciado.getRol() == 1)) {
+        <% if(usuarioIniciado != null && (usuarioIniciado.getRol() == 0 || usuarioIniciado.getRol() == 4)) {
         %>   
             <form class="px-sm-3" method="POST" action="ServletCrearChat">
                 <input type="submit" value="Inicia una conversación con un nuevo teleoperador">
             </form>
         <% }
+
+        if(usuarioIniciado != null && usuarioIniciado.getRol() == 2){
+        %>
+            <form class="px-sm-3" method="POST" action="ServletCrearChatManual">
+                <input type="submit" value="Crea una nueva conversación">
+            </form>
+        <%
+        }
         
         if (error != null) {
         %>
