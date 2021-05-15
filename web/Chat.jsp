@@ -18,6 +18,11 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
         <title>Chat</title>
         <style>
+            
+            body{
+                background-image: url("img/pattern.jpg");
+            }
+            
             .btn .tooltiptext {
                 visibility: hidden;
                 width: 120px;
@@ -111,7 +116,7 @@
         <hr style="width: 100%;"/>
         <div class="container-fluid mx-sm-3 p-sm-3">
             <div class="row">
-                <div class="col-md-8 col-sm-12 overflow-auto border border-1 border-primary rounded">
+                <div class="col-md-8 col-sm-12 overflow-auto border border-1 border-primary rounded" style="background-color: white;">
                     <div class="container-fluid px-sm-3 py-sm-4">
                         <%if(mensajes.size() == 0){
                         %>

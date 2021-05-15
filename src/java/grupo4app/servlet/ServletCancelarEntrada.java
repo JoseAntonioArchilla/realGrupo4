@@ -29,7 +29,13 @@ public class ServletCancelarEntrada extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String id_usuario = request.getParameter("id_usuario");       
+        
+        
         Usuario usr = (Usuario)request.getSession().getAttribute("usuario");
+        
+        if(id_usuario == null) id_usuario =usr.getIdusuario().toString();
         
         eventoUsuarioFacade.remove(eventoUsuarioFacade.findById(Integer.parseInt(request.getParameter("eventoUsuario"))));
         
@@ -47,7 +53,7 @@ public class ServletCancelarEntrada extends HttpServlet {
                     response.sendRedirect("ServletFiltroListar");                    
                     break;
                 case 4: // Usuario evento
-                    response.sendRedirect("Perfil.jsp");
+                    response.sendRedirect("ServletCargarListaEventosUsuario?usuario="+id_usuario);
                     break;
             }
     }
