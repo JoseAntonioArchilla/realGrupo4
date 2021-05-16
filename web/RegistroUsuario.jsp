@@ -67,11 +67,6 @@
                     </div>
 
                     <p>
-                        <label for="email" >Email</label>
-                        <input required type="email" name="Email" id="email" placeholder="Escribe tu email">
-                    </p>
-
-                    <p>
                         <label for="domicilio" >Domicilio</label>
                         <input required type="text" name="Domicilio" id="domicilio" placeholder="Escribe tu domicilio">
                     </p>

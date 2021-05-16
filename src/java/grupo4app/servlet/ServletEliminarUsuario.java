@@ -5,8 +5,10 @@
  */
 package grupo4app.servlet;
 
+import grupo4app.dao.UsuarioEventoFacade;
 import grupo4app.dao.UsuarioFacade;
 import grupo4app.entity.Usuario;
+import grupo4app.entity.UsuarioEvento;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -25,6 +27,9 @@ import javax.servlet.http.HttpServletResponse;
 public class ServletEliminarUsuario extends HttpServlet {
 
     @EJB
+    private UsuarioEventoFacade usuarioEventoFacade;
+
+    @EJB
     private UsuarioFacade usuarioFacade;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,8 +43,13 @@ public class ServletEliminarUsuario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id =  Integer.parseInt(request.getParameter("usuario"));
+        UsuarioEvento ue = usuarioEventoFacade.find(id);
+        if(ue != null){
+            usuarioEventoFacade.remove(ue);
+        }
         Usuario usuario = usuarioFacade.find(id);
         usuarioFacade.remove(usuario);
+        
         
         RequestDispatcher rd = request.getRequestDispatcher("ServletUsuarioListar");
         rd.forward(request, response);
