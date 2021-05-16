@@ -53,13 +53,20 @@
                         <input type="password" name="password" id="contraseña" value=<%=usuario.getPassword()%>>
                     </p>
 
-                    <select id="seleccionador" name="rol" onchange="mostrar_extra()"><--Hay que ver como hacer esto
+                    <%
+                        if(u)
+                    %>
+
+                    <select id="seleccionador" name="rol" onchange="mostrar_extra()">
                         <option value="0" <%= usuario.getRol() == 0 ? "selected" : ""%>>Creador de evento</option>
                         <option value="1" <%= usuario.getRol() == 1 ? "selected" : ""%>>Administrador del sistema</option>
                         <option value="2" <%= usuario.getRol() == 2 ? "selected" : ""%>>Teleoperador</option>
                         <option value="3" <%= usuario.getRol() == 3 ? "selected" : ""%>>Analista de eventos</option>
                         <option value="4" <%= usuario.getRol() == 4 ? "selected" : ""%>>Usuario de evento</option>
                     </select>
+                    <%
+                        }
+                    %>
 
                     <div id="extra" style="display:none;">
                         <p>
