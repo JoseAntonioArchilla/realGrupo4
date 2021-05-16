@@ -44,7 +44,7 @@ public class ServletListarEventos extends HttpServlet {
         String lectura = request.getParameter("lectura");
         String formacion = request.getParameter("formacion");
         String conferencia = request.getParameter("conferencia");
-        String beneficico = request.getParameter("beneficico");
+        String benefico = request.getParameter("benefico");
         String arte = request.getParameter("arte");
         String turismo = request.getParameter("turismo");
         
@@ -59,7 +59,7 @@ public class ServletListarEventos extends HttpServlet {
         
        List<Evento> listaEventos = this.evento.filtrarEventos(
                minimo, maximo, disponible, nombre,musica,aire_libre,deporte,teatro,gaming,
-               lectura,formacion,conferencia,beneficico,arte,turismo, usr.getRol() == 0 ? usr : null);
+               lectura,formacion,conferencia,benefico,arte,turismo, usr.getRol() == 0 ? usr : null);
        request.setAttribute("eventos", listaEventos);
        
        switch (usr.getRol()) {

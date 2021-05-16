@@ -69,7 +69,7 @@ public class ServletGuardarEvento extends HttpServlet {
         String lectura = request.getParameter("lectura");
         String formacion = request.getParameter("formacion");
         String conferencia = request.getParameter("conferencia");
-        String beneficico = request.getParameter("beneficico");
+        String benefico = request.getParameter("benefico");
         String arte = request.getParameter("arte");
         String turismo = request.getParameter("turismo");
         String pattern = "yyyy-MM-dd";
@@ -97,7 +97,7 @@ public class ServletGuardarEvento extends HttpServlet {
             e.setLectura(lectura == null ? 0 : 1);
             e.setFormacion(formacion == null ? 0 : 1);
             e.setConferencia(conferencia == null ? 0 : 1);
-            e.setBenefico(beneficico == null ? 0 : 1);
+            e.setBenefico(benefico == null ? 0 : 1);
             e.setArte(arte == null ? 0 : 1);
             e.setTurismo(turismo == null ? 0 : 1);
             e.setCreadorevento(usu);
@@ -146,7 +146,7 @@ public class ServletGuardarEvento extends HttpServlet {
                     response.sendRedirect("ServletListarEventos");
                     break;
                 case 1: // Administrador
-                    request.getRequestDispatcher("ServletListarEventos").forward(request, response);
+                    response.sendRedirect("ServletListarEventos");
                     break;
                 case 2: // Teleoperador
                     response.sendRedirect("ServletListarConversaciones");

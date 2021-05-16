@@ -43,6 +43,9 @@
             <div class="formulario">      
                 <h1>Edición</h1>
                 <form method="post" action="ServletEditarPerfil">  
+                    
+                    <input type="text" name="rol" value="<%= usuario.getRol()%>" hidden="true">
+                    
                     <p>
                         <label for="usuario" >Usuario</label>
                         <input type="text" name="usuario" id="usuario" value=<%=usuario.getNickname()%>>
@@ -54,7 +57,7 @@
                     </p>
 
                     <%
-                        if(u)
+                        if(usuario.getRol() == 1){
                     %>
 
                     <select id="seleccionador" name="rol" onchange="mostrar_extra()">
