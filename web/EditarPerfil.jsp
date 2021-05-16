@@ -30,6 +30,16 @@
             document.getElementById("domicilio").required = visible;
             document.getElementById("ciudad").required = visible;
         }
+        
+        function mostrar_extra_usuario_evento(){
+            document.getElementById("extra").style.display = "block";
+            document.getElementById("nombre").required = true;
+            document.getElementById("apellidos").required = true;
+            document.getElementById("sexo").required = true;
+            document.getElementById("edad").required = true;
+            document.getElementById("domicilio").required = true;
+            document.getElementById("ciudad").required = true;
+        }
     </script>
 
     <body>
@@ -71,7 +81,7 @@
                         }
                     %>
 
-                    <div id="extra" style="display:none;">
+                    <div id="extra" style="display: none;">
                         <p>
                             <label for="nombre" >Nombre</label>
                             <input type="text" name="nombre" id="nombre" value="<%=usuarioEvento == null ? "" : usuarioEvento.getNombre()%>" placeholder="Escribe tu nombre">
@@ -115,7 +125,7 @@
         <%
             if (usuario.getRol() == 4) {
         %>
-        <script> mostrar_extra();</script>    
+        <script> mostrar_extra_usuario_evento();</script>    
         <%
             }
         %>
