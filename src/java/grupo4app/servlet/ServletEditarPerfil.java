@@ -40,15 +40,19 @@ public class ServletEditarPerfil extends HttpServlet {
         HttpSession sesion = request.getSession();
         Usuario usuario = (Usuario) sesion.getAttribute("usuario");
         
+        int usu = Integer.parseInt(request.getParameter("usuarioEditar"));
+        Usuario usuarioEditar = this.usuarioFacade.find(usu);
+        UsuarioEvento usuarioEventoEditar = usuarioEditar.getUsuarioEvento();
+        
         String nickname = request.getParameter("usuario");
         String password = request.getParameter("password");
         String rol = request.getParameter("rol");
         
-        usuario.setNickname(nickname);
-        usuario.setPassword(password);
-        usuario.setRol(Integer.parseInt(rol));
+        usuarioEditar.setNickname(nickname);
+        usuarioEditar.setPassword(password);
+        usuarioEditar.setRol(Integer.parseInt(rol));
         
-        usuarioFacade.edit(usuario);
+        usuarioFacade.edit(usuarioEditar);
         
         if(rol.equals("4")){
             UsuarioEvento usuarioEvento = (UsuarioEvento) sesion.getAttribute("usuarioEvento");
@@ -62,31 +66,27 @@ public class ServletEditarPerfil extends HttpServlet {
             
             boolean nuevo = false;
             
-            if(usuarioEvento == null){
-                usuarioEvento = new UsuarioEvento();
-                nuevo = true;
-            }
             
-            usuarioEvento.setNombre(nombre);
-            usuarioEvento.setApellido(apellidos);
-            usuarioEvento.setEdad(Integer.parseInt(edad));
-            usuarioEvento.setSexo(sexo);
-            usuarioEvento.setDomicilio(domicilio);
-            usuarioEvento.setCiudad(ciudad);
+            usuarioEventoEditar.setNombre(nombre);
+            usuarioEventoEditar.setApellido(apellidos);
+            usuarioEventoEditar.setEdad(Integer.parseInt(edad));
+            usuarioEventoEditar.setSexo(sexo);
+            usuarioEventoEditar.setDomicilio(domicilio);
+            usuarioEventoEditar.setCiudad(ciudad);
             
             if(nuevo){
                 usuarioEvento.setUsuario(usuario.getIdusuario());
                 usuarioEventoFacade.create(usuarioEvento);
                 sesion.setAttribute("usuarioEvento", usuarioEvento);
             }else{
-               usuarioEventoFacade.edit(usuarioEvento); 
-            }   
+               usuarioEventoFacade.edit(usuarioEventoEditar); 
+            }  
         }else{
             try{usuarioEventoFacade.remove((UsuarioEvento) sesion.getAttribute("usuarioEvento"));}catch(Exception e){}
             sesion.setAttribute("usuarioEvento", null);
         }
         
-        RequestDispatcher rd = request.getRequestDispatcher("ServletCargarListaEventosUsuario?usuario=" + usuario.getIdusuario());
+        RequestDispatcher rd = request.getRequestDispatcher("ServletCargarListaEventosUsuario?usuario=" + usuarioEditar.getIdusuario());
         rd.forward(request, response);
     }
 

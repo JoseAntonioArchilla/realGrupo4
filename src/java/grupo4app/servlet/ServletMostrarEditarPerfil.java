@@ -5,7 +5,6 @@
  */
 package grupo4app.servlet;
 
-import grupo4app.dao.UsuarioEventoFacade;
 import grupo4app.dao.UsuarioFacade;
 import grupo4app.entity.Usuario;
 import grupo4app.entity.UsuarioEvento;
@@ -21,16 +20,14 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author nieto
+ * @author franc
  */
-@WebServlet(name = "ServletMostrarUsuario", urlPatterns = {"/ServletMostrarUsuario"})
-public class ServletMostrarUsuario extends HttpServlet {
+@WebServlet(name = "ServletMostrarEditarPerfil", urlPatterns = {"/ServletMostrarEditarPerfil"})
+public class ServletMostrarEditarPerfil extends HttpServlet {
 
     @EJB
     private UsuarioFacade usuarioFacade;
-    
-    @EJB
-    private UsuarioEventoFacade usuarioEventoFacade;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,16 +39,16 @@ public class ServletMostrarUsuario extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        
-        Usuario usuario = usuarioFacade.find(id);
-        if(usuario.getRol() == 4){
-            request.setAttribute("usuarioEvento", usuario.getUsuarioEvento());
-
+        Integer id = Integer.parseInt(request.getParameter("idUsuario"));
+        Usuario user = this.usuarioFacade.find(id);
+        UsuarioEvento userevento;
+        if(user.getRol() == 4){
+            userevento = user.getUsuarioEvento();
+            request.setAttribute("usuarioEvento", userevento);
         }
-        request.setAttribute("usuario", usuario);
+        request.setAttribute("usuario", user);
         
-        RequestDispatcher rd = request.getRequestDispatcher("EditarUsuario.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("EditarPerfil.jsp");
         rd.forward(request, response);
     }
 

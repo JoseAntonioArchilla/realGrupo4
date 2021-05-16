@@ -19,6 +19,8 @@
     </head>
     <body>
         <%
+            HttpSession ses = request.getSession();
+            Usuario usSesion = (Usuario)ses.getAttribute("usuario");
             Usuario usuario = (Usuario) request.getAttribute("usuario");
             UsuarioEvento usuarioEvento = usuario.getUsuarioEvento();
             List<EventoUsuario> listaEventos = (List) request.getAttribute("listaEventos");
@@ -75,7 +77,7 @@
                 }
             </style>
 
-            <a class="col-2  text-decoration-none" href="ServletInicioSesion?usuario=<%= usuario.getNickname()%>&contrasena=<%= usuario.getPassword()%>">
+            <a class="col-2  text-decoration-none" href="ServletInicioSesion?usuario=<%= usSesion.getNickname()%>&contrasena=<%= usSesion.getPassword()%>">
                 <img src="img/Logo.png" style="width:2em; height:2em;">
             </a>
             <div class="col-4">
@@ -87,7 +89,7 @@
                 <div class="dropdown-content">
                     <a class="row dropdown-element" href="ServletCargarListaEventosUsuario">Mi perfil</a>
                     <%
-                        if (usuario.getRol() ==  0 || usuario.getRol() ==  4) {
+                        if (usuario.getRol() ==  0 || usuario.getRol() == 2 || usuario.getRol() ==  4) {
                     %><a class="row dropdown-element" href="ServletListarConversaciones">Mensajes</a><%
                                 }
                     %>
@@ -96,7 +98,7 @@
             </div>       
         </div>
 
-        <form action="EditarPerfil.jsp" class="row">
+        <div method="GET" action="ServletMostrarEditarPerfil?idUsuario=<%=usuario.getIdusuario()%>" class="row">
             <div class="col-2">
 
             </div>
@@ -117,14 +119,14 @@
                 <%
                     }
                 %>
-                <button>Editar</button>
+                <button onclick="window.location.href='ServletMostrarEditarPerfil?idUsuario=<%=usuario.getIdusuario()%>'">Editar</button>
             </div>
 
 
             <div class="col-2">
 
             </div>
-        </form> 
+        </div> 
         <%
             if(usuario.getRol() == 4){
         %>       
