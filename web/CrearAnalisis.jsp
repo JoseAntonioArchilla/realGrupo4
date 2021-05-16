@@ -83,7 +83,7 @@
             <label for="idNombre">Nombre: </label>
             <input type="text" name="nombre" id="idNombre" maxlength="200" value="<%=nombre%>">           
             <br/>
-            <p>Sexo: </p>
+            <label>Sexo: </label><br/>
             
             <%
                 if(sexo.equals("hombre")){
