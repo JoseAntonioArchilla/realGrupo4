@@ -4,6 +4,7 @@
     Author     : carlo
 --%>
 
+<%@page import="java.util.List"%>
 <%@page import="grupo4app.entity.Filtro"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -49,11 +50,13 @@
             categorias = filtro.getCategoria();
                       
             usuario = "0";
+           
             try{
-                usuario = filtro.getUsuario1().getIdusuario().toString();              
+                usuario = filtro.getUsuario1().getIdusuario().toString();   
+                
             }catch(Exception e){
                         
-            }
+            } 
           
             try{
                 nombre = filtro.getNombre();
@@ -480,7 +483,7 @@
             
             </select> -->
             <br/>
-            <label>Codigo Usuario: <input type="text" id="opUsuario" name="usuario" value=<%=usuario%>></label>
+            <input hidden type="text" id="opUsuario" name="usuario" value=<%=usuario%>>
             <br/>
             <label>Edad-inf: <input type="text" id="opEdadInf" name="edadInferior" value=<%=edadInferior%>></label>
             <br/>

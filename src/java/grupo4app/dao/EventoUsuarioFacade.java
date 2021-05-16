@@ -106,9 +106,9 @@ public class EventoUsuarioFacade extends AbstractFacade<EventoUsuario> {
                 sentencia += (" and upper(eu.usuarioEvento.ciudad) like upper('" + ciudad + "')");
             }
             
-            if(usuario != null){
+           /* if(usuario != null){
                sentencia += (" and eu.usuarioEvento.usuario = '" + idUsuario + "'"); 
-            }
+            } */
             
             if(costeEntrada > 0){
                 sentencia += (" and eu.evento.costeEntrada = '" + costeEntrada + "'"); 
