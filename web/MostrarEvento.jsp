@@ -4,6 +4,7 @@
     Author     : chinchar@hotmail.es
 --%>
 
+<%@page import="java.util.Date"%>
 <%@page import="java.util.List"%>
 <%@page import="grupo4app.entity.EventoUsuario"%>
 <%@page import="grupo4app.entity.UsuarioEvento"%>
@@ -137,6 +138,14 @@
                     } else if (plazas == 0) {
                     %>
                     <p>No quedan plazas</p>
+                    <%
+                    } else if ((new Date()).compareTo(e.getFechaReserva())>0) {
+                    %>
+                    <p>El evento ya se ha realizado</p>
+                    <%
+                    } else if ((new Date()).compareTo(e.getFecha())<0) {
+                    %>
+                    <p>El evento aun no se puede comprar</p>
                     <%
                     } else {
                         if (e.getAsientosFijos()) {

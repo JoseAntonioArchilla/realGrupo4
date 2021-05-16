@@ -47,11 +47,6 @@ public class ServletMostrarUsuario extends HttpServlet {
         Usuario usuario = usuarioFacade.find(id);
         request.setAttribute("usuario", usuario);
         
-        try{
-            UsuarioEvento usuarioEvento = usuarioEventoFacade.find(id);
-            request.setAttribute("usuarioEvento", usuarioEvento);
-        }catch(Exception e){}
-        
         RequestDispatcher rd = request.getRequestDispatcher("EditarUsuario.jsp");
         rd.forward(request, response);
     }
