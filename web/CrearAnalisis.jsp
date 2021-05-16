@@ -88,6 +88,25 @@
             <%
                 if(sexo.equals("hombre")){
                 %>
+                
+                 <!--<div style="display: grid; grid-template-columns:1fr 1fr 1fr; width:460px">
+                        <div>
+                            <label style="width:auto; height:auto" for="hombre" >Hombre</label>
+                            <input style="width:auto; height:auto" required type="radio" name="Sexo" id="hombre" value="Hombre" checked>
+                        </div>
+                        <div>
+                            <label style="width:auto; height:auto" for="mujer" >Mujer</label>
+                            <input style="width:auto; height:auto" required type="radio" name="Sexo" id="mujer" value="Mujer">
+                        </div>
+                        <div>
+                            <label style="width:auto; height:auto" for="otro" >Otro</label>
+                            <input style="width:auto; height:auto" required type="radio" name="Sexo" id="otro" value="Otro">
+                        </div>
+
+                    </div> -->
+                
+                
+                
                 <input type="radio" id="opMasculino" name="sexo" value="hombre" checked>
             <label for="opMasculino"> Hombre </label>
             <br/>
@@ -98,7 +117,7 @@
             <label for="opOtro"> Otro </label>
             <br/>
             <input type="radio" id="opNinguno" name="sexo" value="">
-            <label for="opNinguno"> Ninguno </label>
+            <label for="opNinguno"> Ninguno </label> 
             
             <%
                 }else if(sexo.equals("mujer")){
