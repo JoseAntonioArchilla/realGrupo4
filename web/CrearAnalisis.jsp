@@ -96,11 +96,11 @@
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="mujer" >Mujer</label>
-                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="mujer" value="mujer">
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="mujer" value="Mujer">
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="otro" >Otro</label>
-                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="otro" value="otro">
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="otro" value="Otro">
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="ninguno" >Ninguno</label>
@@ -121,7 +121,7 @@
             <label for="opNinguno"> Ninguno </label> --> 
             
             <%
-                }else if(sexo.equals("mujer")){
+                }else if(sexo.equals("Mujer")){
                 %>
                 
                 <div style="display: grid; grid-template-columns:1fr 1fr 1fr; width:460px">
@@ -131,11 +131,11 @@
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="mujer" >Mujer</label>
-                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="mujer" value="mujer" checked>
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="mujer" value="Mujer" checked>
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="otro" >Otro</label>
-                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="otro" value="otro">
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="otro" value="Otro">
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="ninguno" >Ninguno</label>
@@ -156,7 +156,7 @@
             <label for="opNinguno"> Ninguno </label> -->
             
             <%
-                }else if(sexo.equals("otro")){
+                }else if(sexo.equals("Otro")){
                   %>
                   
                   <div style="display: grid; grid-template-columns:1fr 1fr 1fr; width:460px">
@@ -166,11 +166,11 @@
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="mujer" >Mujer</label>
-                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="mujer" value="mujer">
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="mujer" value="Mujer">
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="otro" >Otro</label>
-                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="otro" value="otro" checked>
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="otro" value="Otro" checked>
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="ninguno" >Ninguno</label>
@@ -202,11 +202,11 @@
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="mujer" >Mujer</label>
-                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="mujer" value="mujer">
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="mujer" value="Mujer">
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="otro" >Otro</label>
-                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="otro" value="otro">
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="otro" value="Otro">
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="ninguno" >Ninguno</label>
