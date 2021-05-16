@@ -83,7 +83,7 @@
             <label for="idNombre">Nombre: </label>
             <input type="text" name="nombre" id="idNombre" maxlength="200" value="<%=nombre%>">           
             <br/>
-            <p>Sexo: </p>
+            <label>Sexo: </label><br/>
             
             <%
                 if(sexo.equals("hombre")){
@@ -111,11 +111,11 @@
                 <!--<input type="radio" id="opMasculino" name="sexo" value="hombre" checked>
             <label for="opMasculino"> Hombre </label>
             <br/>
-            <input type="radio" id="opMujer" name="sexo" value="mujer">
             <label for="opMujer"> Mujer </label>
+            <input type="radio" id="opMujer" name="sexo" value="mujer">
             <br/>
-            <input type="radio" id="opOtro" name="sexo" value="otro">
             <label for="opOtro"> Otro </label>
+            <input type="radio" id="opOtro" name="sexo" value="otro">
             <br/>
             <input type="radio" id="opNinguno" name="sexo" value="">
             <label for="opNinguno"> Ninguno </label> --> 
@@ -146,11 +146,11 @@
                <!-- <input type="radio" id="opMasculino" name="sexo" value="hombre" >
             <label for="opMasculino"> Hombre </label>
             <br/>
-            <input type="radio" id="opMujer" name="sexo" value="mujer" checked>
             <label for="opMujer"> Mujer </label>
+            <input type="radio" id="opMujer" name="sexo" value="mujer" checked>
             <br/>
-            <input type="radio" id="opOtro" name="sexo" value="otro">
             <label for="opOtro"> Otro </label>
+            <input type="radio" id="opOtro" name="sexo" value="otro">
             <br/>
             <input type="radio" id="opNinguno" name="sexo" value="">
             <label for="opNinguno"> Ninguno </label> -->
@@ -182,11 +182,11 @@
               <!--<input type="radio" id="opMasculino" name="sexo" value="hombre" >
             <label for="opMasculino"> Hombre </label>
             <br/>
-            <input type="radio" id="opMujer" name="sexo" value="mujer">
             <label for="opMujer"> Mujer </label>
+            <input type="radio" id="opMujer" name="sexo" value="mujer">
             <br/>
-            <input type="radio" id="opOtro" name="sexo" value="otro" checked>
             <label for="opOtro"> Otro </label>
+            <input type="radio" id="opOtro" name="sexo" value="otro" checked>
             <br/>
             <input type="radio" id="opNinguno" name="sexo" value="">
             <label for="opNinguno"> Ninguno </label> -->
@@ -218,11 +218,11 @@
              <!--<input type="radio" id="opMasculino" name="sexo" value="hombre" >
             <label for="opMasculino"> Hombre </label>
             <br/>
-            <input type="radio" id="opMujer" name="sexo" value="mujer" >
             <label for="opMujer"> Mujer </label>
+            <input type="radio" id="opMujer" name="sexo" value="mujer" >
             <br/>
-            <input type="radio" id="opOtro" name="sexo" value="otro">
             <label for="opOtro"> Otro </label>
+            <input type="radio" id="opOtro" name="sexo" value="otro">
             <br/>
             <input type="radio" id="opNinguno" name="sexo" value="" checked>
             <label for="opNinguno"> Ninguno </label> -->
