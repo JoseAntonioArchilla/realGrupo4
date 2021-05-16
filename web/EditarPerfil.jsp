@@ -45,15 +45,15 @@
     <body>
         <%
             HttpSession sesion = request.getSession();
-            Usuario usuario = (Usuario) sesion.getAttribute("usuario");
-            UsuarioEvento usuarioEvento = (UsuarioEvento) sesion.getAttribute("usuarioEvento");
+            Usuario usuario = (Usuario) request.getAttribute("usuario");
+            UsuarioEvento usuarioEvento = (UsuarioEvento) request.getAttribute("usuarioEvento");
         %>
 
         <div class="contact_form">
             <div class="formulario">      
                 <h1>Edición</h1>
                 <form method="post" action="ServletEditarPerfil">  
-                    
+                    <input type="hidden" name="usuarioEditar" value="<%=usuario.getIdusuario()%>">
                     <input type="text" name="rol" value="<%= usuario.getRol()%>" hidden="true">
                     
                     <p>
