@@ -156,20 +156,20 @@
                         <option value="4" >Usuario de evento</option>
                     </select>
 
-                    <div id="extra" style="display:none;">
+                    <div id="extra" class="mt-2" style="display:none;">
                         <p>
                             <label for="nombre" >Nombre</label>
-                            <input type="text" name="nombre" id="nombre"  placeholder="Escribe tu nombre">
+                            <input type="text" name="nombre" id="nombre">
                         </p>
 
                         <p>
                             <label for="apellidos" >Apellidos</label>
-                            <input type="text" name="apellidos" id="apellidos"  placeholder="Escribe tus apellidos">
+                            <input type="text" name="apellidos" id="apellidos">
                         </p>
 
                         <p>
                             <label for="edad" >Edad</label>
-                            <input type="number" name="edad" id="edad" placeholder="Escribe tu edad">
+                            <input type="number" name="edad" id="edad">
                         </p>
 
                         <p>
@@ -183,16 +183,16 @@
 
                         <p>
                             <label for="domicilio" >Domicilio</label>
-                            <input type="text" name="domicilio" id="domicilio" placeholder="Escribe tu domicilio">
+                            <input type="text" name="domicilio" id="domicilio">
                         </p>
 
                         <p>
                             <label for="ciudad" >Ciudad</label>
-                            <input type="text" name="ciudad" id="ciudad"  placeholder="Escribe tu ciudad">
+                            <input type="text" name="ciudad" id="ciudad">
                         </p>
                     </div>
 
-                    <button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>
+                    <input type="submit" name="enviar_formulario" id="enviar">
                 </form>
                 <form action="ServletListarEventos">
                     <br>
