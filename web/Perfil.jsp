@@ -137,7 +137,14 @@
                             <a href="ServletMostrarEvento?idEvento=<%=e.getEvento().getIdevento()%>" class="col-6"><img width="100%" height="100%" src="img/Logo.png"></a>
                             <div class="col-6">
                                 <h2><%=e.getEvento().getTitulo()%></h2>
-                                <p><%=e.getEvento().getDescripcion()%>              
+                                <p><%=e.getEvento().getDescripcion()%></p>
+                                <% 
+                                    if(e.getEvento().getAsientosFijos()){
+                                %>   
+                                    <p>Fila: <%=e.getAsientos().getAsientosPK().getFila()%> Columna: <%=e.getAsientos().getAsientosPK().getColumna()%></p>
+                                <%
+                                    }
+                                %>
                                     <a href="ServletCancelarEntrada?eventoUsuario=<%= e.getEventoUsuarioPK().getIdeventousuario()%>&id_usuario=<%=usuario.getIdusuario()%>" style="margin-left:2em;">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
