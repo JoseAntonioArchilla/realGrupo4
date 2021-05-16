@@ -78,6 +78,7 @@ public class ServletAñadirUsuario extends HttpServlet {
             String sexo = request.getParameter("sexo");
             UsuarioEvento usuarioEvento = new UsuarioEvento();
 
+            usuarioEvento.setUsuario(user.getIdusuario());
             usuarioEvento.setNombre(nombre);
             usuarioEvento.setApellido(apellidos);
             usuarioEvento.setDomicilio(domicilio);
