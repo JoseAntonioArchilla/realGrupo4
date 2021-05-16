@@ -83,7 +83,7 @@
             </div>
             <div class="col-4"></div>
             <div  class="col-2 dropdown">
-                <img src="img/avatar.png" style="width:2em; height:2em;">
+                <img src="img/evento.png" style="width:2em; height:2em;">
                 <div class="dropdown-content">
                     <a class="row dropdown-element" href="ServletCargarListaEventosUsuario">Mi perfil</a>
                     <%
@@ -127,7 +127,12 @@
         </form>          
         <div class="py-3 row">  
             <!-- Grid -->
-            <div class="col-10">
+            
+                <div class="col-12 text-center mt-4" style="background-color: #de7ebf;">
+                    
+                        <h2>Eventos adquiridos</h2>
+                   
+                </div>
                 <div class="row">
                     <%
                         for (EventoUsuario e : listaEventos) {
@@ -159,7 +164,7 @@
                         }
                     %>
                 </div>                
-            </div>           
+                    
         </div>
     </body>
 </html>
