@@ -20,7 +20,7 @@
     <body>
         <%
             Usuario usuario = (Usuario) request.getAttribute("usuario");
-            UsuarioEvento usuarioEvento = (UsuarioEvento) request.getAttribute("usuarioEvento");
+            UsuarioEvento usuarioEvento = usuario.getUsuarioEvento();
             List<EventoUsuario> listaEventos = (List) request.getAttribute("listaEventos");
         %>
 
