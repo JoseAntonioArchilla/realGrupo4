@@ -79,10 +79,11 @@
                     <div class="col-md-4"> <!--comienzo-->
                         <div class="card" style="width: 18rem; border-radius: 10px">
                             <img class="card-img-top" src="img/img1.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center">Promociona cualquier evento</h5>
-                                    <p class="card-text">Con nuestros servicios cualquier evento que pienses podrá ver la luz</p>
-                                </div>
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Organiza eventos de ensueño</h5>
+                                <p class="card-text">Crea eventos de forma sencilla y rápida, a la vez que se dan a conocer entre la gente.
+                                    Crea eventos multitudinarios que la no pueda olvidar</p>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4"> <!--comienzo-->
@@ -90,8 +91,8 @@
                             <img class="card-img-top" src="img/img2.jpg" alt="Card image cap">
                             <div class="card text-center">
                                 <div class="card-body">
-                                    <h5 class="card-title">Triunfa organizando eventos</h5>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                    <h5 class="card-title">Un evento para todos</h5><br>
+                                    <p class="card-text">Podrás encontrar un evento que se adecue a tus exigencias y gustos. Desde eventos literarios a torneos gaming, siempre encontraras tu lugar                                                   </p>
                                 </div>
                             </div>
                         </div>
@@ -101,8 +102,8 @@
                             <img class="card-img-top" src="img/img3.jpg" alt="Card image cap">
                             <div class="card text-center">
                                 <div class="card-body">
-                                    <h5 class="card-title">Organizar eventos de ensueños</h5>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                    <h5 class="card-title">Un evento inolvidable</h5><br><br>
+                                    <p class="card-text">Es tu momento de vivir experiencias nuevas y únicas las cuales formarán parte de ti toda tu vida</p>
                                 </div>
                             </div>
                         </div>
@@ -110,9 +111,9 @@
                 </div>
             </div>
         </div>
-       
+
         <footer class="py-3">
-           Trabajo TAW is a property of Grupo4 Co.,Ltd. ©2021 All Rights Reserved.
+            Trabajo TAW is a property of Grupo4 Co.,Ltd. ©2021 All Rights Reserved.
         </footer>
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
