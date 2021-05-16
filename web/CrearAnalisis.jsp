@@ -88,26 +88,28 @@
             <%
                 if(sexo.equals("hombre")){
                 %>
-                
-                 <!--<div style="display: grid; grid-template-columns:1fr 1fr 1fr; width:460px">
+                   
+                <div style="display: grid; grid-template-columns:1fr 1fr 1fr; width:460px">
                         <div>
                             <label style="width:auto; height:auto" for="hombre" >Hombre</label>
-                            <input style="width:auto; height:auto" required type="radio" name="Sexo" id="hombre" value="Hombre" checked>
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="hombre" value="hombre" checked>
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="mujer" >Mujer</label>
-                            <input style="width:auto; height:auto" required type="radio" name="Sexo" id="mujer" value="Mujer">
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="mujer" value="mujer">
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="otro" >Otro</label>
-                            <input style="width:auto; height:auto" required type="radio" name="Sexo" id="otro" value="Otro">
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="otro" value="otro">
                         </div>
-
-                    </div> -->
+                        <div>
+                            <label style="width:auto; height:auto" for="ninguno" >Ninguno</label>
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="ninguno" value="">
+                        </div>
+                    </div>
                 
-                
-            <label for="opMasculino"> Hombre </label>  
-            <input type="radio" id="opMasculino" name="sexo" value="hombre" checked>
+                <!--<input type="radio" id="opMasculino" name="sexo" value="hombre" checked>
+            <label for="opMasculino"> Hombre </label>
             <br/>
             <label for="opMujer"> Mujer </label>
             <input type="radio" id="opMujer" name="sexo" value="mujer">
@@ -115,14 +117,34 @@
             <label for="opOtro"> Otro </label>
             <input type="radio" id="opOtro" name="sexo" value="otro">
             <br/>
-            <label for="opNinguno"> Ninguno </label> 
             <input type="radio" id="opNinguno" name="sexo" value="">
+            <label for="opNinguno"> Ninguno </label> --> 
             
             <%
                 }else if(sexo.equals("mujer")){
                 %>
-                <label for="opMasculino"> Hombre </label>
-                <input type="radio" id="opMasculino" name="sexo" value="hombre" >
+                
+                <div style="display: grid; grid-template-columns:1fr 1fr 1fr; width:460px">
+                        <div>
+                            <label style="width:auto; height:auto" for="hombre" >Hombre</label>
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="hombre" value="hombre">
+                        </div>
+                        <div>
+                            <label style="width:auto; height:auto" for="mujer" >Mujer</label>
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="mujer" value="mujer" checked>
+                        </div>
+                        <div>
+                            <label style="width:auto; height:auto" for="otro" >Otro</label>
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="otro" value="otro">
+                        </div>
+                        <div>
+                            <label style="width:auto; height:auto" for="ninguno" >Ninguno</label>
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="ninguno" value="">
+                        </div>
+                    </div>
+                
+               <!-- <input type="radio" id="opMasculino" name="sexo" value="hombre" >
+            <label for="opMasculino"> Hombre </label>
             <br/>
             <label for="opMujer"> Mujer </label>
             <input type="radio" id="opMujer" name="sexo" value="mujer" checked>
@@ -130,14 +152,35 @@
             <label for="opOtro"> Otro </label>
             <input type="radio" id="opOtro" name="sexo" value="otro">
             <br/>
-            <label for="opNinguno"> Ninguno </label>
             <input type="radio" id="opNinguno" name="sexo" value="">
+            <label for="opNinguno"> Ninguno </label> -->
             
             <%
                 }else if(sexo.equals("otro")){
                   %>
-                <label for="opMasculino"> Hombre </label>
-              <input type="radio" id="opMasculino" name="sexo" value="hombre" >
+                  
+                  <div style="display: grid; grid-template-columns:1fr 1fr 1fr; width:460px">
+                        <div>
+                            <label style="width:auto; height:auto" for="hombre" >Hombre</label>
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="hombre" value="hombre">
+                        </div>
+                        <div>
+                            <label style="width:auto; height:auto" for="mujer" >Mujer</label>
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="mujer" value="mujer">
+                        </div>
+                        <div>
+                            <label style="width:auto; height:auto" for="otro" >Otro</label>
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="otro" value="otro" checked>
+                        </div>
+                        <div>
+                            <label style="width:auto; height:auto" for="ninguno" >Ninguno</label>
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="ninguno" value="">
+                        </div>
+                    </div>
+                  
+                  
+              <!--<input type="radio" id="opMasculino" name="sexo" value="hombre" >
+            <label for="opMasculino"> Hombre </label>
             <br/>
             <label for="opMujer"> Mujer </label>
             <input type="radio" id="opMujer" name="sexo" value="mujer">
@@ -145,14 +188,35 @@
             <label for="opOtro"> Otro </label>
             <input type="radio" id="opOtro" name="sexo" value="otro" checked>
             <br/>
-            <label for="opNinguno"> Ninguno </label>
             <input type="radio" id="opNinguno" name="sexo" value="">
+            <label for="opNinguno"> Ninguno </label> -->
             
             <%
                 }else{
                 %>
-                <label for="opMasculino"> Hombre </label>
-             <input type="radio" id="opMasculino" name="sexo" value="hombre" >
+                
+                <div style="display: grid; grid-template-columns:1fr 1fr 1fr; width:460px">
+                        <div>
+                            <label style="width:auto; height:auto" for="hombre" >Hombre</label>
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="hombre" value="hombre">
+                        </div>
+                        <div>
+                            <label style="width:auto; height:auto" for="mujer" >Mujer</label>
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="mujer" value="mujer">
+                        </div>
+                        <div>
+                            <label style="width:auto; height:auto" for="otro" >Otro</label>
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="otro" value="otro">
+                        </div>
+                        <div>
+                            <label style="width:auto; height:auto" for="ninguno" >Ninguno</label>
+                            <input style="width:auto; height:auto" required type="radio" name="sexo" id="ninguno" value="" checked>
+                        </div>
+                    </div>
+                
+                                                                             
+             <!--<input type="radio" id="opMasculino" name="sexo" value="hombre" >
+            <label for="opMasculino"> Hombre </label>
             <br/>
             <label for="opMujer"> Mujer </label>
             <input type="radio" id="opMujer" name="sexo" value="mujer" >
@@ -160,8 +224,8 @@
             <label for="opOtro"> Otro </label>
             <input type="radio" id="opOtro" name="sexo" value="otro">
             <br/>
-            <label for="opNinguno"> Ninguno </label>
             <input type="radio" id="opNinguno" name="sexo" value="" checked>
+            <label for="opNinguno"> Ninguno </label> -->
             
             <%
                 }
