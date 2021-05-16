@@ -41,10 +41,12 @@ public class ServletCancelarEntrada extends HttpServlet {
         if(id_usuario == null) id_usuario =usr.getIdusuario().toString();
         
         EventoUsuario eu = eventoUsuarioFacade.findById(Integer.parseInt(request.getParameter("eventoUsuario")));
-        eu.getAsientos().setOcupado(0);
+        if(eu.getEvento().getAsientosFijos()){
+            eu.getAsientos().setOcupado(0);
+            asientosFacade.edit(eu.getAsientos());
+        }
         
         eventoUsuarioFacade.remove(eu);
-        asientosFacade.edit(eu.getAsientos());
         switch (usr.getRol()) {
                 case 0: // Creador de evento
                     request.getRequestDispatcher("ServletListarEventos").forward(request, response);

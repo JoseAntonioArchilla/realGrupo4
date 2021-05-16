@@ -124,7 +124,11 @@
             <div class="col-2">
 
             </div>
-        </form>          
+        </form> 
+        <%
+            if(usuario.getRol() == 4){
+        %>       
+            
         <div class="py-3 row">  
             <!-- Grid -->
             
@@ -166,5 +170,9 @@
                 </div>                
                     
         </div>
+                
+        <%
+            }
+       %>
     </body>
 </html>
