@@ -5,6 +5,7 @@
  */
 package grupo4app.servlet;
 
+import grupo4app.dao.AsientosFacade;
 import grupo4app.dao.EventoUsuarioFacade;
 import grupo4app.dao.UsuarioFacade;
 import grupo4app.entity.EventoUsuario;
@@ -26,6 +27,8 @@ public class ServletCancelarEntrada extends HttpServlet {
 
     @EJB
     private EventoUsuarioFacade eventoUsuarioFacade;
+        @EJB
+    private AsientosFacade asientosFacade;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,8 +40,11 @@ public class ServletCancelarEntrada extends HttpServlet {
         
         if(id_usuario == null) id_usuario =usr.getIdusuario().toString();
         
-        eventoUsuarioFacade.remove(eventoUsuarioFacade.findById(Integer.parseInt(request.getParameter("eventoUsuario"))));
+        EventoUsuario eu = eventoUsuarioFacade.findById(Integer.parseInt(request.getParameter("eventoUsuario")));
+        eu.getAsientos().setOcupado(0);
         
+        eventoUsuarioFacade.remove(eu);
+        asientosFacade.edit(eu.getAsientos());
         switch (usr.getRol()) {
                 case 0: // Creador de evento
                     request.getRequestDispatcher("ServletListarEventos").forward(request, response);

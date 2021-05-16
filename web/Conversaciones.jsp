@@ -157,7 +157,7 @@
     if(usuarioIniciado.getRol() == 2){
         // MIS CONVERSACIONES
     %>
-        <h2 class="px-sm-3">Mis conversaciones</h2>
+        <h2 class="px-sm-3 ">Mis conversaciones</h2>
     <%
         if(conversaciones != null && conversaciones.size() > 0) {  
         %>
@@ -236,7 +236,7 @@
         //// USUARIOS NO TELEOPERADORES
         if(conversaciones != null && conversaciones.size() > 0) {  
         %>
-             <div class="mx-sm-3 p-sm-3">
+             <div class="mx-sm-3 p-sm-3 text-center">
                 <div class="row justify-content-start">
                     <div class="filaprim col-4 px-sm-3 py-sm-4 my-1"><b>Teleoperador</b></div>
                     <div class="filaprim col-4 px-sm-3 py-sm-4 my-1"><b>Usuario atendido</b></div>
