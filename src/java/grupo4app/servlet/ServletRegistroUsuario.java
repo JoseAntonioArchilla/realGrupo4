@@ -76,6 +76,8 @@ public class ServletRegistroUsuario extends HttpServlet {
             ue.setNombre(nombre);
            // ue.setUsuario1(u);
             this.use.create(ue);
+            u.setUsuarioEvento(ue);
+            this.us.edit(u);
         }
         
         RequestDispatcher rd = request.getRequestDispatcher("ServletInicioSesion?usuario=" +nick +"&contrasena="+contrasenia );

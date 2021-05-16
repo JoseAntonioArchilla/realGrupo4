@@ -25,6 +25,9 @@
         <!-- Navbar -->      
         <div class="row py-2 text-center" style="background: #de7ebf">
             <style>
+                body{
+                    background-image: url("img/pattern.jpg");
+                }
                 a{
                     font-size: 1.3em;
                     color: black
