@@ -74,11 +74,6 @@
                 <img src="img/avatar.png" style="width:2em; height:2em;">
                 <div class="dropdown-content">
                     <a class="row dropdown-element text-decoration-none" href="ServletCargarListaEventosUsuario">Mi perfil</a>
-                    <%
-                        if(u.getRol() != 1){
-                            %><a class="row dropdown-element text-decoration-none" href="ServletListarConversaciones">Mensajes</a><%
-                        }
-                    %>
                     <a class="row dropdown-element text-decoration-none" href="ServletCerrarSesion">Cerrar sesion</a>
                 </div>
             </div>
