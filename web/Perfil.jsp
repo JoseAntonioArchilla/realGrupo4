@@ -127,7 +127,12 @@
         </form>          
         <div class="py-3 row">  
             <!-- Grid -->
-            <div class="col-10">
+            
+                <div class="col-12 text-center mt-4" style="background-color: #de7ebf;">
+                    
+                        <h2>Eventos adquiridos</h2>
+                   
+                </div>
                 <div class="row">
                     <%
                         for (EventoUsuario e : listaEventos) {
@@ -152,7 +157,7 @@
                         }
                     %>
                 </div>                
-            </div>           
+                    
         </div>
     </body>
 </html>
