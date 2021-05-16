@@ -20,8 +20,7 @@
     <script>
         function mostrar_extra()
         {
-            let value = document.getElementById("seleccionador").value;
-            const visible = value === "4";
+            const visible = true;
             document.getElementById("extra").style.display = visible ? "block" : "none";
             document.getElementById("nombre").required = visible;
             document.getElementById("apellidos").required = visible;
@@ -42,25 +41,28 @@
             <div class="formulario">      
                 <h1>Edición</h1>
                 <form method="post" action="ServletEditarUsuario?id=<%=usuario.getIdusuario()%>">  
+                    
+                    <input type="text" name="rol" hidden value="<%=usuario.getRol()%>">
                     <p>
                         <label for="usuario" >Usuario</label>
-                        <input type="text" name="usuario" id="usuario" value=<%=usuario.getNickname()%>>
+                        <input required type="text" name="usuario" id="usuario" value=<%=usuario.getNickname()%>>
                     </p>
 
                     <p>
                         <label for="contraseña" >Contraseña</label>
-                        <input type="password" name="password" id="contraseña" value=<%=usuario.getPassword()%>>
+                        <input required type="password" name="password" id="contraseña" value=<%=usuario.getPassword()%>>
                     </p>
 
-                    <select id="seleccionador" name="rol" onchange="mostrar_extra()"><--Hay que ver como hacer esto
+                   <%--
+                    <select id="seleccionador" name="rol" onchange="mostrar_extra()">
                         <option value="0" <%= usuario.getRol() == 0 ? "selected" : ""%>>Creador de evento</option>
                         <option value="1" <%= usuario.getRol() == 1 ? "selected" : ""%>>Administrador del sistema</option>
                         <option value="2" <%= usuario.getRol() == 2 ? "selected" : ""%>>Teleoperador</option>
                         <option value="3" <%= usuario.getRol() == 3 ? "selected" : ""%>>Analista de eventos</option>
                         <option value="4" <%= usuario.getRol() == 4 ? "selected" : ""%>>Usuario de evento</option>
                     </select>
-
-                    <div id="extra" style="display:none;">
+                   --%>
+                    <div id="extra" style="display:none;" oncha>
                         <p>
                             <label for="nombre" >Nombre</label>
                             <input type="text" name="nombre" id="nombre" value="<%=usuarioEvento == null ? "" : usuarioEvento.getNombre()%>" placeholder="Escribe tu nombre">
@@ -78,7 +80,7 @@
 
                         <p>
                             <label for="sexo" >Sexo</label>
-                            <select id="seleccionador" name="sexo" onchange="mostrar_extra()" ><--Hay que ver como hacer esto
+                            <select id="sexo" name="sexo">
                                 <option value="Hombre" <%= usuarioEvento == null ? "" : (usuarioEvento.getSexo().equals("Hombre") ? "selected" : "")%>>Hombre</option>
                                 <option value="Mujer" <%= usuarioEvento == null ? "" : (usuarioEvento.getSexo().equals("Mujer") ? "selected" : "")%>>Mujer</option>
                                 <option value="Otro" <%= usuarioEvento == null ? "" : (usuarioEvento.getSexo().equals("Otro") ? "selected" : "")%>>Otro</option>

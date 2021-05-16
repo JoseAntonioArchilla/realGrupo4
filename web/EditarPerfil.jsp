@@ -56,7 +56,8 @@
                         <input type="password" name="password" id="contraseña" value=<%=usuario.getPassword()%>>
                     </p>
 
-                    <%
+                    <!-- No permitimos que se editen roles porque el teleoperador perderia las conversaciones, entre otras cosas
+                    <%--<%
                         if(usuario.getRol() == 1){
                     %>
 
@@ -69,8 +70,8 @@
                     </select>
                     <%
                         }
-                    %>
-
+                    %>--%>
+                       -->
                     <div id="extra" style="display:none;">
                         <p>
                             <label for="nombre" >Nombre</label>

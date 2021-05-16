@@ -53,15 +53,15 @@
                     <div style="display: grid; grid-template-columns:1fr 1fr 1fr; width:460px">
                         <div>
                             <label style="width:auto; height:auto" for="hombre" >Hombre</label>
-                            <input style="width:auto; height:auto" required type="radio" name="Sexo" id="hombre" value="hombre">
+                            <input style="width:auto; height:auto" required type="radio" name="Sexo" id="hombre" value="Hombre">
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="mujer" >Mujer</label>
-                            <input style="width:auto; height:auto" required type="radio" name="Sexo" id="mujer" value="mujer">
+                            <input style="width:auto; height:auto" required type="radio" name="Sexo" id="mujer" value="Mujer">
                         </div>
                         <div>
                             <label style="width:auto; height:auto" for="otro" >Otro</label>
-                            <input style="width:auto; height:auto" required type="radio" name="Sexo" id="otro" value="otro">
+                            <input style="width:auto; height:auto" required type="radio" name="Sexo" id="otro" value="Otro">
                         </div>
 
                     </div>
