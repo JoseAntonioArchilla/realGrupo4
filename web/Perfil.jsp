@@ -83,7 +83,7 @@
             </div>
             <div class="col-4"></div>
             <div  class="col-2 dropdown">
-                <img src="img/avatar.png" style="width:2em; height:2em;">
+                <img src="img/evento.png" style="width:2em; height:2em;">
                 <div class="dropdown-content">
                     <a class="row dropdown-element" href="ServletCargarListaEventosUsuario">Mi perfil</a>
                     <%
