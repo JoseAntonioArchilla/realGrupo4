@@ -89,7 +89,7 @@
                 <div class="dropdown-content">
                     <a class="row dropdown-element" href="ServletCargarListaEventosUsuario">Mi perfil</a>
                     <%
-                        if (usuario.getRol() ==  0 || usuario.getRol() ==  4) {
+                        if (usuario.getRol() ==  0 || usuario.getRol() == 2 || usuario.getRol() ==  4) {
                     %><a class="row dropdown-element" href="ServletListarConversaciones">Mensajes</a><%
                                 }
                     %>
