@@ -45,6 +45,10 @@ public class ServletMostrarUsuario extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         
         Usuario usuario = usuarioFacade.find(id);
+        if(usuario.getRol() == 4){
+            request.setAttribute("usuarioEvento", usuario.getUsuarioEvento());
+
+        }
         request.setAttribute("usuario", usuario);
         
         RequestDispatcher rd = request.getRequestDispatcher("EditarUsuario.jsp");
