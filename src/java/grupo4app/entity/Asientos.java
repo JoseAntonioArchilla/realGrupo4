@@ -44,8 +44,8 @@ public class Asientos implements Serializable {
     //@NotNull
     @Column(name = "OCUPADO", nullable = false)
     private int ocupado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "asientos")
-    //@OneToMany(mappedBy = "asientos")
+    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "asientos")
+    @OneToMany(mappedBy = "asientos")
     private List<EventoUsuario> eventoUsuarioList;
     @JoinColumn(name = "EVENTO", referencedColumnName = "IDEVENTO", insertable = false, updatable = false)
     @ManyToOne(optional = false)

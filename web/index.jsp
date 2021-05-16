@@ -41,7 +41,7 @@
                     color: black;
                     text-decoration: none;
                 }
-               
+
                 .fondito {
                     background: #f2f2f2;
                 }
@@ -50,12 +50,12 @@
             <a class="col-2  text-decoration-none" href="index.jsp">
                 <img src="img/Logo.png" style="width:2em; height:2em;">
             </a>
-            
+
 
             <div class="col-6">
-                
+
             </div>
-           
+
             <div  class="col-2 " style="font-size: .9em">
                 <a href="RegistroUsuario.jsp">Registrarse </a>
             </div>            
@@ -64,22 +64,55 @@
             </div>            
         </div>
         <!-- End NavBar -->
-        
-        
+
+
         <section>
             <div id="eslogan" class="container-fluid my-4" style="background: #cccccc ">
-                
-                <h3><span>Haz lo que</span><br> <span style="color:#f48542 ">te apasiona</span></h3>
+
+                <h3 style="font-size: 3em;"><span>Haz lo que</span><br> <span style="color:#f48542 ">te apasiona</span></h3>
                 <img class="my-4" src="img/gente-feliz.jpg" alt="imagenEslogan">
             </div>            
         </section>
-        
-        <p>
-            Crea todo tipo de eventos, desde un concierto hasta un torneo de Magic
-        </p>
-        
-        <footer>
-           
+        <div class="container-fluid bg-warning">
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-md-4"> <!--comienzo-->
+                        <div class="card" style="width: 18rem; border-radius: 10px">
+                            <img class="card-img-top" src="img/img1.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Promociona cualquier evento</h5>
+                                    <p class="card-text">Con nuestros servicios cualquier evento que pienses podrá ver la luz</p>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4"> <!--comienzo-->
+                        <div class="card" style="width: 18rem; border-radius: 10px">
+                            <img class="card-img-top" src="img/img2.jpg" alt="Card image cap">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h5 class="card-title">Triunfa organizando eventos</h5>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4"> <!--comienzo-->
+                        <div class="card" style="width: 18rem; border-radius: 10px">
+                            <img class="card-img-top" src="img/img3.jpg" alt="Card image cap">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h5 class="card-title">Organizar eventos de ensueños</h5>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <footer class="py-3">
+           Trabajo TAW is a property of Grupo4 Co.,Ltd. ©2021 All Rights Reserved.
         </footer>
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

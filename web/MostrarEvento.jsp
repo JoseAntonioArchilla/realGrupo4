@@ -86,9 +86,8 @@
             <a class="col-2  text-decoration-none" href="ServletInicioSesion?usuario=<%= u.getNickname()%>&contrasena=<%= u.getPassword()%>">
                 <img src="img/Logo.png" style="width:2em; height:2em;">
             </a>
-            <form class="col-4">
-                <input style="width: 100%; border-radius: 25px" type="text">
-            </form>
+            <div class="col-4">
+            </div>
             <div class="col-4"></div>
             <div  class="col-2 dropdown">
                 <img src="img/avatar.png" style="width:2em; height:2em;">
@@ -149,11 +148,11 @@
                                 }
                         %>
                         <option value="<%= a.getAsientosPK().getFila()%> <%= a.getAsientosPK().getColumna()%>">Fila: <%= a.getAsientosPK().getFila()%> Columna: <%= a.getAsientosPK().getColumna()%></option>
-
-                    </select>  
+                  
+                    <% }%>
+                     </select>  
                         <input type="submit" value="Comprar">
-                    <% }
-                    } else {%>
+                    <%} else {%>
                     <span>Plazas disponibles: <%= plazas%></span>
                     <input type="submit" value="Comprar">
                     <% }

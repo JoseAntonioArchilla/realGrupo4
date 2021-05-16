@@ -38,6 +38,7 @@ header{
     grid-template-columns: 1fr 1fr;
     height: 20%;
     text-align: center;
+    
 }
 
 #eslogan h3,#eslogan img{
@@ -52,11 +53,11 @@ header{
 }
 
 footer {
-    background: purple;
+    background: black;
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 3fr 1fr;
+    color: white;
+    text-align: center; 
+     
 }
 
 footer ul{

@@ -80,9 +80,10 @@
             <a class="col-2  text-decoration-none" href="ServletInicioSesion?usuario=<%= usuario.getNickname()%>&contrasena=<%= usuario.getPassword()%>">
                 <img src="img/Logo.png" style="width:2em; height:2em;">
             </a>
-            <form class="col-4">
+                <div class="col-4"></div>
+           <!-- <form class="col-4">
                 <input style="width: 100%; border-radius: 25px" type="text">
-            </form>
+            </form>-->
             <div class="col-4"></div>
             <div  class="col-2 dropdown">
                 <img src="img/avatar.png" style="width:2em; height:2em;">
@@ -112,7 +113,7 @@
                     %>
                     <div class="col-4">
                         <div class="row">
-                            <a href="ServletCargarListaEventosUsuario?usuario=<%=e.getIdusuario()%>" class="col-6"><img width="100%" height="100%" src="img/Logo.png"></a>
+                            <a href="ServletCargarListaEventosUsuario?usuario=<%=e.getIdusuario()%>" class="col-6"><img width="100%" height="100%" src="img/avatar.png"></a>
                             <div class="col-6">
                                 <h2><%=e.getNickname()%></h2>
                                 <p><%=e.getRol() == 0 ? "Creador de evento" : (e.getRol() == 1 ? "Administrador del sistema" : (e.getRol() == 2 ? "Teleoperador" : (e.getRol() == 3 ? "Analista de eventos" : "Usuario de evento")))%> </p>
